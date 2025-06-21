@@ -993,7 +993,7 @@ internal static class DarkieTraits
         #region mimicry
         ActorTrait mimicry = new ActorTrait()
         {
-            id = "mimicry",
+            id = "power_mimicry",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/mimicry",
             rate_birth = Rare,
@@ -1003,19 +1003,92 @@ internal static class DarkieTraits
         hungerTrait.addOpposites(new List<string> { "nullify" });
         mimicry.base_stats = new BaseStats();
         mimicry.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 0.5f);
-        mimicry.base_stats.set(CustomBaseStatsConstant.AttackSpeed, 50f);
-        mimicry.base_stats.set(CustomBaseStatsConstant.Speed, 50f);
         mimicry.base_stats.set(CustomBaseStatsConstant.Intelligence, 50f);
 
         mimicry.type = TraitType.Positive;
         mimicry.unlock(true);
-        mimicry.action_attack_target = new AttackAction(DarkieTraitActions.traitStealing);
+        mimicry.action_attack_target = new AttackAction(DarkieTraitActions.powerMimicryAttackEffect);
         AssetManager.traits.add(mimicry);
-        addToLocale(mimicry.id, "Power Mimicry", "Will be able to steal up to seven new traits from enemies who dare to fight this person.");
+        addToLocale(mimicry.id, "Power Mimicry", "Will be able to copy all traits and equipment from enemies who dare to fight this person.");
         #endregion
 
+        //Errorr 404, traits not found.
+        #region nullify
+        ActorTrait nullify = new ActorTrait()
+        {
+            id = "nullify",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/nullify",
+            rate_birth = Rare,
+            rate_inherit = HighChance,
+            rarity = Rarity.R3_Legendary,
+        };
+        nullify.addOpposites(new List<string> { "power_mimicry" });
+        nullify.base_stats = new BaseStats();
+        nullify.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 0.2f);
+        nullify.base_stats.set(CustomBaseStatsConstant.Offspring, 12f);
 
+        nullify.type = TraitType.Negative;
+        nullify.unlock(true);
+        nullify.action_attack_target = new AttackAction(DarkieTraitActions.nullifyAttackEffect);
 
+        AssetManager.traits.add(nullify);
+        addToLocale(nullify.id, "Nullify", "Errorr 404, traits not found. Will slowly delete enemy traits, extremely dangerous to deal with!");
+        #endregion
+
+        //???
+        #region question
+        ActorTrait question = new ActorTrait()
+        {
+            id = "the_mysterious_trait",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/question",
+            rate_birth = NoChance,
+            rate_inherit = NoChance,
+            rarity = Rarity.R3_Legendary,
+        };
+
+        question.base_stats = new BaseStats();
+        question.base_stats.set(CustomBaseStatsConstant.Health, 3000f);
+        question.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.8f);
+        question.base_stats.set(CustomBaseStatsConstant.MultiplierLifespan, 8.0f);
+        question.base_stats.set(CustomBaseStatsConstant.Accuracy, 80f);
+        question.base_stats.set(CustomBaseStatsConstant.Range, 10f);
+
+        question.type = TraitType.Positive;
+        question.unlock(true);
+
+        question.action_special_effect = (WorldAction)Delegate.Combine(question.action_special_effect, new WorldAction(DarkieTraitActions.theMysteriousTraitSpecialEffect));
+        question.action_attack_target = new AttackAction(DarkieTraitActions.theMysteriousTraitAttackSpecialEffect);
+
+        AssetManager.traits.add(question);
+        addToLocale(question.id, "?", "???");
+        #endregion
+
+        //cool trait to revive zombie
+        #region reviver
+        ActorTrait reviver = new ActorTrait()
+        {
+            id = "reviver_of_dead",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/lich",
+            rate_birth = Rare,
+            rate_inherit = Rare,
+            rarity = Rarity.R2_Epic,
+        };
+
+        reviver.base_stats = new BaseStats();
+        question.base_stats.set(CustomBaseStatsConstant.Range, 5f);
+        question.base_stats.set(CustomBaseStatsConstant.Health, 50f);
+        question.base_stats.set(CustomBaseStatsConstant.Offspring, -50f);
+        reviver.type = TraitType.Positive;
+        reviver.unlock(true);
+
+        reviver.action_special_effect = (WorldAction)Delegate.Combine(reviver.action_special_effect, new WorldAction(DarkieTraitActions.giveR));
+
+        AssetManager.traits.add(reviver);
+        addToLocale(reviver.id, "Reviver of Dead", "He revives the death to the living, the very opposite of the death bringer!");
+        #endregion
 
 
     }

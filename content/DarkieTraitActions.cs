@@ -303,7 +303,6 @@ internal static class DarkieTraitActions
             return true;
         }
         return false;
-
     }
 
     public static bool werewolfSpecialAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
@@ -314,6 +313,111 @@ internal static class DarkieTraitActions
             return true;
         }
         return false;
+    }
+
+    public static bool powerMimicryAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        //This one will steal enemy traits
+        if (Randy.randomChance(0.2f) && !pTarget.a.hasTrait("power_mimicry"))
+        {
+            pSelf.a.removeTrait("miracle_born");
+            pSelf.a.removeTrait("scar_of_divinity");
+
+            pSelf.a.takeItems(pTarget.a, 1, 5);
+            foreach(var trait in pTarget.a.getTraits())
+            {
+                pSelf.a.addTrait(trait, true);
+            }
+            pTarget.addStatusEffect("slowness", 3f);
+            return true;
+        }
+        if (pSelf.a.getTraits().Count > 12)
+        {
+            pSelf.a.removeTrait("power_mimicry");
+        }
+        return false;
+    }
+
+    public static bool nullifyAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        //This one will del enemy traits
+        if (Randy.randomChance(0.2f))
+        {
+            int randomIndex = Randy.randomInt(0, pTarget.a.getTraits().Count);
+            List<ActorTrait> targetTraits = pTarget.a.getTraits().ToList();
+            if (targetTraits.Count > 0)
+            {
+                var randomTrait = targetTraits[randomIndex];
+                if (randomTrait.id == "nullify" || randomTrait.id == "the_mysterious_trait")
+                    return false;
+                pTarget.a.removeTrait(randomTrait.id);
+            }
+        }
+        return false;
+    }
+
+    /*???????*/
+    public static bool theMysteriousTraitAttackSpecialEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (Randy.randomChance(0.5f))
+        {
+            pTarget.a.addTrait("madness");
+        }
+        if (Randy.randomChance(0.1f))
+        {
+            ActionLibrary.castTornado(pSelf, pTarget, pTile);
+        }
+        if (Randy.randomChance(0.1f))
+        {
+            ActionLibrary.unluckyMeteorite(pTarget, pTarget.current_tile);    //spawn 1 meteorite
+        }
+        //ulti
+        if (Randy.randomChance(0.05f))
+        {
+            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 5);
+            if (allClosestUnits.Any())
+            {
+                foreach (var unit in allClosestUnits)
+                {
+                    if (unit.a != pSelf.a)
+                    {
+                        EffectsLibrary.spawnAtTile("fx_YOYO_effect", pSelf.current_tile, 0.35f);
+                        unit.die();
+                    }
+                }
+            }
+        }
+
+        if (Randy.randomChance(0.2f))
+        {
+            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 5);
+            if (allClosestUnits.Any())
+            {
+                foreach (var unit in allClosestUnits)
+                {
+                    if (unit.a != pSelf.a)
+                    {
+                        //void
+                        //banish
+                        if (Randy.randomChance(0.4f))
+                        {
+                            ActionLibrary.teleportRandom(pSelf, unit, null);
+                            return true;
+                        }
+                        //strike lightning
+                        if (Randy.randomChance(0.3f))
+                        {
+                            ActionLibrary.castLightning(pSelf, unit, null);
+                        }
+                        if (Randy.randomChance(0.3f))
+                        {
+                            unit.addStatusEffect("slowness", 3f);
+                        }
+                    }
+                }
+            }
+        }
+        return true;
     }
     #endregion
 
@@ -729,6 +833,45 @@ internal static class DarkieTraitActions
             pTarget.a.removeTrait("zombie");
             pTarget.a.removeTrait("infected");
         }
+        return true;
+    }
+
+    public static bool theMysteriousTraitSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        ///*??H???*/
+        if (pTarget.a.data.health/*???E??*/ < pTarget.a.getMaxHealth() / 8)
+        {
+            /*???????*/
+            pTarget.a.restoreHealth(pTarget.a.getMaxHealth());
+        }
+        /*???????*/
+        pTarget.a.addTrait("fire_proof");/*???L??*/
+        pTarget.a.addTrait("acid_proof");/*???????*/
+        pTarget.a.addTrait("freeze_proof");/*???P??*/
+        if (!pTarget.a.getName().Equals("?"))/*???????*/
+        {/*???M??*/
+            pTarget.a.data.name = "?";/*???????*/
+        }/*???????*/
+        pTarget.a.data.favorite = true;
+        /*???????*/
+        if (pTarget.a.hasTrait("madness"))
+        {/*???E??*/
+            if (Randy.randomChance(0.3f)/*???????*/)
+            {/*???????*/
+                pTarget.a.removeTrait("madness");/*???????*/
+            }
+        }/*!!!!!!!!!!!!!!!!!!!!*/
+        if (!pTarget.a.hasTrait("madness"))
+        {
+            if (Randy.randomChance(0.1f))
+            {
+                pTarget.a.addTrait("madness"/*??HE???*/);
+            }
+        }
+        if (Randy.randomChance(0.05f))
+        {
+            ActionLibrary.teleportRandom(null, pTarget.a, null);
+        }/*??ME!!??*/
         return true;
     }
 
