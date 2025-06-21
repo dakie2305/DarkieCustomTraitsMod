@@ -1145,7 +1145,7 @@ internal static class DarkieTraits
         the_vampire.action_attack_target = new AttackAction(DarkieTraitActions.vampireAttackEffect);
 
         AssetManager.traits.add(the_vampire);
-        addToLocale(the_vampire.id, "Vampire Lord", "The ancient terrors, once a legend. Vampire Lord can make brainwawsh enemy or turn them mad forever!");
+        addToLocale(the_vampire.id, "Vampire Lord", "The ancient terrors, once a legend. Vampire Lord can make brainwawsh enemy or turn them mad forever, but is afraid of sunlight!");
         #endregion
 
         //What the... Is that me there? OMG I am a clone of Mirror Man!

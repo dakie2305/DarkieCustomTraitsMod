@@ -1028,7 +1028,8 @@ internal static class DarkieTraitActions
         if (!pTarget.a.asset.id.Equals("vampire_bat"))
         {
             pTarget.a.addTrait("immortal");
-            if (pTarget.a.data.health < pTarget.a.getMaxHealth() / 2)
+            pTarget.a.addTrait("heliophobia"); //Vampire hate sunlight of course
+            if (pTarget.a.data.health < pTarget.a.getMaxHealth() / 4)
             {
                 var act = World.world.units.createNewUnit("vampire_bat", pTile);
                 ActorTool.copyUnitToOtherUnit(pTarget.a, act);
