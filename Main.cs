@@ -27,17 +27,9 @@ public class DarkieTraitsMain : BasicMod<DarkieTraitsMain>, IReloadable
     public void Reload()
     {
         _reload_switch = !_reload_switch;
-        // Reload Example Trait. It's optional.
         DarkieTraits.Init();
     }
 
-
-    /// <summary>
-    ///     <para>
-    ///         You can initialize you mod here, some methods called in order OnModLoad -> Awake -> OnEnable -> Start ->
-    ///         Update -> Update -> ...
-    ///     </para>
-    /// </summary>
     protected override void OnModLoad()
     {
         LogInfo("Darkie Traits Starting Up And Is Running!");

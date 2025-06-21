@@ -712,6 +712,39 @@ internal static class DarkieTraits
         addToLocale(antManTrait.id, "Ant Man", "Bring me Kang!");
         #endregion
 
+        //Esteemed Commander
+        #region esteemed_commander
+        ActorTrait esteemedCommanderTrait = new ActorTrait()
+        {
+            id = "esteemed_commander",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/commander",
+            rate_birth = LowChance,
+            rate_inherit = MediumChance,
+            rarity = Rarity.R1_Rare,
+            can_be_given = true,
+            can_be_removed_by_divine_light = true,
+        };
+
+        esteemedCommanderTrait.base_stats = new BaseStats();
+        esteemedCommanderTrait.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 0.2f);
+        esteemedCommanderTrait.base_stats.set(CustomBaseStatsConstant.Army, 100f);
+        esteemedCommanderTrait.base_stats.set(CustomBaseStatsConstant.Warfare, 100f);
+        esteemedCommanderTrait.base_stats.set(CustomBaseStatsConstant.Diplomacy, 100f);
+        esteemedCommanderTrait.base_stats.set(CustomBaseStatsConstant.Damage, 50f);
+        esteemedCommanderTrait.base_stats.set(CustomBaseStatsConstant.Intelligence, 20f);
+        esteemedCommanderTrait.base_stats.set(CustomBaseStatsConstant.Scale, 0.02f);
+
+        esteemedCommanderTrait.type = TraitType.Positive;
+        esteemedCommanderTrait.unlock(true);
+
+        esteemedCommanderTrait.action_special_effect = (WorldAction)Delegate.Combine(esteemedCommanderTrait.action_special_effect, new WorldAction(DarkieTraitActions.commanderSpecialEffect));
+
+        AssetManager.traits.add(esteemedCommanderTrait);
+        addToLocale(esteemedCommanderTrait.id, "Esteemed Commander", "The country needs YOU to join the ARMY! Will convert nearby units into soldier to serve the nation!");
+        #endregion
+
+
 
     }
 

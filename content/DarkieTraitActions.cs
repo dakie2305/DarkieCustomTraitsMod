@@ -453,6 +453,49 @@ internal static class DarkieTraitActions
         return true;
     }
 
+    public static bool commanderSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        if (!pTarget.isAlive())
+            return false;
+        if (!pTarget.a.isProfession(UnitProfession.Warrior))
+        {
+            pTarget.a.setProfession(UnitProfession.Warrior);
+            if (!pTarget.a.is_army_captain)
+            {
+                var army = pTarget.a.army;
+                if (army != null)
+                {
+                    army.setCaptain(pTarget.a);
+                }
+            }
+        }
+        //If army is full then no need to convert units
+        if (pTarget.getCity().isArmyFull() || pTarget.getCity().isArmyOverLimit())
+        {
+            return false;
+        }
+        //Gradually increasing warriors count
+        if (Randy.randomChance(0.1f))
+        {
+            //Get all units  in the area
+            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 5);
+            if (allClosestUnits.Any())
+            {
+                foreach (var unit in allClosestUnits)
+                {
+                    if (unit.a.kingdom == pTarget.a.kingdom)
+                    {
+                        //Convert into army
+                        if (!unit.a.isProfession(UnitProfession.King) || !unit.a.isProfession(UnitProfession.Leader))
+                        {
+                            unit.a.setProfession(UnitProfession.Warrior);
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
 
     #endregion
 
