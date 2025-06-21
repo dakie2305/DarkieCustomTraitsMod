@@ -4,11 +4,15 @@ using System.Linq;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Numerics;
 
 namespace DarkieCustomTraits.Content;
 
 internal static class DarkieTraitActions
 {
+    private static Dictionary<Actor, Actor> listOfTamedBeasts = new Dictionary<Actor, Actor>();
+    private static Dictionary<ActorData, Actor> listOfTamedBeastsData = new Dictionary<ActorData, Actor>();
+
     #region Attack Action
     [Hotfixable]
     public static bool causeShockwave(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
@@ -115,10 +119,38 @@ internal static class DarkieTraitActions
                 }
             }
         }
-
         return false;
     }
 
+
+    public static bool spawnWolfBeastsAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        int count = 0;
+        if (pSelf.a.data.custom_data_int == null || !pSelf.a.data.custom_data_int.TryGetValue("wolfCount", out count))
+        {
+            pSelf.a.data.set("wolfCount", 0);
+            count = 0;
+        }
+        if (count < 3)
+        {
+            //Spawn wolf and give its custom trait too
+            var act = World.world.units.createNewUnit("wolf", pTile);
+            act.setKingdom(pSelf.kingdom);
+            act.addTrait("tamed_beasts");
+            //Set master id so that it can be re-populate later
+            act.data.set("master_id", pSelf.a.data.id);
+            //This will help marks the ownership
+            act.data.setName($"Wolf of {pSelf.a.getName()}");
+            act.goTo(pSelf.current_tile);
+
+            if (!listOfTamedBeasts.ContainsKey(act))
+                listOfTamedBeasts.Add(act, pSelf.a);     //add the beast and actor who spawned them into custom list
+            count++;
+            pSelf.a.data.set("wolfCount", count);
+            return true;
+        }
+        return false;
+    }
 
     #endregion
 
@@ -169,6 +201,38 @@ internal static class DarkieTraitActions
         }
         return true;
     }
+
+    public static bool tamedBeastSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        if (!pTarget.isAlive())
+            return false;
+        Actor beast = pTarget.a;
+        if (beast.data.custom_data_long.TryGetValue("master_id", out long masterId))
+        {
+            Actor master = World.world.units.get(masterId);
+            if (master != null && master.isAlive())
+            {
+                // Always sync beast into the list if not already there
+                if (!listOfTamedBeasts.ContainsKey(beast))
+                {
+                    listOfTamedBeasts.Add(beast, master);
+                    DarkieTraitsMain.LogInfo($"[Darkie TamedBeasts] Re-added beast {beast.getName()} with master {master.getName()}");
+                    // Immediately update kingdom on reload to follow master's
+                    beast.kingdom = master.kingdom;
+                }
+
+                // chance to follow master
+                if (Randy.randomChance(0.3f))
+                {
+                    beast.goTo(master.current_tile);
+                }
+            }
+        }
+
+        return false;
+    }
+
+
     #endregion
 
     #region get hit action

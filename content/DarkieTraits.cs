@@ -381,8 +381,8 @@ internal static class DarkieTraits
             id = "nightcrawler",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/nightcrawler",
-            rate_birth = MediumChance,
-            rate_inherit = MediumChance,
+            rate_birth = Rare,
+            rate_inherit = ExtraChance,
             rarity = Rarity.R1_Rare,
             can_be_given = true,
         };
@@ -430,6 +430,59 @@ internal static class DarkieTraits
 
         AssetManager.traits.add(shieldGuyTrait);
         addToLocale(shieldGuyTrait.id, "Shield Guy", "A total tanker of the team, can cast shield on themselves and sometime others too!");
+        #endregion
+
+        #region beasttamer
+        ActorTrait beastTamerTrait = new ActorTrait()
+        {
+            id = "dej_wolf_tamer",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/beasttamer",
+            rate_birth = LowChance,
+            rate_inherit = MediumChance,
+            rarity = Rarity.R1_Rare,
+        };
+
+        beastTamerTrait.base_stats = new BaseStats();
+        beastTamerTrait.base_stats.set(CustomBaseStatsConstant.Speed, 30f);
+        beastTamerTrait.base_stats.set(CustomBaseStatsConstant.AttackSpeed, 50f);
+
+        beastTamerTrait.type = TraitType.Positive;
+        beastTamerTrait.unlock(true);
+
+        List<string> oppositesBeastTamer = new() { "dej_bear_tamer", "dej_dragon_trainer" };
+        beastTamerTrait.addOpposites(oppositesBeastTamer);
+        //Spawn wolf pack on attack
+        beastTamerTrait.action_attack_target = new AttackAction(DarkieTraitActions.spawnWolfBeastsAttackEffect);
+
+        AssetManager.traits.add(beastTamerTrait);
+        addToLocale(beastTamerTrait.id, "Wolf Tamer", "The master of the pack! Can summon allied wolfs to aid them on combat.");
+        #endregion
+
+        #region tamed_beasts
+        ActorTrait beastTrait = new ActorTrait()
+        {
+            id = "tamed_beasts",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/beast",
+            rate_birth = NoChance,
+            rate_inherit = NoChance,
+            rarity = Rarity.R0_Normal,
+            can_be_given = false,
+        };
+
+        beastTrait.base_stats = new BaseStats();
+        beastTrait.base_stats.set(CustomBaseStatsConstant.Speed, 30f);
+        beastTrait.base_stats.set(CustomBaseStatsConstant.AttackSpeed, 50f);
+        beastTrait.base_stats.set(CustomBaseStatsConstant.Health, 100f);
+        beastTrait.base_stats.set(CustomBaseStatsConstant.Scale, 0.04f);
+        //Tamed beast will now share same kingdom with its master
+        beastTrait.action_special_effect = (WorldAction)Delegate.Combine(beastTrait.action_special_effect, new WorldAction(DarkieTraitActions.tamedBeastSpecialEffect));
+        beastTrait.type = TraitType.Other;
+        beastTrait.unlock(true);
+
+        AssetManager.traits.add(beastTrait);
+        addToLocale(beastTrait.id, "Tamed Beasts", "Was summoned here.");
         #endregion
 
 
