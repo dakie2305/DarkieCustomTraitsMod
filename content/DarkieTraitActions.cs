@@ -305,7 +305,15 @@ internal static class DarkieTraitActions
 
     }
 
-
+    public static bool werewolfSpecialAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        if (!pSelf.a.hasStatus("wolf_attack"))
+        {
+            pSelf.a.addStatusEffect("wolf_attack");
+            return true;
+        }
+        return false;
+    }
     #endregion
 
     #region special effects
@@ -556,6 +564,39 @@ internal static class DarkieTraitActions
         if (Randy.randomChance(0.05f))
         {
             EffectsLibrary.spawn("fx_meteorite", pTarget.current_tile, "meteorite_disaster", null, 0f, -1f, -1f);    //spawn 1 meteorite
+        }
+        return true;
+    }
+
+    //if moon era is active, turn into werewolves
+    public static bool turnWerewolvesSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget.a != null)
+        {
+            if (World.world_era.id == "age_moon")       //only in age of moon
+            {
+                if (!pTarget.a.hasTrait("the_werewolf"))
+                {
+                    pTarget.a.addTrait("the_werewolf");
+                }
+            }
+            else if (World.world_era.id == "age_dark")
+            {
+                if (Randy.randomChance(0.01f))
+                {
+                    if (!pTarget.a.hasTrait("the_werewolf"))
+                    {
+                        pTarget.a.addTrait("the_werewolf");
+                    }
+                }
+            }
+            else
+            {
+                if (pTarget.a.hasTrait("the_werewolf"))          //no other age can have this trait
+                {
+                    pTarget.a.removeTrait("the_werewolf");
+                }
+            }
         }
         return true;
     }

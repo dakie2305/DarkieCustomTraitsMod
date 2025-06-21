@@ -754,7 +754,7 @@ internal static class DarkieTraits
             path_icon = $"{PathToTraitIcon}/tortured",
             rate_birth = NoChance,
             rate_inherit = HighChance,
-            rarity = Rarity.R0_Normal,
+            rarity = Rarity.R2_Epic,
             can_be_given = true,
         };
 
@@ -776,6 +776,66 @@ internal static class DarkieTraits
         AssetManager.traits.add(theTorturedTrait);
         addToLocale(theTorturedTrait.id, "The Tortured", "You should never have existed. Your mere existence is blasphemy and an insult to everyone.");
         #endregion
+
+        //Blood of werewolf
+        #region blood_of_wolf
+        ActorTrait bloodOfWolfTrait = new ActorTrait()
+        {
+            id = "blood_of_wolf",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/bloodwerewolf",
+            rate_birth = MediumChance,
+            rate_inherit = HighChance,
+            rarity = Rarity.R1_Rare,
+        };
+
+        bloodOfWolfTrait.base_stats = new BaseStats();
+        bloodOfWolfTrait.base_stats.set(CustomBaseStatsConstant.Health, 100f);
+        bloodOfWolfTrait.base_stats.set(CustomBaseStatsConstant.Armor, 30f);
+
+        bloodOfWolfTrait.type = TraitType.Positive;
+        bloodOfWolfTrait.unlock(true);
+
+        bloodOfWolfTrait.action_special_effect = (WorldAction)Delegate.Combine(bloodOfWolfTrait.action_special_effect, new WorldAction(DarkieTraitActions.turnWerewolvesSpecialEffect));
+
+        AssetManager.traits.add(bloodOfWolfTrait);
+        addToLocale(bloodOfWolfTrait.id, "Blood of Wolf", "Can turn into horrible creature during full moon era!");
+        #endregion
+
+        //werewolf only spawnable through blood of werewolf and be effective in moon age
+        #region the_werewolf
+        ActorTrait theWerewolfTrait = new ActorTrait()
+        {
+            id = "the_werewolf",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/werewolf",
+            rate_birth = NoChance,
+            rate_inherit = NoChance,
+            rarity = Rarity.R1_Rare,
+            can_be_given = false,
+            era_active_moon = true,
+            era_active_night = true,
+            only_active_on_era_flag = true,
+        };
+
+        theWerewolfTrait.base_stats = new BaseStats();
+        theWerewolfTrait.base_stats.set(CustomBaseStatsConstant.Health, 100f);
+        theWerewolfTrait.base_stats.set(CustomBaseStatsConstant.Armor, 30f);
+        theWerewolfTrait.base_stats.set(CustomBaseStatsConstant.Damage, 40f);
+        theWerewolfTrait.base_stats.set(CustomBaseStatsConstant.Speed, 90f);
+        theWerewolfTrait.base_stats.set(CustomBaseStatsConstant.AttackSpeed, 130f);
+        theWerewolfTrait.base_stats.set(CustomBaseStatsConstant.Scale, 0.02f);
+        theWerewolfTrait.base_stats.set(CustomBaseStatsConstant.Knockback, 1f);
+
+        theWerewolfTrait.type = TraitType.Other;
+        theWerewolfTrait.unlock(true);
+
+        theWerewolfTrait.action_attack_target = new AttackAction(DarkieTraitActions.werewolfSpecialAttack);
+
+        AssetManager.traits.add(theWerewolfTrait);
+        addToLocale(theWerewolfTrait.id,"The Werewolf", "Horrible creature emmerge from the dark era of full moon. Only those with Blood of Wolf can become this creature of nightmare");
+        #endregion
+
 
 
     }
