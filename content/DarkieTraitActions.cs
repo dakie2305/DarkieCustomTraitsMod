@@ -1,11 +1,12 @@
+using ai;
 using NeoModLoader.api.attributes;
-using static UnityEngine.GraphicsBuffer;
-using System.Linq;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
 using System.Numerics;
-using ai;
+using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.UI.CanvasScaler;
 
 namespace DarkieCustomTraits.Content;
 
@@ -358,7 +359,6 @@ internal static class DarkieTraitActions
 
     public static bool necromancerAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
-        //This one will del enemy traits
         if (pSelf.a.data.health < pSelf.a.getMaxHealth() / 2)
         {
             //healing and summon skeleton
@@ -373,7 +373,7 @@ internal static class DarkieTraitActions
             //make enemies cursed
             pTarget.a.addTrait("cursed");
         }
-        return false;
+        return true;
     }
 
     /*???????*/
@@ -439,6 +439,34 @@ internal static class DarkieTraitActions
         }
         return true;
     }
+
+    public static bool vampireAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        if (!pSelf.a.hasWeapon())
+        {
+            //If no weapon, give teleport dagger
+
+            //ItemData pData = ItemGenerator.generateItem(AssetManager.items.get("TeleportDagger"), "adamantine", 0, null, "", 1, null) as ItemData;
+            //var pSlot = pSelf.a.equipment.getSlot(EquipmentType.Weapon);
+            //pSlot.setItem(pData);
+            //pSelf.setStatsDirty();
+        }
+        if (Randy.randomChance(0.1f))
+        {
+            pTarget.a.restoreHealth(10);
+        }
+        if (Randy.randomChance(0.1f))
+        {
+            pTarget.kingdom = pSelf.kingdom;
+            pTarget.a.addTrait("chained");
+        }
+        if (Randy.randomChance(0.1f))
+        {
+            pTarget.a.addTrait("madness");
+        }
+        return true;
+    }
+
     #endregion
 
     #region special effects
@@ -896,7 +924,7 @@ internal static class DarkieTraitActions
         return true;
     }
 
-    public static bool undoZombify(BaseSimObject pTarget, WorldTile pTile)
+    public static bool undoZombify(BaseSimObject pTarget, WorldTile pTile = null)
     {
         if (!pTarget.isAlive())
             return false;
@@ -924,7 +952,7 @@ internal static class DarkieTraitActions
         return true;
     }
 
-    public static bool necromancerSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+    public static bool necromancerSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
 
         //remove cursed trait
@@ -964,6 +992,63 @@ internal static class DarkieTraitActions
         return true;
     }
 
+    public static bool vampireSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        if (pTarget.a != null)
+        {
+            //for human form only
+            if (!pTarget.a.asset.id.Equals("vampire_bat"))
+            {
+                pTarget.a.addTrait("immortal");
+                if (pTarget.a.data.health < pTarget.a.getMaxHealth() / 5)
+                {
+                    var act = World.world.units.createNewUnit("vampire_bat", pTile);
+                    ActorTool.copyUnitToOtherUnit(pTarget.a, act);
+                    act.kingdom = pTarget.kingdom;
+                    act.data.set("original_asset_id", pTarget.a.asset.id);
+                    //spawn 4 bats for decoy
+                    for (int i = 0; i < 4; i++)
+                    {
+                        var decoy = World.world.units.createNewUnit("vampire_bat", pTile);
+                        if (pTarget.a.kingdom != null)
+                        {
+                            decoy.kingdom = pTarget.kingdom;
+                        }
+                    }
+                    EffectsLibrary.spawn("fx_spawn", pTarget.a.current_tile, null, null, 0f, -1f, -1f);
+                    ActionLibrary.removeUnit(pTarget.a);
+                }
+
+            }
+            //for bat form only
+            if (pTarget.a.asset.id.Equals("vampire_bat"))
+            {
+                if (pTarget.a.data.health < pTarget.a.getMaxHealth())
+                {
+                    if (Randy.randomChance(0.1f))
+                    {
+                        ActionLibrary.castBloodRain(pTarget, pTarget, null);
+                    }
+                }
+                if (pTarget.a.data.health == pTarget.a.getMaxHealth())
+                {
+                    pTarget.a.data.custom_data_string.TryGetValue("original_asset_id", out string? originalAssetId);
+                    if (string.IsNullOrEmpty(originalAssetId))
+                    {
+                        originalAssetId = "human";
+                    }
+
+                    var act = World.world.units.createNewUnit(originalAssetId, pTile);
+                    ActorTool.copyUnitToOtherUnit(pTarget.a, act);
+                    EffectsLibrary.spawn("fx_spawn", pTarget.a.current_tile, null, null, 0f, -1f, -1f);
+                    act.data.health = act.a.getMaxHealth();
+                    ActionLibrary.removeUnit(pTarget.a);
+                }
+            }
+        }
+
+        return true;
+    }
 
 
     #endregion

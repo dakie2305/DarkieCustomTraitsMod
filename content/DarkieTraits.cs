@@ -1112,11 +1112,42 @@ internal static class DarkieTraits
         necromancer.unlock(true);
 
         necromancer.action_special_effect = (WorldAction)Delegate.Combine(necromancer.action_special_effect, new WorldAction(DarkieTraitActions.necromancerSpecialEffect));
-        necromancer.action_attack_target = (AttackAction)Delegate.Combine(necromancer.action_attack_target, new AttackAction(DarkieTraitActions.necromancerAttackEffect));
+        necromancer.action_attack_target = new AttackAction(DarkieTraitActions.necromancerAttackEffect);
 
         AssetManager.traits.add(necromancer);
         addToLocale(necromancer.id, "The Dark Necromancer", "Master of dark magic. Can summon and control wild skeletons.");
         #endregion
+
+        //The ancient terrors, once a legend. Now the Vampire Lord is awaken.
+        #region the_vampire
+        ActorTrait the_vampire = new ActorTrait()
+        {
+            id = "the_vampire",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/the_vampire",
+            rate_birth = Rare,
+            rate_inherit = HighChance,
+            rarity = Rarity.R3_Legendary,
+        };
+
+        the_vampire.base_stats = new BaseStats();
+        the_vampire.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 0.3f);
+        the_vampire.base_stats.set(CustomBaseStatsConstant.AttackSpeed, 80f);
+        the_vampire.base_stats.set(CustomBaseStatsConstant.Accuracy, 80f);
+        the_vampire.base_stats.set(CustomBaseStatsConstant.Scale, 0.04f);
+        the_vampire.base_stats.set(CustomBaseStatsConstant.Speed, 80f);
+        the_vampire.base_stats.set(CustomBaseStatsConstant.MultiplierDamage, 0.5f);
+
+        the_vampire.type = TraitType.Positive;
+        the_vampire.unlock(true);
+
+        //the_vampire.action_special_effect = (WorldAction)Delegate.Combine(the_vampire.action_special_effect, new WorldAction(DarkieTraitActions.vampireSpecialEffect));
+        the_vampire.action_attack_target = new AttackAction(DarkieTraitActions.vampireAttackEffect);
+
+        AssetManager.traits.add(the_vampire);
+        addToLocale(the_vampire.id, "The Vampire", "The ancient terrors, once a legend. Vampire Lord can make brainwawsh enemy or turn them mad forever!");
+        #endregion
+
 
 
     }
