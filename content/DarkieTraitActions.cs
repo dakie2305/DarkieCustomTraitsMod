@@ -152,6 +152,34 @@ internal static class DarkieTraitActions
         return false;
     }
 
+    public static bool spawnBearAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        int count = 0;
+        if (pSelf.a.data.custom_data_int == null || !pSelf.a.data.custom_data_int.TryGetValue("bearCount", out count))
+        {
+            pSelf.a.data.set("bearCount", 0);
+            count = 0;
+        }
+        if (count < 2)
+        {
+            //Spawn bear and give its custom trait too
+            var act = World.world.units.createNewUnit("bear", pTile);
+            act.setKingdom(pSelf.kingdom);
+            act.addTrait("tamed_beasts");
+            //Set master id so that it can be re-populate later
+            act.data.set("master_id", pSelf.a.data.id);
+            //This will help marks the ownership
+            act.data.setName($"Bear of {pSelf.a.getName()}");
+            act.goTo(pSelf.current_tile);
+            if (!listOfTamedBeasts.ContainsKey(act))
+                listOfTamedBeasts.Add(act, pSelf.a);     //add the beast and actor who spawned them into custom list
+            count++;
+            pSelf.a.data.set("bearCount", count);
+            return true;
+        }
+        return false;
+    }
+
     #endregion
 
     #region special effects
@@ -222,7 +250,7 @@ internal static class DarkieTraitActions
                 }
 
                 // chance to follow master
-                if (Randy.randomChance(0.3f))
+                if (Randy.randomChance(0.09f))
                 {
                     beast.goTo(master.current_tile);
                 }

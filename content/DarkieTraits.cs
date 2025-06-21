@@ -456,7 +456,7 @@ internal static class DarkieTraits
         beastTamerTrait.action_attack_target = new AttackAction(DarkieTraitActions.spawnWolfBeastsAttackEffect);
 
         AssetManager.traits.add(beastTamerTrait);
-        addToLocale(beastTamerTrait.id, "Wolf Tamer", "The master of the pack! Can summon allied wolfs to aid them on combat.");
+        addToLocale(beastTamerTrait.id, "Wolf Tamer", "The master of the pack! Can summon 3 allied wolfs to aid them on combat.");
         #endregion
 
         #region tamed_beasts
@@ -469,6 +469,7 @@ internal static class DarkieTraits
             rate_inherit = NoChance,
             rarity = Rarity.R0_Normal,
             can_be_given = false,
+            can_be_removed = false,
         };
 
         beastTrait.base_stats = new BaseStats();
@@ -478,13 +479,42 @@ internal static class DarkieTraits
         beastTrait.base_stats.set(CustomBaseStatsConstant.Scale, 0.04f);
         //Tamed beast will now share same kingdom with its master
         beastTrait.action_special_effect = (WorldAction)Delegate.Combine(beastTrait.action_special_effect, new WorldAction(DarkieTraitActions.tamedBeastSpecialEffect));
+        //beastTrait.action_death 
+        //Maybe reduce its master count
         beastTrait.type = TraitType.Other;
         beastTrait.unlock(true);
 
         AssetManager.traits.add(beastTrait);
-        addToLocale(beastTrait.id, "Tamed Beasts", "Was summoned here.");
+        addToLocale(beastTrait.id, "Tamed Beasts", "The beast was summoned here by its Master.");
         #endregion
 
+        //this trait will spawn out bear
+        #region beartamer
+        ActorTrait beartamerTrait = new ActorTrait()
+        {
+            id = "dej_bear_tamer",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/beartamer",
+            rate_birth = LowChance,
+            rate_inherit = MediumChance,
+            rarity = Rarity.R1_Rare,
+            can_be_given = true,
+            can_be_removed_by_divine_light = true,
+        };
+
+        beartamerTrait.base_stats = new BaseStats();
+        beartamerTrait.base_stats.set(CustomBaseStatsConstant.Speed, 30f);
+        beartamerTrait.base_stats.set(CustomBaseStatsConstant.AttackSpeed, 50f);
+
+        beartamerTrait.type = TraitType.Positive;
+        beartamerTrait.unlock(true);
+
+        List<string> oppositesBearTamer = new() { "dej_wolf_tamer", "dej_dragon_trainer" };
+        beartamerTrait.addOpposites(oppositesBearTamer);
+        beartamerTrait.action_attack_target = new AttackAction(DarkieTraitActions.spawnBearAttackEffect);
+        AssetManager.traits.add(beartamerTrait);
+        addToLocale(beartamerTrait.id, "Bear Tamer", "The ruler of the Bear! Will summon 2 bear to aid in battle.");
+        #endregion
 
     }
 
