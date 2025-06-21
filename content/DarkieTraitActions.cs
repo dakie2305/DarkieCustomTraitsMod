@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 using static UnityEngine.GraphicsBuffer;
 using static UnityEngine.UI.CanvasScaler;
 
@@ -467,6 +468,33 @@ internal static class DarkieTraitActions
         return true;
     }
 
+    public static bool mirrorManSpecialAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        bool flagCreateMirroActor = true;
+        if (Randy.randomChance(0.3f))
+        {
+            //Get all units  in the area
+            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 2);
+            if (allClosestUnits.Any())
+            {
+                foreach (var unit in allClosestUnits)
+                {
+                    if (unit.a.hasTrait("the_mirroed"))
+                    {
+                        flagCreateMirroActor = false;
+                    }
+                }
+            }
+        }
+        if (flagCreateMirroActor)
+        {
+            var act = World.world.units.createNewUnit(pTarget.a.asset.id, pTile);
+            ActorTool.copyUnitToOtherUnit(pTarget.a, act);          //clone enemies
+            act.kingdom = pSelf.kingdom;        //the caster kingdom
+            act.addTrait("the_mirroed");
+        }
+        return true;
+    }
     #endregion
 
     #region special effects
@@ -1050,6 +1078,30 @@ internal static class DarkieTraitActions
         return true;
     }
 
+    public static bool theMirroedCloneEffect(BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        if (!pTarget.a.isProfession(UnitProfession.Warrior))
+        {
+            pTarget.a.setProfession(UnitProfession.Warrior);
+        }
+        pTarget.a.removeTrait("mirror_man");
+        // The Mirrored will take gradual damage over time until death
+        pTarget.getHit(15, true, AttackType.Weapon, null, true, false);
+        return true;
+    }
+
+    public static bool mirrorManSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        //Add glass sword if no weapon
+        if (!pTarget.a.hasWeapon())
+        {
+            //ItemData pData = ItemGenerator.generateItem(AssetManager.items.get("GlassSword"), "adamantine", 0, null, "", 1, null) as ItemData;
+            //var pSlot = pTarget.a.equipment.getSlot(EquipmentType.Weapon);
+            //pSlot.setItem(pData);
+            //pTarget.setStatsDirty();
+        }
+        return true;
+    }
 
     #endregion
 
@@ -1088,6 +1140,15 @@ internal static class DarkieTraitActions
         if (!pSelf.a.hasStatus("ant_man_effect"))
         {
             pSelf.a.addStatusEffect("ant_man_effect", 30f);
+        }
+        return true;
+    }
+
+    public static bool mirrorManGetHit(BaseSimObject pSelf, BaseSimObject pAttackedBy, WorldTile pTile = null)
+    {
+        if (Randy.randomChance(0.5f))
+        {
+            pAttackedBy.getHit(15, true, AttackType.Weapon, null, true, false);    //reflect a bit of damage back to enemies
         }
         return true;
     }

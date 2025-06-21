@@ -1145,7 +1145,58 @@ internal static class DarkieTraits
         the_vampire.action_attack_target = new AttackAction(DarkieTraitActions.vampireAttackEffect);
 
         AssetManager.traits.add(the_vampire);
-        addToLocale(the_vampire.id, "The Vampire", "The ancient terrors, once a legend. Vampire Lord can make brainwawsh enemy or turn them mad forever!");
+        addToLocale(the_vampire.id, "Vampire Lord", "The ancient terrors, once a legend. Vampire Lord can make brainwawsh enemy or turn them mad forever!");
+        #endregion
+
+        //What the... Is that me there? OMG I am a clone of Mirror Man!
+        #region the_mirroed
+        ActorTrait the_mirroed = new ActorTrait()
+        {
+            id = "the_mirroed",
+            group_id = "special",
+            path_icon = $"{PathToTraitIcon}/the_mirroed",
+            rate_birth = NoChance,
+            rate_inherit = NoChance,
+            rarity = Rarity.R2_Epic,
+            can_be_given = false,
+        };
+        the_mirroed.base_stats = new BaseStats();
+        the_mirroed.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, -0.1f);
+        the_mirroed.base_stats.set(CustomBaseStatsConstant.MultiplierDamage, -0.5f);
+        the_mirroed.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, -0.3f);
+        the_mirroed.type = TraitType.Negative;
+        the_mirroed.unlock(true);
+        the_mirroed.action_special_effect = (WorldAction)Delegate.Combine(the_mirroed.action_special_effect, new WorldAction(DarkieTraitActions.theMirroedCloneEffect));
+        AssetManager.traits.add(the_mirroed);
+        addToLocale(the_mirroed.id, "The Mirroed", "What the... Is that me there? OMG I am a clone of Mirror Man!");
+        #endregion
+
+        //The Mirror Man can reflect damage and clone the enemies.
+        #region mirror_man
+        ActorTrait mirror_man = new ActorTrait()
+        {
+            id = "mirror_man",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/mirror_man",
+            rate_birth = Rare,
+            rate_inherit = NoChance,
+            rarity = Rarity.R3_Legendary,
+        };
+
+        mirror_man.base_stats = new BaseStats();
+        mirror_man.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 0.1f);
+        mirror_man.base_stats.set(CustomBaseStatsConstant.MultiplierMana, 0.1f);
+        mirror_man.base_stats.set(CustomBaseStatsConstant.MultiplierStamina, 0.1f);
+
+        mirror_man.type = TraitType.Positive;
+        mirror_man.unlock(true);
+
+        mirror_man.action_special_effect = (WorldAction)Delegate.Combine(mirror_man.action_special_effect, new WorldAction(DarkieTraitActions.mirrorManSpecialEffect));
+        mirror_man.action_attack_target = new AttackAction(DarkieTraitActions.mirrorManSpecialAttack);
+        //Reflect damage
+        mirror_man.action_get_hit = (GetHitAction)Delegate.Combine(mirror_man.action_get_hit, new GetHitAction(DarkieTraitActions.mirrorManGetHit));
+        AssetManager.traits.add(mirror_man);
+        addToLocale(mirror_man.id, "Mirror Man", "The Mirror Man can reflect damage and clone the enemies.");
         #endregion
 
 
