@@ -463,47 +463,45 @@ internal static class DarkieTraitActions
 
     public static bool commanderSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
-        if (!pTarget.isAlive())
+        if (!pTarget.isAlive() || pTile == null)
             return false;
-        if (!pTarget.a.isProfession(UnitProfession.Warrior))
+
+        Actor actor = pTarget.a;
+        // Ensure commander is Warrior
+        if (!actor.isProfession(UnitProfession.Warrior))
         {
-            pTarget.a.setProfession(UnitProfession.Warrior);
-            if (!pTarget.a.is_army_captain)
+            actor.setProfession(UnitProfession.Warrior);
+            if (!actor.is_army_captain && actor.army != null)
             {
-                var army = pTarget.a.army;
-                if (army != null)
-                {
-                    army.setCaptain(pTarget.a);
-                }
+                actor.army.setCaptain(actor);
             }
         }
-        //If army is full then no need to convert units
-        if (pTarget.getCity().isArmyFull() || pTarget.getCity().isArmyOverLimit())
-        {
+
+        // Check army capacity
+        var city = pTarget.getCity();
+        if (city == null || city.isArmyFull() || city.isArmyOverLimit())
             return false;
-        }
-        //Gradually increasing warriors count
+
+        // Try to convert nearby allies to warriors
         if (Randy.randomChance(0.1f))
         {
-            //Get all units  in the area
-            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 5);
-            if (allClosestUnits.Any())
+            var nearbyUnits = Finder.getUnitsFromChunk(pTile, 5);
+            foreach (var unit in nearbyUnits)
             {
-                foreach (var unit in allClosestUnits)
+                if (unit.a.kingdom == actor.kingdom)
                 {
-                    if (unit.a.kingdom == pTarget.a.kingdom)
+                    // Don't change profession of kings or leaders
+                    if (!unit.a.isProfession(UnitProfession.King) && !unit.a.isProfession(UnitProfession.Leader))
                     {
-                        //Convert into army
-                        if (!unit.a.isProfession(UnitProfession.King) || !unit.a.isProfession(UnitProfession.Leader))
-                        {
-                            unit.a.setProfession(UnitProfession.Warrior);
-                        }
+                        unit.a.setProfession(UnitProfession.Warrior);
                     }
                 }
             }
         }
+
         return true;
     }
+
 
     public static bool livingHellEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
@@ -599,6 +597,26 @@ internal static class DarkieTraitActions
             }
         }
         return true;
+    }
+
+    public static bool fullHungerSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget.a.data.nutrition < 70)
+        {
+            pTarget.a.data.nutrition = 99;
+            return true;
+        }
+        return false;
+    }
+
+    public static bool insatiableSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget.a.data.nutrition > 20)
+        {
+            pTarget.a.data.nutrition = 1;
+            return true;
+        }
+        return false;
     }
 
 
