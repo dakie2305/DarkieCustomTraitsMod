@@ -74,6 +74,18 @@ internal static class DarkieTraitActions
         return false;
     }
 
+    public static bool nightCrawlerAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        if (Randy.randomChance(0.3f)) //Percent
+        {
+            EffectsLibrary.spawnAtTile("fx_teleport_blue", pTarget.current_tile, 0.1f);
+            ActionLibrary.teleportRandom(null, pTarget, null);
+            return true;
+        }
+
+        return false;
+    }
+
     #endregion
 
     #region special effects
@@ -108,6 +120,21 @@ internal static class DarkieTraitActions
         }
         return true;
     }
+
+    public static bool nightCrawlerSparklingSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        if (!pTarget.isAlive())
+            return false;
+        pTarget.a.spawnParticle(UnityEngine.Color.red);
+        pTarget.a.spawnParticle(UnityEngine.Color.black);
+        pTarget.a.spawnParticle(UnityEngine.Color.red);
+        pTarget.a.spawnParticle(UnityEngine.Color.red);
+        if (Randy.randomChance(0.3f) && pTarget.a.is_moving) //Percent
+        {
+            teleportToSpecificLocation(pTarget, pTarget.a.tile_target);
+        }
+        return true;
+    }
     #endregion
 
     #region get hit action
@@ -129,6 +156,24 @@ internal static class DarkieTraitActions
         return true;
     }
 
+    #endregion
+
+
+
+    #region Custom Functions
+    public static bool teleportToSpecificLocation(BaseSimObject pTarget, WorldTile pTile)
+    {
+
+        string text = pTarget.a.asset.effect_teleport;
+        if (string.IsNullOrEmpty(text))
+        {
+            text = "fx_teleport_blue";
+        }
+        EffectsLibrary.spawnAt(text, pTarget.current_position, 0.1f);
+        pTarget.a.cancelAllBeh();
+        pTarget.a.spawnOn(pTile, 0f);
+        return true;
+    }
     #endregion
 
 

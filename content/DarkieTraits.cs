@@ -386,6 +386,39 @@ internal static class DarkieTraits
         LM.AddToCurrentLocale($"trait_{thorTrait.id}_info", "The god of Hammer. It's hammer time!");
         #endregion
 
+        //Nightcrawler can teleport both him and his enemies
+        #region nightcrawler
+        ActorTrait nightcrawlerTrait = new ActorTrait()
+        {
+            id = "nightcrawler",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/nightcrawler",
+            rate_birth = MediumChance,
+            rate_inherit = MediumChance,
+            rarity = Rarity.R1_Rare,
+            can_be_given = true,
+            can_be_removed_by_divine_light = true,
+        };
+
+        nightcrawlerTrait.base_stats = new BaseStats();
+        nightcrawlerTrait.base_stats.set(CustomBaseStatsConstant.Speed, 30f);
+        nightcrawlerTrait.base_stats.set(CustomBaseStatsConstant.AttackSpeed, 50f);
+        nightcrawlerTrait.base_stats.set(CustomBaseStatsConstant.Range, 10f);
+
+        nightcrawlerTrait.type = TraitType.Positive;
+        nightcrawlerTrait.unlock(true);
+
+        nightcrawlerTrait.action_attack_target = new AttackAction(DarkieTraitActions.nightCrawlerAttackEffect);
+        nightcrawlerTrait.action_special_effect = (WorldAction)Delegate.Combine(nightcrawlerTrait.action_special_effect, new WorldAction(DarkieTraitActions.nightCrawlerSparklingSpecialEffect)
+        );
+
+        AssetManager.traits.add(nightcrawlerTrait);
+        LM.AddToCurrentLocale($"trait_{nightcrawlerTrait.id}", "Nightcrawler");
+        LM.AddToCurrentLocale($"trait_{nightcrawlerTrait.id}_info", "The lurker of the night! He can teleport around the map and teleport his enemies too.");
+        #endregion
+
+
+
 
 
     }
