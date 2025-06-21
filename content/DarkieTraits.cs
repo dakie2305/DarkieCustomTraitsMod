@@ -319,7 +319,7 @@ internal static class DarkieTraits
             path_icon = $"{PathToTraitIcon}/almighty",
             rate_birth = LowChance,
             rate_inherit = MediumChance,
-            rarity = Rarity.R1_Rare,
+            rarity = Rarity.R2_Epic,
             can_be_given = true,
         };
 
@@ -383,7 +383,7 @@ internal static class DarkieTraits
             path_icon = $"{PathToTraitIcon}/nightcrawler",
             rate_birth = Rare,
             rate_inherit = ExtraChance,
-            rarity = Rarity.R1_Rare,
+            rarity = Rarity.R2_Epic,
             can_be_given = true,
         };
 
@@ -610,7 +610,7 @@ internal static class DarkieTraits
             path_icon = $"{PathToTraitIcon}/mage",
             rate_birth = LowChance,
             rate_inherit = MediumChance,
-            rarity = Rarity.R1_Rare,
+            rarity = Rarity.R2_Epic,
         };
 
         mageTrait.base_stats = new BaseStats();
@@ -627,6 +627,60 @@ internal static class DarkieTraits
 
         AssetManager.traits.add(mageTrait);
         addToLocale(mageTrait.id, "Master Magister", "A magister!? Unleash the chaos with magic!");
+        #endregion
+
+        //Wololo unit
+        #region wololo
+        ActorTrait wololoTrait = new ActorTrait()
+        {
+            id = "wololo",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/wololo",
+            rate_birth = MediumChance,
+            rate_inherit = MediumChance,
+            rarity = Rarity.R1_Rare,
+            can_be_given = true,
+        };
+
+        wololoTrait.base_stats = new BaseStats();
+        wololoTrait.base_stats.set(CustomBaseStatsConstant.Speed, 30f);
+        wololoTrait.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, -0.3f);
+        wololoTrait.base_stats.set(CustomBaseStatsConstant.AttackSpeed, 40f);
+
+        wololoTrait.type = TraitType.Positive;
+        wololoTrait.unlock(true);
+
+        wololoTrait.action_attack_target = new AttackAction(DarkieTraitActions.wololoConvertUnitAttackEffect);
+
+        AssetManager.traits.add(wololoTrait);
+        addToLocale(wololoTrait.id, "Wololo", "Wololo? Now you're on my side!");
+        #endregion
+
+        //chained unit
+        #region chained
+        ActorTrait chainedTrait = new ActorTrait()
+        {
+            id = "chained",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/chained",
+            rate_birth = NoChance,
+            rate_inherit = NoChance,
+            rarity = Rarity.R0_Normal,
+            can_be_given = false,
+            can_be_removed = true,
+            can_be_removed_by_divine_light = true,
+        };
+
+        chainedTrait.base_stats = new BaseStats();
+        chainedTrait.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, -0.2f);
+        chainedTrait.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, -0.2f);
+        chainedTrait.base_stats.set(CustomBaseStatsConstant.AttackSpeed, -30f);
+
+        chainedTrait.type = TraitType.Negative;
+        chainedTrait.unlock(true);
+
+        AssetManager.traits.add(chainedTrait);
+        addToLocale(chainedTrait.id, "Chained", "Someone converted me :(");
         #endregion
 
 

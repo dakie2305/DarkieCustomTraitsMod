@@ -287,6 +287,24 @@ internal static class DarkieTraitActions
         return true;
     }
 
+    public static bool wololoConvertUnitAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        //This one will convert target to self side if target enemy does not has this trait
+        if (Randy.randomChance(0.2f) && !pTarget.a.hasTrait("wololo"))
+        {
+            pTarget.a.setKingdom(pSelf.kingdom);
+            pTarget.a.addTrait("chained");
+            return true;
+        }
+        else if (Randy.randomChance(0.01f))
+        {
+            pTarget.a.addTrait("madness");
+            return true;
+        }
+        return false;
+
+    }
+
 
     #endregion
 
