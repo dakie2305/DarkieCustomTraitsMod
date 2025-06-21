@@ -356,6 +356,26 @@ internal static class DarkieTraitActions
         return false;
     }
 
+    public static bool necromancerAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        //This one will del enemy traits
+        if (pSelf.a.data.health < pSelf.a.getMaxHealth() / 2)
+        {
+            //healing and summon skeleton
+            ActionLibrary.castBloodRain(pSelf, pSelf, null);
+            if (Randy.randomChance(0.2f))
+            {
+                ActionLibrary.castSpawnSkeleton(pSelf, pTarget, pTile);
+            }
+        }
+        if (Randy.randomChance(0.1f))
+        {
+            //make enemies cursed
+            pTarget.a.addTrait("cursed");
+        }
+        return false;
+    }
+
     /*???????*/
     public static bool theMysteriousTraitAttackSpecialEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
     {
@@ -881,7 +901,7 @@ internal static class DarkieTraitActions
         if (!pTarget.isAlive())
             return false;
         pTarget.a.removeTrait("infected");
-        if (Randy.randomChance(0.5f))
+        if (Randy.randomChance(0.2f))
         {
             //Get all units  in the area
             var allClosestUnits = Finder.getUnitsFromChunk(pTile, 3);
@@ -900,6 +920,46 @@ internal static class DarkieTraitActions
                     }
                 }
             }
+        }
+        return true;
+    }
+
+    public static bool necromancerSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+    {
+
+        //remove cursed trait
+        if (pTarget.a.hasTrait("cursed"))
+        {
+            pTarget.a.removeTrait("cursed");
+        }
+        //convert all nearby skeletons to his side
+        if (Randy.randomChance(0.4f))
+        {
+            //Get all units  in the area
+            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 1);
+            if (allClosestUnits.Any())
+            {
+                foreach (var unit in allClosestUnits)
+                {
+                    if (unit.kingdom != pTarget.a.kingdom && !unit.hasTrait("tamed_beasts"))
+                    {
+                        if (unit.asset.id == "skeleton" || unit.asset.id == "skeleton_cursed")
+                        {
+                            unit.kingdom = pTarget.kingdom;
+                            unit.addTrait("tamed_beasts");
+                            //Set master id so that it can be re-populate later
+                            unit.data.set("master_id", pTarget.a.data.id);
+                            unit.stats.set(CustomBaseStatsConstant.Scale, 0.1f);
+                            if (!listOfTamedBeasts.ContainsKey(unit))
+                                listOfTamedBeasts.Add(unit, pTarget.a);     //add the beast and actor who spawned them into custom list
+                        }
+                    }
+                }
+            }
+        }
+        if (Randy.randomChance(0.1f))
+        {
+            ActionLibrary.castSpawnSkeleton(pTarget, pTarget, pTile);
         }
         return true;
     }
