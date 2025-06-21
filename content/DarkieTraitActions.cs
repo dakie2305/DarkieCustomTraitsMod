@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Numerics;
+using ai;
 
 namespace DarkieCustomTraits.Content;
 
@@ -463,7 +464,7 @@ internal static class DarkieTraitActions
 
     public static bool commanderSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
-        if (!pTarget.isAlive() || pTile == null)
+        if (!pTarget.isAlive())
             return false;
 
         Actor actor = pTarget.a;
@@ -599,7 +600,7 @@ internal static class DarkieTraitActions
         return true;
     }
 
-    public static bool fullHungerSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+    public static bool fullHungerSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
         if (pTarget.a.data.nutrition < 70)
         {
@@ -609,7 +610,7 @@ internal static class DarkieTraitActions
         return false;
     }
 
-    public static bool insatiableSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+    public static bool insatiableSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
         if (pTarget.a.data.nutrition > 20)
         {
@@ -617,6 +618,53 @@ internal static class DarkieTraitActions
             return true;
         }
         return false;
+    }
+
+    public static bool clonePowerSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        if (!pTarget.isAlive())
+            return false;
+        if (pTarget.a.hasTrait("duplikate_clone"))
+        {
+            pTarget.a.removeTrait("duplikate");
+            return false;
+        }
+        if (Randy.randomChance(0.2f))
+        {
+            int count = 0;
+            if (pTarget.a.data.custom_data_int == null || !pTarget.a.data.custom_data_int.TryGetValue("duplikateCloneCount", out count))
+            {
+                pTarget.a.data.set("duplikateCloneCount", 0);
+            }
+
+            if (count < 7)
+            {
+                var act = World.world.units.createNewUnit(pTarget.a.asset.id, pTile, false);
+                ActorTool.copyUnitToOtherUnit(pTarget.a, act);
+                if (pTarget.kingdom.isAlive())
+                    act.kingdom = pTarget.kingdom;
+                act.addTrait("duplikate_clone");
+                act.data.setName(pTarget.a.getName());
+                act.data.health += 1300;
+                act.removeTrait("duplikate");
+                count++;
+                pTarget.a.data.set("duplikateCloneCount", count);
+            }
+        }
+        return true;
+    }
+
+    public static bool killAllClone(BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        foreach (Actor clone in MapBox.instance.units)
+        {
+            if (clone.a.hasTrait("duplikate_clone") && clone.a.getName().Equals(pTarget.a.getName()))
+            {
+                ActionLibrary.castLightning(pTarget, clone, null);
+                clone.a.die();
+            }
+        }
+        return true;
     }
 
 
