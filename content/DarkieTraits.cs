@@ -622,8 +622,8 @@ internal static class DarkieTraits
         mageTrait.type = TraitType.Positive;
         mageTrait.unlock(true);
 
-        mageTrait.action_attack_target = new AttackAction(DarkieTraitActions.mageAttack);
-        mageTrait.action_special_effect = (WorldAction)Delegate.Combine(mageTrait.action_special_effect, new WorldAction(DarkieTraitActions.mageSparklingEffect));
+        mageTrait.action_attack_target = new AttackAction(DarkieTraitActions.mageAttackEffect);
+        mageTrait.action_special_effect = (WorldAction)Delegate.Combine(mageTrait.action_special_effect, new WorldAction(DarkieTraitActions.mageSparklingSpecialEffect));
 
         AssetManager.traits.add(mageTrait);
         addToLocale(mageTrait.id, "Master Magister", "A magister!? Unleash the chaos with magic!");

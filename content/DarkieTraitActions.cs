@@ -250,16 +250,41 @@ internal static class DarkieTraitActions
         return false;
     }
 
-    public static bool nightCrawlerAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
+    public static bool mageAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
-        if (Randy.randomChance(0.3f)) //Percent
+        //This one will choose random special attack to fire at the target
+        if (Randy.randomChance(0.2f))
         {
-            EffectsLibrary.spawnAtTile("fx_teleport_blue", pTarget.current_tile, 0.1f);
-            ActionLibrary.teleportRandom(null, pTarget, null);
-            return true;
+            MapBox.instance.drop_manager.spawn(pTarget.current_tile, "fire", 5f, -1f);
+            MapBox.instance.drop_manager.spawn(pTarget.current_tile, "acid", 5f, -1f);
+            MapBox.instance.drop_manager.spawn(pTarget.current_tile, "fire", 5f, -1f);
         }
-
-        return false;
+        if (Randy.randomChance(0.02f))
+        {
+            ActionLibrary.castCurses(pSelf, pTarget, null);
+        }
+        if (Randy.randomChance(0.08f))
+        {
+            ActionLibrary.addFrozenEffectOnTarget(pSelf, pTarget, null);
+        }
+        if (Randy.randomChance(0.05f))
+        {
+            ActionLibrary.castShieldOnHimself(pSelf, pSelf, null);
+        }
+        if (Randy.randomChance(0.04f))
+        {
+            ActionLibrary.teleportRandom(pSelf, pTarget, null);
+        }
+        if (Randy.randomChance(0.05f))
+        {
+            ActionLibrary.castLightning(pSelf, pTarget, null);
+        }
+        if (Randy.randomChance(0.01f))
+        {
+            EffectsLibrary.spawn("fx_meteorite", pTarget.current_tile, null, null, 0f, -1f, -1f);    //spawn 1 meteorite
+            pSelf.a.addStatusEffect("invincible", 5f);
+        }
+        return true;
     }
 
 
@@ -312,6 +337,33 @@ internal static class DarkieTraitActions
         }
         return true;
     }
+
+    public static bool mageSparklingSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        if (!pTarget.isAlive())
+            return false;
+        pTarget.a.spawnParticle(UnityEngine.Color.white);
+        pTarget.a.spawnParticle(UnityEngine.Color.cyan);
+        pTarget.a.spawnParticle(UnityEngine.Color.white);
+        pTarget.a.spawnParticle(UnityEngine.Color.white);
+        pTarget.a.spawnParticle(UnityEngine.Color.white);
+        pTarget.a.spawnParticle(UnityEngine.Color.white);
+        if (!pTarget.a.hasTrait("fire_proof"))
+            pTarget.a.addTrait("fire_proof");
+        if (pTarget.a.hasTrait("cursed"))
+            pTarget.a.removeTrait("cursed");
+        if (Randy.randomChance(0.02f))
+        {
+            pTarget.a.doCastAnimation();
+            ActionLibrary.teleportRandom(null, pTarget, null);
+        }
+        if (pTarget.a.data.health <= pTarget.a.getMaxHealth() / 2)
+        {
+            ActionLibrary.castBloodRain(null, pTarget, null);
+        }
+        return true;
+    }
+
 
     public static bool tamedBeastSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
