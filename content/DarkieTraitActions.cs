@@ -273,30 +273,70 @@ internal static class DarkieTraitActions
     {
         if (!pTarget.isAlive())
             return false;
+
         Actor beast = pTarget.a;
-        if (beast.data.custom_data_long.TryGetValue("master_id", out long masterId))
+        //If already in list then just check if master is alive to follow
+        if (listOfTamedBeasts.ContainsKey(beast))
         {
-            Actor master = World.world.units.get(masterId);
+            Actor master = listOfTamedBeasts[beast];
             if (master != null && master.isAlive())
             {
-                // Always sync beast into the list if not already there
-                if (!listOfTamedBeasts.ContainsKey(beast))
-                {
-                    listOfTamedBeasts.Add(beast, master);
-                    DarkieTraitsMain.LogInfo($"[Darkie TamedBeasts] Re-added beast {beast.getName()} with master {master.getName()}");
-                    // Immediately update kingdom on reload to follow master's
-                    beast.kingdom = master.kingdom;
-                }
-
-                // chance to follow master
                 if (Randy.randomChance(0.09f))
                 {
                     beast.goTo(master.current_tile);
+                    return true;
                 }
             }
         }
-
+        else
+        {
+            //When reloading save or game, we need to re-populate the list tamed beasts
+            if (beast.data.custom_data_long.TryGetValue("master_id", out long masterId))
+            {
+                Actor master = World.world.units.get(masterId);
+                if (master != null && master.isAlive())
+                {
+                    listOfTamedBeasts.Add(beast, master);
+                    DarkieTraitsMain.LogInfo($"[Darkie TamedBeasts] Re-added beast {beast.getName()} with master {master.getName()}");
+                    beast.kingdom = master.kingdom;
+                    return true;
+                }
+            }
+        }
         return false;
+    }
+
+    public static bool medicSuperHealing(BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        if (!pTarget.isAlive())
+            return false;
+        pTarget.a.spawnParticle(Toolbox.color_heal);
+        pTarget.a.spawnParticle(Toolbox.color_heal);
+        pTarget.a.spawnParticle(Toolbox.color_heal);
+        if (!pTarget.a.hasTrait("immune"))
+            pTarget.a.addTrait("immune");
+
+        if (Randy.randomChance(0.2f))
+        {
+            //Get all units  in the area
+            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 5);
+            if (allClosestUnits.Any())
+            {
+                foreach (var unit in allClosestUnits)
+                {
+                    if (unit.a.kingdom == pTarget.a.kingdom)
+                    {
+                        removeBadTrait(unit);
+                        if (unit.a.data.health < unit.a.getMaxHealth())
+                        {
+                            unit.a.restoreHealth(10);
+                            unit.a.spawnParticle(Toolbox.color_heal);
+                        }
+                    }
+                }
+            }
+        }
+        return true;
     }
 
 
@@ -321,6 +361,17 @@ internal static class DarkieTraitActions
         return true;
     }
 
+    public static bool medicGetHit(BaseSimObject pSelf, BaseSimObject pAttackedBy, WorldTile pTile = null)
+    {
+        //Heal themselves on being hit
+        if(Randy.randomChance(0.4f) && (pSelf.a.data.health < pSelf.a.getMaxHealth()))
+        {
+            pSelf.a.restoreHealth(10);
+            pSelf.a.spawnParticle(Toolbox.color_heal);
+        }
+        return true;
+    }
+
     #endregion
 
 
@@ -337,6 +388,25 @@ internal static class DarkieTraitActions
         EffectsLibrary.spawnAt(text, pTarget.current_position, 0.1f);
         pTarget.a.cancelAllBeh();
         pTarget.a.spawnOn(pTile, 0f);
+        return true;
+    }
+
+    private static bool removeBadTrait(BaseSimObject pTarget)
+    {
+        if (pTarget.a != null)
+        {
+            //insert bad traits here
+            pTarget.a.removeTrait("madness");
+            pTarget.a.removeTrait("evil");
+            pTarget.a.removeTrait("cursed");
+            pTarget.a.removeTrait("greedy");
+            pTarget.a.removeTrait("deceitful");
+            pTarget.a.removeTrait("pyromaniac");
+            pTarget.a.removeTrait("infected");
+            pTarget.a.removeTrait("mushSpores");
+            pTarget.a.removeTrait("tumorInfection");
+            pTarget.a.removeTrait("scar_of_divinity");  //kinda hate this trait
+        }
         return true;
     }
     #endregion

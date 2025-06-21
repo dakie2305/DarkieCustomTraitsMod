@@ -544,6 +544,35 @@ internal static class DarkieTraits
         addToLocale(dragonTrainerTrait.id, "Dragon Trainer", "The ultimate trainer ever alive! Will summon one big ass dragon to aid in battle.");
         #endregion
 
+        //Medic, this guy can heal
+        #region medic_healer
+        ActorTrait medicHealerTrait = new ActorTrait()
+        {
+            id = "medic_healer",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/medic",
+            rate_birth = LowChance,
+            rate_inherit = LowChance,
+            rarity = Rarity.R0_Normal,
+            can_be_given = true,
+        };
+
+        medicHealerTrait.base_stats = new BaseStats();
+        medicHealerTrait.base_stats.set(CustomBaseStatsConstant.Speed, -0.01f);
+        medicHealerTrait.base_stats.set(CustomBaseStatsConstant.AttackSpeed, -10f);
+        medicHealerTrait.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 0.25f);
+
+        medicHealerTrait.type = TraitType.Positive;
+        medicHealerTrait.unlock(true);
+
+        medicHealerTrait.action_special_effect = (WorldAction)Delegate.Combine(medicHealerTrait.action_special_effect, new WorldAction(DarkieTraitActions.medicSuperHealing));
+        //medicHealerTrait.action_get_hit = (GetHitAction)Delegate.Combine(medicHealerTrait.action_get_hit, new GetHitAction(DarkieTraitActions.medicGetHit));
+        //Not needed get hit, since action special already heal themselves 
+        AssetManager.traits.add(medicHealerTrait);
+        addToLocale(medicHealerTrait.id, "Medic Healer", "A medic to save the team! Can heal themselves and other allies.");
+        #endregion
+
+
 
     }
 
