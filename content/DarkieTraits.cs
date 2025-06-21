@@ -68,8 +68,7 @@ internal static class DarkieTraits
         //turtleGuyTrait.action_death = (WorldAction)Delegate.Combine(turtleGuyTrait.action_death, new WorldAction(ActionLibrary.fireDropsSpawn));
         // Add trait to trait library
         AssetManager.traits.add(turtleGuyTrait);
-        LM.AddToCurrentLocale($"trait_{turtleGuyTrait.id}", "Turtle Guy");
-        LM.AddToCurrentLocale($"trait_{turtleGuyTrait.id}_info", "The turtle. He is extremely slow but he can live a bit longer, a bit tougher, and with more kids.");
+        addToLocale(turtleGuyTrait.id, "Turtle Guy", "The turtle. He is extremely slow but he can live a bit longer, a bit tougher, and with more kids.");
         #endregion
 
         #region flash
@@ -100,8 +99,7 @@ internal static class DarkieTraits
         flashTrait.addOpposites(oppositesFlash);
 
         AssetManager.traits.add(flashTrait);
-        LM.AddToCurrentLocale($"trait_{flashTrait.id}", "Flash");
-        LM.AddToCurrentLocale($"trait_{flashTrait.id}_info", "The True Flash. Has extremely high speed and attack speed, but sacrifices health.");
+        addToLocale(flashTrait.id, "Flash", "The True Flash. Has extremely high speed and attack speed, but sacrifices health.");
         #endregion
 
         #region berserker
@@ -130,8 +128,7 @@ internal static class DarkieTraits
         berserkerTrait.addOpposites(oppositesBerserker);
 
         AssetManager.traits.add(berserkerTrait);
-        LM.AddToCurrentLocale($"trait_{berserkerTrait.id}", "Berserker");
-        LM.AddToCurrentLocale($"trait_{berserkerTrait.id}_info", "A warrior who battles a lot! Has great health and attack power, but is slower than normal.");
+        addToLocale(berserkerTrait.id, "Berserker", "A warrior who battles a lot! Has great health and attack power, but is slower than normal.");
         #endregion
 
         //Hawkeye trait.
@@ -160,8 +157,7 @@ internal static class DarkieTraits
         hawkeyeTrait.addOpposites(oppositesHawkeye);
 
         AssetManager.traits.add(hawkeyeTrait);
-        LM.AddToCurrentLocale($"trait_{hawkeyeTrait.id}", "Hawkeye");
-        LM.AddToCurrentLocale($"trait_{hawkeyeTrait.id}_info", "I do not miss any shot.");
+        addToLocale(hawkeyeTrait.id, "Hawkeye", "I do not miss any shot.");
         #endregion
 
         #region titan
@@ -192,8 +188,7 @@ internal static class DarkieTraits
 
         titanTrait.action_attack_target = new AttackAction(DarkieTraitActions.causeShockwave);
         AssetManager.traits.add(titanTrait);
-        LM.AddToCurrentLocale($"trait_{titanTrait.id}", "The Titan");
-        LM.AddToCurrentLocale($"trait_{titanTrait.id}_info", "Quick! Someone call Levi immediately!");
+        addToLocale(titanTrait.id, "The Titan", "Quick! Someone call Levi immediately!");
         #endregion
 
         //Titan Shifter trait.
@@ -226,8 +221,7 @@ internal static class DarkieTraits
         //titanShifterTrait.action_get_hit = (GetHitAction)Delegate.Combine(titanShifterTrait.action_get_hit, new GetHitAction(DarkieTraitActions.titanShifterGetHit));
         titanShifterTrait.action_get_hit = (GetHitAction)Delegate.Combine(titanShifterTrait.action_get_hit, new GetHitAction(ActionLibrary.bubbleDefense));
         AssetManager.traits.add(titanShifterTrait);
-        LM.AddToCurrentLocale($"trait_{titanShifterTrait.id}", "Titan Shifter");
-        LM.AddToCurrentLocale($"trait_{titanShifterTrait.id}_info", "Shinzo wo Sasageyo!");
+        addToLocale(titanShifterTrait.id, "Titan Shifter", "Shinzo wo Sasageyo! Will turn into Titan when get hit");
         #endregion
 
 
@@ -259,8 +253,7 @@ internal static class DarkieTraits
         wiseOldOneTrait.addOpposites(oppositesWiseOldOne);
 
         AssetManager.traits.add(wiseOldOneTrait);
-        LM.AddToCurrentLocale($"trait_{wiseOldOneTrait.id}", "Wise Old One");
-        LM.AddToCurrentLocale($"trait_{wiseOldOneTrait.id}_info", "The old, wise elder. Has high intelligence and diplomacy, and low HP.");
+        addToLocale(wiseOldOneTrait.id, "Wise Old One", "The old, wise elder. Has high intelligence and diplomacy, and low HP!");
         #endregion
 
         //The idiot savant. Super idiot
@@ -288,8 +281,7 @@ internal static class DarkieTraits
         idiotSavantTrait.addOpposites(oppositesIdiotSavant);
 
         AssetManager.traits.add(idiotSavantTrait);
-        LM.AddToCurrentLocale($"trait_{idiotSavantTrait.id}", "Idiot Savant");
-        LM.AddToCurrentLocale($"trait_{idiotSavantTrait.id}_info", "The idiot savant. Has extremely low intelligence and diplomacy.");
+        addToLocale(idiotSavantTrait.id, "Idiot Savant", "The idiot savant. Has extremely low intelligence and diplomacy!");
         #endregion
 
         #region mountain
@@ -315,8 +307,7 @@ internal static class DarkieTraits
         mountainTrait.unlock(true);
 
         AssetManager.traits.add(mountainTrait);
-        LM.AddToCurrentLocale($"trait_{mountainTrait.id}", "The Mountain");
-        LM.AddToCurrentLocale($"trait_{mountainTrait.id}_info", "The mountain. Immovable object with high resistance!");
+        addToLocale(mountainTrait.id, "The Mountain", "The mountain. Immovable object with high resistance!");
         #endregion
 
         //The Almighty One. Unstopabble object! Super OP!
@@ -330,7 +321,6 @@ internal static class DarkieTraits
             rate_inherit = MediumChance,
             rarity = Rarity.R1_Rare,
             can_be_given = true,
-            can_be_removed_by_divine_light = true,
         };
 
         almightyTrait.base_stats = new BaseStats();
@@ -348,8 +338,7 @@ internal static class DarkieTraits
         almightyTrait.action_attack_target = new AttackAction(DarkieTraitActions.explosionAttackEffect);
 
         AssetManager.traits.add(almightyTrait);
-        LM.AddToCurrentLocale($"trait_{almightyTrait.id}", "The Almighty");
-        LM.AddToCurrentLocale($"trait_{almightyTrait.id}_info", "The Almighty One. Unstopabble object with boom boom attack! Super OP!");
+        addToLocale(almightyTrait.id, "The Almighty", "The Almighty One. Unstopabble object with boom boom attack! Super OP!");
         #endregion
 
         //Thor the god of hammer. Can summon lightning to strike his foe
@@ -382,8 +371,7 @@ internal static class DarkieTraits
         thorTrait.action_special_effect = (WorldAction)Delegate.Combine(thorTrait.action_special_effect, new WorldAction(DarkieTraitActions.thorSparklingSpecialEffect));
 
         AssetManager.traits.add(thorTrait);
-        LM.AddToCurrentLocale($"trait_{thorTrait.id}", "Thor Odinson");
-        LM.AddToCurrentLocale($"trait_{thorTrait.id}_info", "The god of Hammer. It's hammer time!");
+        addToLocale(thorTrait.id, "Thor Odinson", "The god of Hammer with lightning summon power. It's hammer time!");
         #endregion
 
         //Nightcrawler can teleport both him and his enemies
@@ -397,7 +385,6 @@ internal static class DarkieTraits
             rate_inherit = MediumChance,
             rarity = Rarity.R1_Rare,
             can_be_given = true,
-            can_be_removed_by_divine_light = true,
         };
 
         nightcrawlerTrait.base_stats = new BaseStats();
@@ -413,13 +400,44 @@ internal static class DarkieTraits
         );
 
         AssetManager.traits.add(nightcrawlerTrait);
-        LM.AddToCurrentLocale($"trait_{nightcrawlerTrait.id}", "Nightcrawler");
-        LM.AddToCurrentLocale($"trait_{nightcrawlerTrait.id}_info", "The lurker of the night! He can teleport around the map and teleport his enemies too.");
+        addToLocale(nightcrawlerTrait.id, "Nightcrawler", "The lurker of the night! He can teleport around the map and teleport his enemies too.");
+        #endregion
+
+        //Shield guy, this guy has a shield
+        #region shield_guy
+        ActorTrait shieldGuyTrait = new ActorTrait()
+        {
+            id = "shield_guy",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/shield",
+            rate_birth = LowChance,
+            rate_inherit = NoChance,
+            rarity = Rarity.R1_Rare,
+            can_be_given = true,
+        };
+
+        shieldGuyTrait.base_stats = new BaseStats();
+        shieldGuyTrait.base_stats.set(CustomBaseStatsConstant.Speed, -10f);
+        shieldGuyTrait.base_stats.set(CustomBaseStatsConstant.AttackSpeed, -20f);
+        shieldGuyTrait.base_stats.set(CustomBaseStatsConstant.Health, 250f);
+        shieldGuyTrait.base_stats.set(CustomBaseStatsConstant.Warfare, 10f);
+        shieldGuyTrait.base_stats.set(CustomBaseStatsConstant.Scale, 0.04f);
+
+        shieldGuyTrait.type = TraitType.Positive;
+        shieldGuyTrait.unlock(true);
+
+        shieldGuyTrait.action_attack_target = new AttackAction(DarkieTraitActions.shieldGuyAttackEffect);
+
+        AssetManager.traits.add(shieldGuyTrait);
+        addToLocale(shieldGuyTrait.id, "Shield Guy", "A total tanker of the team, can cast shield on themselves and sometime others too!");
         #endregion
 
 
+    }
 
-
-
+    private static void addToLocale(string id, string name, string description)
+    {
+        LM.AddToCurrentLocale($"trait_{id}", name);
+        LM.AddToCurrentLocale($"trait_{id}_info", description);
     }
 }

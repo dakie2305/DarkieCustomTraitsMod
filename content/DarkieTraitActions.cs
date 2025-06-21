@@ -1,5 +1,9 @@
 using NeoModLoader.api.attributes;
 using static UnityEngine.GraphicsBuffer;
+using System.Linq;
+using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace DarkieCustomTraits.Content;
 
@@ -85,6 +89,36 @@ internal static class DarkieTraitActions
 
         return false;
     }
+
+
+    public static bool shieldGuyAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        //he wil use shield when in combat
+        if (!pSelf.a.hasStatus("shield"))
+        {
+            ActionLibrary.castShieldOnHimself(pSelf, pSelf, pTile);
+        }
+        //Rare chance to cast shield on ally of same kingdom
+        if (Randy.randomChance(0.1f))
+        {
+            //Get all units  in the area
+            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 7);
+            if (allClosestUnits.Any())
+            {
+                foreach (var unit in allClosestUnits)
+                {
+                    if (unit.a.kingdom == pSelf.a.kingdom && !unit.a.hasStatus("shield"))
+                    {
+                        unit.addStatusEffect("shield", 4f);
+                        unit.addStatusEffect("caffeinated", 5f);
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
 
     #endregion
 
