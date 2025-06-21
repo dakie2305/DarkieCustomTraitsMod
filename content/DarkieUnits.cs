@@ -67,12 +67,10 @@ namespace DarkieCustomTraits.Content
             vampireBat._cached_sprite = Resources.Load<Sprite>("actors/species/other/DarkieUnit/vampire_bat/heads_male/walk_0");
             vampireBat.ignored_by_infinity_coin = false;
 
-
             vampireBat.max_random_amount = 6;
-            vampireBat.action_death = (WorldAction)Delegate.Combine(vampireBat.action_death, new WorldAction(ActionLibrary.tryToCreatePlants));
+            //vampireBat.action_death = (WorldAction)Delegate.Combine(vampireBat.action_death, new WorldAction(ActionLibrary.tryToCreatePlants));
             AssetManager.actor_library.loadShadow(vampireBat);
             AssetManager.actor_library.loadTexturesAndSprites(vampireBat);
-            //AssetManager.actor_library.add(vampireBat);
             addToLocale(vampireBat.name_locale, vampireBat.name_locale);
         }
 

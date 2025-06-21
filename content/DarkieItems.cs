@@ -6,16 +6,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace DarkieCustomTraits.Content
 {
     public class DarkieItems
     {
         private const string PathIcon = "ui/Icons/items";
+        private const string PathWeapon = "ui/weapons";
         public static void Init()
         {
             loadCustomItems();
-
         }
 
         private static void loadCustomItems()
@@ -62,27 +63,54 @@ namespace DarkieCustomTraits.Content
             #endregion
 
             #region teleport dagger
-            //ItemAsset teleport = AssetManager.items.clone("TeleportDagger", "sword");   //clone sword
-            //teleport.id = "TeleportDagger";
-            //teleport.name_templates = Toolbox.splitStringIntoList(new string[]
-            //{
-            //  "sword_name#30",
-            //  "sword_name_king#3",
-            //  "weapon_name_city",
-            //  "weapon_name_kingdom",
-            //  "weapon_name_culture",
-            //  "weapon_name_enemy_king",
-            //  "weapon_name_enemy_kingdom"
-            //});
-            //teleport.action_attack_target = new AttackAction(DarkieItemActions.teleportDaggerAttackEffect);        //special attack action
-            //teleport.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, 0.5f);
-            //teleport.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.6f); //Percentage
-            //teleport.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 0.2f);
-            //teleport.equipment_value = 50;
+            ItemAsset teleportDagger = AssetManager.items.clone("teleport_dagger", "$weapon");
+            teleportDagger.id = "teleport_dagger";
+            teleportDagger.material = "adamantine"; //Since they are special weapon, I think this is suitable, and I don't have time to use other materials
+            teleportDagger.translation_key = "Teleport Dagger";
+            teleportDagger.equipment_subtype = "teleport_dagger";
+            teleportDagger.group_id = "sword";
+            teleportDagger.animated = false;
 
-            //AssetManager.items.list.AddItem(teleport);
+            teleportDagger.base_stats = new();
+            teleportDagger.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, 0.5f);
+            teleportDagger.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.6f); //Percentage
+            teleportDagger.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 0.2f);
+
+            teleportDagger.path_slash_animation = "effects/slashes/slash_sword";
+
+            teleportDagger.equipment_value = 3000;
+            teleportDagger.special_effect_interval = 0.4f;
+            teleportDagger.quality = Rarity.R3_Legendary;
+            teleportDagger.equipment_type = EquipmentType.Weapon;
+            teleportDagger.name_class = "item_class_weapon";
+
+            teleportDagger.path_icon = $"{PathIcon}/icon_teleport_dagger"; //I do not have separate sprite for icon, I use also just use that
+            teleportDagger.path_gameplay_sprite = $"weapons/{teleportDagger.id}"; //Make sure image share same name as id
+            teleportDagger.gameplay_sprites = getWeaponSprites(teleportDagger.id);
+
+            teleportDagger.action_attack_target = new AttackAction(DarkieItemActions.teleportDaggerAttackEffect);        //special attack action
+            AssetManager.items.list.AddItem(teleportDagger);
+            addToLocale(teleportDagger.id, teleportDagger.translation_key, "The fastest dagger with teleport attack!");
             #endregion
 
+        }
+
+        private static void addToLocale(string id, string translation_key, string description)
+        {
+            LM.AddToCurrentLocale(translation_key, translation_key);
+            LM.AddToCurrentLocale($"{id}_description", description);
+        }
+
+        public static Sprite[] getWeaponSprites(string id)
+        {
+            var sprite = Resources.Load<Sprite>("weapons/" + id);
+            if (sprite != null)
+                return new Sprite[] { sprite };
+            else
+            {
+                DarkieTraitsMain.LogError("Can not find weapon sprite for weapon with this id: " + id);
+                return Array.Empty<Sprite>();
+            }
         }
     }
 }
