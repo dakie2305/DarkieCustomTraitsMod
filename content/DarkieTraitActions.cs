@@ -137,6 +137,7 @@ internal static class DarkieTraitActions
             var act = World.world.units.createNewUnit("wolf", pTile);
             act.setKingdom(pSelf.kingdom);
             act.addTrait("tamed_beasts");
+            act.stats.set(CustomBaseStatsConstant.Scale, 0.1f);
             //Set master id so that it can be re-populate later
             act.data.set("master_id", pSelf.a.data.id);
             //This will help marks the ownership
@@ -166,6 +167,7 @@ internal static class DarkieTraitActions
             var act = World.world.units.createNewUnit("bear", pTile);
             act.setKingdom(pSelf.kingdom);
             act.addTrait("tamed_beasts");
+            act.stats.set(CustomBaseStatsConstant.Scale, 0.1f);
             //Set master id so that it can be re-populate later
             act.data.set("master_id", pSelf.a.data.id);
             //This will help marks the ownership
@@ -180,6 +182,43 @@ internal static class DarkieTraitActions
         return false;
     }
 
+    public static bool spawnDragonAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        int count = 0;
+        if (pSelf.a.data.custom_data_int == null || !pSelf.a.data.custom_data_int.TryGetValue("dragonCount", out count))
+        {
+            pSelf.a.data.set("dragonCount", 0);
+            count = 0;
+        }
+        if (count < 1)
+        {
+            //Spawn dragon and give its custom trait too
+            //Small chance to spawn zombie dragon
+            Actor? act = null;
+            if (Randy.randomChance(0.1f))
+            {
+                act = World.world.units.createNewUnit("zombie_dragon", pTile);
+            }
+            else
+            {
+                act = World.world.units.createNewUnit("dragon", pTile);
+            }
+            act.setKingdom(pSelf.kingdom);
+            act.addTrait("tamed_beasts");
+            //Set master id so that it can be re-populate later
+            act.data.set("master_id", pSelf.a.data.id);
+            act.stats.set(CustomBaseStatsConstant.Scale, 0.1f);
+            //This will help marks the ownership
+            act.data.setName($"Dragon of {pSelf.a.getName()}");
+            act.goTo(pSelf.current_tile);
+            if (!listOfTamedBeasts.ContainsKey(act))
+                listOfTamedBeasts.Add(act, pSelf.a);     //add the beast and actor who spawned them into custom list
+            count++;
+            pSelf.a.data.set("dragonCount", count);
+            return true;
+        }
+        return false;
+    }
     #endregion
 
     #region special effects
@@ -305,16 +344,15 @@ internal static class DarkieTraitActions
 
 
 
+    //// This method will be called when config value set. ATTENTION: It might be called when game start.
+    //public static void ExampleSwitchConfigCallBack(bool pCurrentValue)
+    //{
+    //    //DarkieTraitsMain.LogInfo($"Current value of a switch config is '{pCurrentValue}'");
+    //}
 
-    // This method will be called when config value set. ATTENTION: It might be called when game start.
-    public static void ExampleSwitchConfigCallBack(bool pCurrentValue)
-    {
-        //DarkieTraitsMain.LogInfo($"Current value of a switch config is '{pCurrentValue}'");
-    }
-
-    // This method will be called when config value set. ATTENTION: It might be called when game start.
-    public static void ExampleSliderConfigCallback(float pCurrentValue)
-    {
-        //ExampleModMain.LogInfo($"Current value of a slider config is '{pCurrentValue}'");
-    }
+    //// This method will be called when config value set. ATTENTION: It might be called when game start.
+    //public static void ExampleSliderConfigCallback(float pCurrentValue)
+    //{
+    //    //ExampleModMain.LogInfo($"Current value of a slider config is '{pCurrentValue}'");
+    //}
 }

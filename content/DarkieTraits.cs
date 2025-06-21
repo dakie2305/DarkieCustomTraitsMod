@@ -497,9 +497,8 @@ internal static class DarkieTraits
             path_icon = $"{PathToTraitIcon}/beartamer",
             rate_birth = LowChance,
             rate_inherit = MediumChance,
-            rarity = Rarity.R1_Rare,
+            rarity = Rarity.R2_Epic,
             can_be_given = true,
-            can_be_removed_by_divine_light = true,
         };
 
         beartamerTrait.base_stats = new BaseStats();
@@ -515,6 +514,36 @@ internal static class DarkieTraits
         AssetManager.traits.add(beartamerTrait);
         addToLocale(beartamerTrait.id, "Bear Tamer", "The ruler of the Bear! Will summon 2 bear to aid in battle.");
         #endregion
+
+        //this trait will spawn out a BIGGER DRAGON 
+        #region dragon_trainer
+        ActorTrait dragonTrainerTrait = new ActorTrait()
+        {
+            id = "dej_dragon_trainer",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/dragon_trainer",
+            rate_birth = 5,
+            rate_inherit = MediumChance,
+            rarity = Rarity.R3_Legendary,
+            can_be_given = true,
+        };
+
+        dragonTrainerTrait.base_stats = new BaseStats();
+        dragonTrainerTrait.base_stats.set(CustomBaseStatsConstant.Speed, 30f);
+        dragonTrainerTrait.base_stats.set(CustomBaseStatsConstant.AttackSpeed, 50f);
+        dragonTrainerTrait.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 1.0f);
+
+        dragonTrainerTrait.type = TraitType.Positive;
+        dragonTrainerTrait.unlock(true);
+
+        List<string> oppositesDragonTrainer = new() { "dej_bear_tamer", "dej_wolf_tamer" };
+        dragonTrainerTrait.addOpposites(oppositesDragonTrainer);
+
+        dragonTrainerTrait.action_attack_target = new AttackAction(DarkieTraitActions.spawnDragonAttackEffect);
+        AssetManager.traits.add(dragonTrainerTrait);
+        addToLocale(dragonTrainerTrait.id, "Dragon Trainer", "The ultimate trainer ever alive! Will summon one big ass dragon to aid in battle.");
+        #endregion
+
 
     }
 
