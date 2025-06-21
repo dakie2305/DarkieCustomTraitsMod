@@ -667,6 +667,72 @@ internal static class DarkieTraitActions
         return true;
     }
 
+    public static bool pheonixPowerSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        if (!pTarget.isAlive())
+            return false;
+        if (Randy.randomChance(0.2f))
+        {
+            removeBadTrait(pTarget);
+        }
+        return true;
+    }
+
+    public static bool rebornANew(BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        pTarget.a.addTrait("fire_proof"); //what kind of phoenix that got burned lol
+        pTarget.a.addTrait("the_revived");
+        pTarget.a.removeTrait("pheonix");
+        var act = World.world.units.createNewUnit(pTarget.a.asset.id, pTile);
+        ActorTool.copyUnitToOtherUnit(pTarget.a, act);
+        if (pTarget.kingdom.isAlive())
+            act.kingdom = pTarget.kingdom;
+        act.data.setName(pTarget.a.getName());
+        act.data.favorite = pTarget.a.data.favorite;
+        act.data.health += 1000;
+        EffectsLibrary.spawnAtTile("fx_lightning_medium", pTile, 0.25f);
+        act.addStatusEffect("phoenix", 7f);
+        act.a.makeWait(3);
+        act.addStatusEffect("invincible", 5);
+        //spawn effect for cooler looks
+        World.world.fx_divine_light.playOn(pTile);
+        EffectsLibrary.spawnExplosionWave(pTile.posV3, 1f, 1f);
+        World.world.applyForceOnTile(pTile, 3, 1.5f, pForceOut: true, 0, null, pByWho: act); //Ignore force for self
+        return true;
+    }
+
+    public static bool reviveSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (!pTarget.isAlive())
+            return false;
+        // Define a mapping from zombie unit IDs to their living counterparts.
+        var zombieToLivingUnitMap = new Dictionary<string, string>
+    {
+        { "zombie", "unit_human" },
+        { "zombie_dwarf", "unit_dwarf" },
+        { "zombie_orc", "unit_orc" },
+        { "zombie_elf", "unit_elf" }
+    };
+        // Attempt to get the corresponding living unit ID for the target's asset ID.
+        if (zombieToLivingUnitMap.TryGetValue(pTarget.a.asset.id, out string? livingUnitId))
+        {
+            // Create the new living unit.
+            var newUnit = World.world.units.createNewUnit(livingUnitId, pTile);
+            ActorTool.copyUnitToOtherUnit(pTarget.a, newUnit);
+            EffectsLibrary.spawn("fx_spawn", pTarget.a.current_tile);
+            // Remove the original zombie unit.
+            ActionLibrary.removeUnit(pTarget.a);
+        }
+        else
+        {
+            // If the target is not a known zombie type, simply remove zombie-related traits.
+            pTarget.a.removeTrait("zombie");
+            pTarget.a.removeTrait("infected");
+        }
+        return true;
+    }
+
+
 
     #endregion
 
@@ -741,12 +807,14 @@ internal static class DarkieTraitActions
             pTarget.a.removeTrait("deceitful");
             pTarget.a.removeTrait("pyromaniac");
             pTarget.a.removeTrait("infected");
-            pTarget.a.removeTrait("mushSpores");
-            pTarget.a.removeTrait("tumorInfection");
+            pTarget.a.removeTrait("mush_spores");
+            pTarget.a.removeTrait("tumor_infection");
             pTarget.a.removeTrait("scar_of_divinity");  //kinda hate this trait
         }
         return true;
     }
+
+
     #endregion
 
 

@@ -70,8 +70,8 @@ namespace DarkieCustomTraits.Content
                 pSelf.a.addTrait("fire_proof");
                 if (pSelf.a.hasTrait("madness") || pSelf.a.hasTrait("cursed") || pSelf.a.hasTrait("evil") || pSelf.a.hasTrait("greedy") || pSelf.a.hasTrait("weak") || pSelf.a.hasTrait("deceitful") || pSelf.a.hasTrait("pyromaniac"))
                 {
-                    ActionLibrary.castLightning(null, pSelf, null);
-                    pSelf.a.setHealth(0, false);
+                    ActionLibrary.castLightning(pSelf, pSelf, null);
+                    pSelf.a.die();
                     return false;
                 }
                 if (pSelf.a.asset.banner_id != "human" && pSelf.a.asset.banner_id != "elf" && pSelf.a.asset.banner_id != "orc" && pSelf.a.asset.banner_id != "dwarf")
