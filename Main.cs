@@ -44,12 +44,6 @@ public class DarkieTraitsMain : BasicMod<DarkieTraitsMain>, IReloadable
         //Config.isEditor = true;
         DarkieTraits.Init();
         DarkieItems.Init();
-        // Example of new tab and buttons.
-        //ExampleGodPowers.init();
-        // Example of adding items, item modifiers and item materials.
-        //ExampleItems.Init();
-        // Example of creating event handlers and add new world log message.
-        // It implements two event handlers to handle Plot Start event and World Log Message format event to add new world log message type for tipping plot start.
-        //ExampleEventHandlers.init();
+        DarkieEffects.Init();
     }
 }
