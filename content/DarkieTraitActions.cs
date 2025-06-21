@@ -497,6 +497,70 @@ internal static class DarkieTraitActions
         return true;
     }
 
+    public static bool livingHellEffect(BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        if (!pTarget.isAlive())
+            return false;
+        pTarget.a.spawnParticle(Toolbox.color_plague);
+        pTarget.a.spawnParticle(Toolbox.color_plague);
+        pTarget.a.spawnParticle(Toolbox.color_plague);
+        //pTarget.a.asset.can_be_killed_by_life_eraser = false;        //not even life eraser can save you from this eternal nightmare that I made for you
+        //pTarget.a.asset.can_be_hurt_by_powers = false;
+        //pTarget.a.asset.can_be_cloned = false;
+        //pTarget.a.asset.can_be_killed_by_divine_light = false;
+        pTarget.a.addTrait("madness");
+        pTarget.a.removeTrait("cursed");
+        pTarget.a.data.favorite = true; //for easier finding
+
+        if (pTarget.a.data.health < pTarget.a.getMaxHealth() / 2)        //You don't get to die that easy, little piece of sh!t
+        {
+            pTarget.a.restoreHealth(9999);
+        }
+        if (pTarget.a.data.health < pTarget.a.getMaxHealth() / 10)        //tele random
+        {
+            ActionLibrary.teleportRandom(null, pTarget, null);
+        }
+        if (Randy.randomChance(0.2f))
+        {
+            MapBox.instance.drop_manager.spawn(pTarget.current_tile, "acid", 10f, -1f);
+            MapBox.instance.drop_manager.spawn(pTarget.current_tile, "fire", 5f, -1f);
+            MapBox.instance.drop_manager.spawn(pTarget.current_tile, "acid", 10f, -1f);
+            MapBox.instance.drop_manager.spawn(pTarget.current_tile, "fire", 5f, -1f);
+            MapBox.instance.drop_manager.spawn(pTarget.current_tile, "acid", 10f, -1f);
+            MapBox.instance.drop_manager.spawn(pTarget.current_tile, "fire", 5f, -1f);
+        }
+        if (Randy.randomChance(0.1f))
+        {
+            pTarget.addStatusEffect("frozen", 3);
+        }
+        if (Randy.randomChance(0.1f))
+        {
+            pTarget.addStatusEffect("poisoned", 13);
+        }
+        if (Randy.randomChance(0.1f))
+        {
+            pTarget.addStatusEffect("stunned", 13);
+        }
+        if (Randy.randomChance(0.1f))
+        {
+            pTarget.addStatusEffect("burning", 13);
+        }
+        if (Randy.randomChance(0.1f))
+        {
+            ActionLibrary.castLightning(null, pTarget, null);
+        }
+        if (Randy.randomChance(0.2f))
+        {
+            ActionLibrary.castCurses(null, pTarget, null);
+        }
+        if (Randy.randomChance(0.05f))
+        {
+            EffectsLibrary.spawn("fx_meteorite", pTarget.current_tile, "meteorite_disaster", null, 0f, -1f, -1f);    //spawn 1 meteorite
+        }
+        return true;
+    }
+
+
     #endregion
 
     #region get hit action

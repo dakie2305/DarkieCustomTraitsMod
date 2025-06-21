@@ -1,4 +1,4 @@
-using NeoModLoader.api.attributes;
+﻿using NeoModLoader.api.attributes;
 using System.Collections.Generic;
 using UnityEngine;
 using NeoModLoader.General;
@@ -579,7 +579,7 @@ internal static class DarkieTraits
             id = "gangster",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/gangster",
-            rate_birth = Rare,
+            rate_birth = NoChance,
             rate_inherit = Rare,
             rarity = Rarity.R1_Rare,
             can_be_given = true,
@@ -744,6 +744,38 @@ internal static class DarkieTraits
         addToLocale(esteemedCommanderTrait.id, "Esteemed Commander", "The country needs YOU to join the ARMY! Will convert nearby units into soldier to serve the nation!");
         #endregion
 
+
+        //my least favorite
+        #region the_tortured
+        ActorTrait theTorturedTrait = new ActorTrait()
+        {
+            id = "the_tortured",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/tortured",
+            rate_birth = NoChance,
+            rate_inherit = HighChance,
+            rarity = Rarity.R0_Normal,
+            can_be_given = true,
+        };
+
+        theTorturedTrait.base_stats = new BaseStats();
+        theTorturedTrait.base_stats.set(CustomBaseStatsConstant.BirthRate, -1.0f);
+        theTorturedTrait.base_stats.set(CustomBaseStatsConstant.Health, 9900f);
+        theTorturedTrait.base_stats.set(CustomBaseStatsConstant.Speed, -100f);
+        theTorturedTrait.base_stats.set(CustomBaseStatsConstant.AttackSpeed, -100f);
+        theTorturedTrait.base_stats.set(CustomBaseStatsConstant.Damage, -500f);
+        theTorturedTrait.base_stats.set(CustomBaseStatsConstant.Intelligence, -200f);
+        theTorturedTrait.base_stats.set(CustomBaseStatsConstant.Lifespan, 50000f);
+        theTorturedTrait.base_stats.set(CustomBaseStatsConstant.Armor, -100f);
+
+        theTorturedTrait.type = TraitType.Negative;
+        theTorturedTrait.unlock(true);
+
+        theTorturedTrait.action_special_effect = (WorldAction)Delegate.Combine(theTorturedTrait.action_special_effect, new WorldAction(DarkieTraitActions.livingHellEffect));
+
+        AssetManager.traits.add(theTorturedTrait);
+        addToLocale(theTorturedTrait.id, "The Tortured", "You should never have existed. Your mere existence is blasphemy and an insult to everyone.");
+        #endregion
 
 
     }
