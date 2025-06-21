@@ -219,6 +219,50 @@ internal static class DarkieTraitActions
         }
         return false;
     }
+
+    public static bool spawnBanditAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        int count = 0;
+        if (pSelf.a.data.custom_data_int == null || !pSelf.a.data.custom_data_int.TryGetValue("banditCount", out count))
+        {
+            pSelf.a.data.set("banditCount", 0);
+            count = 0;
+        }
+        if (count < 3)
+        {
+            //Spawn bandit and give its custom trait too
+            var act = World.world.units.createNewUnit("bandit", pTile);
+            act.setKingdom(pSelf.kingdom);
+            act.addTrait("tamed_beasts");
+            act.stats.set(CustomBaseStatsConstant.Scale, 0.1f);
+            //Set master id so that it can be re-populate later
+            act.data.set("master_id", pSelf.a.data.id);
+            //This will help marks the ownership
+            act.data.setName($"Bandit Friend of {pSelf.a.getName()}");
+            act.goTo(pSelf.current_tile);
+
+            if (!listOfTamedBeasts.ContainsKey(act))
+                listOfTamedBeasts.Add(act, pSelf.a);     //add the beast and actor who spawned them into custom list
+            count++;
+            pSelf.a.data.set("banditCount", count);
+            return true;
+        }
+        return false;
+    }
+
+    public static bool nightCrawlerAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        if (Randy.randomChance(0.3f)) //Percent
+        {
+            EffectsLibrary.spawnAtTile("fx_teleport_blue", pTarget.current_tile, 0.1f);
+            ActionLibrary.teleportRandom(null, pTarget, null);
+            return true;
+        }
+
+        return false;
+    }
+
+
     #endregion
 
     #region special effects

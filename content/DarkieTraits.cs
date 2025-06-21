@@ -553,7 +553,7 @@ internal static class DarkieTraits
             path_icon = $"{PathToTraitIcon}/medic",
             rate_birth = LowChance,
             rate_inherit = LowChance,
-            rarity = Rarity.R0_Normal,
+            rarity = Rarity.R2_Epic,
             can_be_given = true,
         };
 
@@ -572,6 +572,62 @@ internal static class DarkieTraits
         addToLocale(medicHealerTrait.id, "Medic Healer", "A medic to save the team! Can heal themselves and other allies.");
         #endregion
 
+        //Gangster, can summon bandits to help fight
+        #region gangster
+        ActorTrait gangsterTrait = new ActorTrait()
+        {
+            id = "gangster",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/gangster",
+            rate_birth = Rare,
+            rate_inherit = Rare,
+            rarity = Rarity.R1_Rare,
+            can_be_given = true,
+        };
+
+        gangsterTrait.base_stats = new BaseStats();
+        gangsterTrait.base_stats.set(CustomBaseStatsConstant.Speed, 30f);
+        gangsterTrait.base_stats.set(CustomBaseStatsConstant.AttackSpeed, 30f);
+        gangsterTrait.base_stats.set(CustomBaseStatsConstant.Army, 50f);
+        gangsterTrait.base_stats.set(CustomBaseStatsConstant.Diplomacy, 20f);
+        gangsterTrait.base_stats.set(CustomBaseStatsConstant.Warfare, 20f);
+        gangsterTrait.base_stats.set(CustomBaseStatsConstant.Stewardship, -10f);
+        gangsterTrait.base_stats.set(CustomBaseStatsConstant.LoyaltyTraits, -25f);
+
+        gangsterTrait.type = TraitType.Positive;
+        gangsterTrait.unlock(true);
+        gangsterTrait.action_attack_target = new AttackAction(DarkieTraitActions.spawnBanditAttackEffect);
+        AssetManager.traits.add(gangsterTrait);
+        addToLocale(gangsterTrait.id, "Gangster", "What are you looking at huh!? Don't make me call my brothers in bandit here!");
+        #endregion
+
+        //Mage
+        #region master_magister
+        ActorTrait mageTrait = new ActorTrait()
+        {
+            id = "master_magister",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/mage",
+            rate_birth = LowChance,
+            rate_inherit = MediumChance,
+            rarity = Rarity.R1_Rare,
+        };
+
+        mageTrait.base_stats = new BaseStats();
+        mageTrait.base_stats.set(CustomBaseStatsConstant.Speed, 30f);
+        mageTrait.base_stats.set(CustomBaseStatsConstant.Health, 300f);
+        mageTrait.base_stats.set(CustomBaseStatsConstant.AttackSpeed, 30f);
+        mageTrait.base_stats.set(CustomBaseStatsConstant.Range, 10f);
+
+        mageTrait.type = TraitType.Positive;
+        mageTrait.unlock(true);
+
+        mageTrait.action_attack_target = new AttackAction(DarkieTraitActions.mageAttack);
+        mageTrait.action_special_effect = (WorldAction)Delegate.Combine(mageTrait.action_special_effect, new WorldAction(DarkieTraitActions.mageSparklingEffect));
+
+        AssetManager.traits.add(mageTrait);
+        addToLocale(mageTrait.id, "Master Magister", "A magister!? Unleash the chaos with magic!");
+        #endregion
 
 
     }
