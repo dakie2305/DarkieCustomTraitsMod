@@ -683,6 +683,35 @@ internal static class DarkieTraits
         addToLocale(chainedTrait.id, "Chained", "Someone converted me :(");
         #endregion
 
+        //Ant Man
+        #region ant_man
+        ActorTrait antManTrait = new ActorTrait()
+        {
+            id = "ant_man",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/antman",
+            rate_birth = MediumChance,
+            rate_inherit = Rare,
+            rarity = Rarity.R1_Rare,
+            can_be_given = true,
+        };
+
+        antManTrait.base_stats = new BaseStats();
+        antManTrait.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, 1.0f);
+        antManTrait.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 0.2f);
+        antManTrait.base_stats.set(CustomBaseStatsConstant.AttackSpeed, 20f);
+
+        antManTrait.type = TraitType.Positive;
+        antManTrait.unlock(true);
+
+        antManTrait.addOpposites(new List<string> { "titan_shifter", "titan" });
+
+        antManTrait.action_get_hit = (GetHitAction)Delegate.Combine(antManTrait.action_get_hit, new GetHitAction(DarkieTraitActions.antManGetHit));
+
+        AssetManager.traits.add(antManTrait);
+        addToLocale(antManTrait.id, "Ant Man", "Bring me Kang!");
+        #endregion
+
 
     }
 

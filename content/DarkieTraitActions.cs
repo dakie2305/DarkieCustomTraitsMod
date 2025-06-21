@@ -486,6 +486,16 @@ internal static class DarkieTraitActions
         return true;
     }
 
+    public static bool antManGetHit(BaseSimObject pSelf, BaseSimObject pAttackedBy, WorldTile pTile = null)
+    {
+        //shrink down size
+        if (!pSelf.a.hasStatus("ant_man_effect"))
+        {
+            pSelf.a.addStatusEffect("ant_man_effect", 30f);
+        }
+        return true;
+    }
+
     #endregion
 
 
