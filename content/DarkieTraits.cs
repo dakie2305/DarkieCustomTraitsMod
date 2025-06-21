@@ -836,6 +836,53 @@ internal static class DarkieTraits
         addToLocale(theWerewolfTrait.id,"The Werewolf", "Horrible creature emmerge from the dark era of full moon. Only those with Blood of Wolf can become this creature of nightmare");
         #endregion
 
+        //no more hunger
+        #region stuffed
+        ActorTrait stuffedTrait = new ActorTrait()
+        {
+            id = "stuffed",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/cake",
+            rate_birth = Rare,
+            rate_inherit = NoChance,
+            rarity = Rarity.R0_Normal,
+        };
+
+        stuffedTrait.base_stats = new BaseStats();
+        stuffedTrait.base_stats.set(CustomBaseStatsConstant.Health, 100f);
+        stuffedTrait.type = TraitType.Positive;
+        stuffedTrait.unlock(true);
+        stuffedTrait.addOpposites(new List<string> { "insatiable_hunger" });
+        stuffedTrait.action_special_effect = (WorldAction)Delegate.Combine(stuffedTrait.action_special_effect, new WorldAction(DarkieTraitActions.fullHungerSpecialEffect));
+
+        AssetManager.traits.add(stuffedTrait);
+        addToLocale(stuffedTrait.id, "Stuffed", "Sweetheart, you can never go hungry again!");
+        #endregion
+
+        //always hungry
+        #region insatiable_hunger
+        ActorTrait hungerTrait = new ActorTrait()
+        {
+            id = "insatiable_hunger",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/hunger",
+            rate_birth = Rare,
+            rate_inherit = NoChance,
+            rarity = Rarity.R0_Normal,
+            can_be_given = true,
+            can_be_removed_by_divine_light = true,
+        };
+        hungerTrait.addOpposites(new List<string> { "stuffed" });
+        hungerTrait.base_stats = new BaseStats();
+        hungerTrait.base_stats.set(CustomBaseStatsConstant.Health, 100f);
+        hungerTrait.type = TraitType.Negative;
+        hungerTrait.unlock(true);
+        hungerTrait.action_special_effect = (WorldAction)Delegate.Combine(hungerTrait.action_special_effect, new WorldAction(DarkieTraitActions.insatiableSpecialEffect));
+
+        AssetManager.traits.add(hungerTrait);
+        addToLocale(hungerTrait.id, "Insatiable Hunger", "Too hungry. I can eat the whole world.");
+        #endregion
+
 
 
     }
