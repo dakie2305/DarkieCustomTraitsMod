@@ -1141,7 +1141,7 @@ internal static class DarkieTraits
         the_vampire.type = TraitType.Positive;
         the_vampire.unlock(true);
 
-        //the_vampire.action_special_effect = (WorldAction)Delegate.Combine(the_vampire.action_special_effect, new WorldAction(DarkieTraitActions.vampireSpecialEffect));
+        the_vampire.action_special_effect = (WorldAction)Delegate.Combine(the_vampire.action_special_effect, new WorldAction(DarkieTraitActions.vampireSpecialEffect));
         the_vampire.action_attack_target = new AttackAction(DarkieTraitActions.vampireAttackEffect);
 
         AssetManager.traits.add(the_vampire);

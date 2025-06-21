@@ -841,7 +841,7 @@ internal static class DarkieTraitActions
             if (clone.a.hasTrait("duplikate_clone") && clone.a.getName().Equals(pTarget.a.getName()))
             {
                 ActionLibrary.castLightning(pTarget, clone, null);
-                clone.a.die();
+                ActionLibrary.removeUnit(clone.a);
             }
         }
         return true;
@@ -860,9 +860,11 @@ internal static class DarkieTraitActions
 
     public static bool rebornANew(BaseSimObject pTarget, WorldTile pTile = null)
     {
+        ActionLibrary.removeUnit(pTarget.a);
         pTarget.a.addTrait("fire_proof"); //what kind of phoenix that got burned lol
         pTarget.a.addTrait("the_revived");
         pTarget.a.removeTrait("pheonix");
+        EffectsLibrary.spawn("fx_spawn", pTarget.a.current_tile, null, null, 0f, -1f, -1f);
         var act = World.world.units.createNewUnit(pTarget.a.asset.id, pTile);
         ActorTool.copyUnitToOtherUnit(pTarget.a, act);
         if (pTarget.kingdom.isAlive())
@@ -1022,59 +1024,56 @@ internal static class DarkieTraitActions
 
     public static bool vampireSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
-        if (pTarget.a != null)
+        //for human form only
+        if (!pTarget.a.asset.id.Equals("vampire_bat"))
         {
-            //for human form only
-            if (!pTarget.a.asset.id.Equals("vampire_bat"))
+            pTarget.a.addTrait("immortal");
+            if (pTarget.a.data.health < pTarget.a.getMaxHealth() / 2)
             {
-                pTarget.a.addTrait("immortal");
-                if (pTarget.a.data.health < pTarget.a.getMaxHealth() / 5)
+                var act = World.world.units.createNewUnit("vampire_bat", pTile);
+                ActorTool.copyUnitToOtherUnit(pTarget.a, act);
+                act.kingdom = pTarget.kingdom;
+                act.data.set("original_asset_id", pTarget.a.asset.id);
+                //spawn 4 bats for decoy
+                for (int i = 0; i < 4; i++)
                 {
-                    var act = World.world.units.createNewUnit("vampire_bat", pTile);
-                    ActorTool.copyUnitToOtherUnit(pTarget.a, act);
-                    act.kingdom = pTarget.kingdom;
-                    act.data.set("original_asset_id", pTarget.a.asset.id);
-                    //spawn 4 bats for decoy
-                    for (int i = 0; i < 4; i++)
+                    var decoy = World.world.units.createNewUnit("vampire_bat", pTile);
+                    if (pTarget.a.kingdom != null)
                     {
-                        var decoy = World.world.units.createNewUnit("vampire_bat", pTile);
-                        if (pTarget.a.kingdom != null)
-                        {
-                            decoy.kingdom = pTarget.kingdom;
-                        }
+                        decoy.kingdom = pTarget.kingdom;
                     }
-                    EffectsLibrary.spawn("fx_spawn", pTarget.a.current_tile, null, null, 0f, -1f, -1f);
-                    ActionLibrary.removeUnit(pTarget.a);
+                    decoy.a.addTrait("the_mirroed"); //Add this one so it will despawn after awhile
                 }
-
+                EffectsLibrary.spawn("fx_spawn", pTarget.a.current_tile, null, null, 0f, -1f, -1f);
+                ActionLibrary.removeUnit(pTarget.a);
             }
-            //for bat form only
-            if (pTarget.a.asset.id.Equals("vampire_bat"))
-            {
-                if (pTarget.a.data.health < pTarget.a.getMaxHealth())
-                {
-                    if (Randy.randomChance(0.1f))
-                    {
-                        ActionLibrary.castBloodRain(pTarget, pTarget, null);
-                    }
-                }
-                if (pTarget.a.data.health == pTarget.a.getMaxHealth())
-                {
-                    pTarget.a.data.custom_data_string.TryGetValue("original_asset_id", out string? originalAssetId);
-                    if (string.IsNullOrEmpty(originalAssetId))
-                    {
-                        originalAssetId = "human";
-                    }
 
-                    var act = World.world.units.createNewUnit(originalAssetId, pTile);
-                    ActorTool.copyUnitToOtherUnit(pTarget.a, act);
-                    EffectsLibrary.spawn("fx_spawn", pTarget.a.current_tile, null, null, 0f, -1f, -1f);
-                    act.data.health = act.a.getMaxHealth();
-                    ActionLibrary.removeUnit(pTarget.a);
+        }
+        //for bat form only
+        if (pTarget.a.asset.id.Equals("vampire_bat"))
+        {
+            if (pTarget.a.data.health < pTarget.a.getMaxHealth())
+            {
+                if (Randy.randomChance(0.1f))
+                {
+                    ActionLibrary.castBloodRain(pTarget, pTarget, null);
                 }
+            }
+            if (pTarget.a.data.health == pTarget.a.getMaxHealth())
+            {
+                pTarget.a.data.custom_data_string.TryGetValue("original_asset_id", out string? originalAssetId);
+                if (string.IsNullOrEmpty(originalAssetId))
+                {
+                    originalAssetId = "human";
+                }
+
+                var act = World.world.units.createNewUnit(originalAssetId, pTile);
+                ActorTool.copyUnitToOtherUnit(pTarget.a, act);
+                EffectsLibrary.spawn("fx_spawn", pTarget.a.current_tile, null, null, 0f, -1f, -1f);
+                act.data.health = act.a.getMaxHealth();
+                ActionLibrary.removeUnit(pTarget.a);
             }
         }
-
         return true;
     }
 
@@ -1198,14 +1197,14 @@ internal static class DarkieTraitActions
 
 
     //// This method will be called when config value set. ATTENTION: It might be called when game start.
-    //public static void ExampleSwitchConfigCallBack(bool pCurrentValue)
-    //{
-    //    //DarkieTraitsMain.LogInfo($"Current value of a switch config is '{pCurrentValue}'");
-    //}
+    public static void ExampleSwitchConfigCallBack(bool pCurrentValue)
+    {
+        //DarkieTraitsMain.LogInfo($"Current value of a switch config is '{pCurrentValue}'");
+    }
 
-    //// This method will be called when config value set. ATTENTION: It might be called when game start.
-    //public static void ExampleSliderConfigCallback(float pCurrentValue)
-    //{
-    //    //ExampleModMain.LogInfo($"Current value of a slider config is '{pCurrentValue}'");
-    //}
+    // This method will be called when config value set. ATTENTION: It might be called when game start.
+    public static void ExampleSliderConfigCallback(float pCurrentValue)
+    {
+        //ExampleModMain.LogInfo($"Current value of a slider config is '{pCurrentValue}'");
+    }
 }

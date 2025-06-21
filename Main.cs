@@ -37,5 +37,6 @@ public class DarkieTraitsMain : BasicMod<DarkieTraitsMain>, IReloadable
         DarkieTraits.Init();
         DarkieItems.Init();
         DarkieEffects.Init();
+        DarkieUnits.Init();
     }
 }
