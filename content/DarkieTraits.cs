@@ -1084,7 +1084,7 @@ internal static class DarkieTraits
         reviver.type = TraitType.Positive;
         reviver.unlock(true);
 
-        reviver.action_special_effect = (WorldAction)Delegate.Combine(reviver.action_special_effect, new WorldAction(DarkieTraitActions.giveR));
+        reviver.action_special_effect = (WorldAction)Delegate.Combine(reviver.action_special_effect, new WorldAction(DarkieTraitActions.undoZombify));
 
         AssetManager.traits.add(reviver);
         addToLocale(reviver.id, "Reviver of Dead", "He revives the death to the living, the very opposite of the death bringer!");

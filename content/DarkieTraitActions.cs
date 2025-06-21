@@ -107,7 +107,7 @@ internal static class DarkieTraitActions
         if (Randy.randomChance(0.1f))
         {
             //Get all units  in the area
-            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 7);
+            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 3);
             if (allClosestUnits.Any())
             {
                 foreach (var unit in allClosestUnits)
@@ -374,7 +374,7 @@ internal static class DarkieTraitActions
         //ulti
         if (Randy.randomChance(0.05f))
         {
-            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 5);
+            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 3);
             if (allClosestUnits.Any())
             {
                 foreach (var unit in allClosestUnits)
@@ -390,7 +390,7 @@ internal static class DarkieTraitActions
 
         if (Randy.randomChance(0.2f))
         {
-            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 5);
+            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 3);
             if (allClosestUnits.Any())
             {
                 foreach (var unit in allClosestUnits)
@@ -546,7 +546,7 @@ internal static class DarkieTraitActions
         if (Randy.randomChance(0.2f))
         {
             //Get all units  in the area
-            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 5);
+            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 3);
             if (allClosestUnits.Any())
             {
                 foreach (var unit in allClosestUnits)
@@ -590,7 +590,7 @@ internal static class DarkieTraitActions
         // Try to convert nearby allies to warriors
         if (Randy.randomChance(0.1f))
         {
-            var nearbyUnits = Finder.getUnitsFromChunk(pTile, 5);
+            var nearbyUnits = Finder.getUnitsFromChunk(pTile, 3);
             foreach (var unit in nearbyUnits)
             {
                 if (unit.a.kingdom == actor.kingdom)
@@ -812,10 +812,11 @@ internal static class DarkieTraitActions
         // Define a mapping from zombie unit IDs to their living counterparts.
         var zombieToLivingUnitMap = new Dictionary<string, string>
     {
-        { "zombie", "unit_human" },
-        { "zombie_dwarf", "unit_dwarf" },
-        { "zombie_orc", "unit_orc" },
-        { "zombie_elf", "unit_elf" }
+        { "zombie", "human" },
+        { "zombie_human", "human" },
+        { "zombie_dwarf", "dwarf" },
+        { "zombie_orc", "orc" },
+        { "zombie_elf", "elf" }
     };
         // Attempt to get the corresponding living unit ID for the target's asset ID.
         if (zombieToLivingUnitMap.TryGetValue(pTarget.a.asset.id, out string? livingUnitId))
@@ -875,6 +876,34 @@ internal static class DarkieTraitActions
         return true;
     }
 
+    public static bool undoZombify(BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (!pTarget.isAlive())
+            return false;
+        pTarget.a.removeTrait("infected");
+        if (Randy.randomChance(0.5f))
+        {
+            //Get all units  in the area
+            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 3);
+            if (allClosestUnits.Any())
+            {
+                foreach (var unit in allClosestUnits)
+                {
+                    if (unit.asset.id == "zombie_dwarf" || unit.asset.id == "zombie" || unit.asset.id == "zombie_human" || unit.asset.id == "zombie_orc" || unit.asset.id == "zombie_elf")
+                    {
+                        unit.kingdom = pTarget.kingdom;
+                        reviveSpecialEffect(unit, pTile);
+                        ActionLibrary.castBloodRain(null, unit, null);
+                        unit.addTrait("the_revived");
+                        unit.removeTrait("infected");
+
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
 
 
     #endregion
@@ -885,7 +914,6 @@ internal static class DarkieTraitActions
         DarkieTraitsMain.LogInfo($"Test");
         if (pSelf == null || !pSelf.isAlive() || pSelf.a.hasTrait("titan"))
         {
-            DarkieTraitsMain.LogInfo($"No titan transformation");
             return false;
         }
         //Add new trait
