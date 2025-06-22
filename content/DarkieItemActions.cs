@@ -15,6 +15,7 @@ namespace DarkieCustomTraits.Content
         #region Attack Action
         public static bool teleportDaggerAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
         {
+            if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
             pSelf.a.asset.effect_teleport = "fx_DarkieCustomTeleport_effect"; //My very own effect
             if (Randy.randomChance(0.1f))
             {
@@ -24,6 +25,7 @@ namespace DarkieCustomTraits.Content
                 {
                     foreach (var unit in allClosestUnits)
                     {
+                        if (!unit.isAlive()) continue;
                         if (unit.a.kingdom != pSelf.a.kingdom && unit.a != pSelf.a)
                         {
                             unit.a.addStatusEffect("stunned", 3f);
@@ -47,6 +49,7 @@ namespace DarkieCustomTraits.Content
 
         public static bool teleportToSpecificLocation(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
         {
+            if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
             string? text = pSelf.a.asset.effect_teleport;
             if (string.IsNullOrEmpty(text))
             {
@@ -61,6 +64,7 @@ namespace DarkieCustomTraits.Content
 
         public static bool thorWeaponAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
         {
+            if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
             //only the worthy can wield the weapon
             if (pSelf.a != null)
             {
@@ -103,6 +107,7 @@ namespace DarkieCustomTraits.Content
 
         public static bool iceSwordAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
         {
+            if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
             if (!pSelf.a.hasTrait("freeze_proof"))
             {
                 pSelf.a.addTrait("freeze_proof");
@@ -136,7 +141,7 @@ namespace DarkieCustomTraits.Content
 
         public static bool glassSwordAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
         {
-            if (pTarget == null || pTarget.a == null) return false;
+            if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
             if (Randy.randomChance(0.1f))
             {
                 if (pTarget.a.isAlive() && !pTarget.a.hasStatus("bleeding_effect"))

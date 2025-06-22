@@ -19,6 +19,7 @@ internal static class DarkieTraitActions
     #region Attack Action
     public static bool causeShockwave(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         //Stun target
         if (!pTarget.isBuilding() && !pTarget.isRekt())
         {
@@ -32,6 +33,7 @@ internal static class DarkieTraitActions
 
     public static bool titanShifterAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         //Add effect to transform into titan. After effect end, the titan trait will be removed automatically
         if (!pSelf.a.hasStatus("titan_shifter_effect"))
             pSelf.a.addStatusEffect("titan_shifter_effect");
@@ -45,6 +47,7 @@ internal static class DarkieTraitActions
 
     public static bool antManAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         //Add effect to transform into ant man. After effect end, actor will be back to normal size
         if (!pSelf.a.hasStatus("ant_man_effect"))
             pSelf.a.addStatusEffect("ant_man_effect");
@@ -53,6 +56,7 @@ internal static class DarkieTraitActions
 
     public static bool explosionAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         //Shockwave
         World.world.applyForceOnTile(pTile, 3, 0.5f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
         EffectsLibrary.spawnExplosionWave(pTile.posV3, 3f, 0.5f);
@@ -76,6 +80,7 @@ internal static class DarkieTraitActions
 
     public static bool thorGodThunderAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         if (Randy.randomChance(0.3f) && pTarget != null && pTarget.current_tile != null) //Percent
         {
             //Only spawn lightning effect without the actual damage
@@ -94,6 +99,7 @@ internal static class DarkieTraitActions
 
     public static bool nightCrawlerAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         if (Randy.randomChance(0.3f)) //Percent
         {
             EffectsLibrary.spawnAtTile("fx_teleport_blue", pTarget.current_tile, 0.1f);
@@ -106,6 +112,7 @@ internal static class DarkieTraitActions
 
     public static bool shieldGuyAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         //he wil use shield when in combat
         if (!pSelf.a.hasStatus("shield"))
         {
@@ -134,6 +141,7 @@ internal static class DarkieTraitActions
 
     public static bool spawnWolfBeastsAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         int count = 0;
         if (pSelf.a.data.custom_data_int == null || !pSelf.a.data.custom_data_int.TryGetValue("wolfCount", out count))
         {
@@ -164,6 +172,7 @@ internal static class DarkieTraitActions
 
     public static bool spawnBearAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         int count = 0;
         if (pSelf.a.data.custom_data_int == null || !pSelf.a.data.custom_data_int.TryGetValue("bearCount", out count))
         {
@@ -193,6 +202,7 @@ internal static class DarkieTraitActions
 
     public static bool spawnDragonAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         int count = 0;
         if (pSelf.a.data.custom_data_int == null || !pSelf.a.data.custom_data_int.TryGetValue("dragonCount", out count))
         {
@@ -231,6 +241,7 @@ internal static class DarkieTraitActions
 
     public static bool spawnBanditAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         int count = 0;
         if (pSelf.a.data.custom_data_int == null || !pSelf.a.data.custom_data_int.TryGetValue("banditCount", out count))
         {
@@ -261,6 +272,7 @@ internal static class DarkieTraitActions
 
     public static bool mageAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         //This one will choose random special attack to fire at the target
         if (Randy.randomChance(0.2f))
         {
@@ -298,6 +310,7 @@ internal static class DarkieTraitActions
 
     public static bool wololoConvertUnitAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         //This one will convert target to self side if target enemy does not has this trait
         if (Randy.randomChance(0.2f) && !pTarget.a.hasTrait("wololo"))
         {
@@ -315,6 +328,7 @@ internal static class DarkieTraitActions
 
     public static bool werewolfSpecialAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         if (!pSelf.a.hasStatus("wolf_attack_effect"))
         {
             pSelf.a.addStatusEffect("wolf_attack_effect");
@@ -325,6 +339,7 @@ internal static class DarkieTraitActions
 
     public static bool powerMimicryAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         //This one will steal enemy traits
         if (Randy.randomChance(0.2f) && !pTarget.a.hasTrait("power_mimicry"))
         {
@@ -349,6 +364,7 @@ internal static class DarkieTraitActions
 
     public static bool nullifyAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         //This one will del enemy traits
         if (Randy.randomChance(0.2f))
         {
@@ -367,6 +383,7 @@ internal static class DarkieTraitActions
 
     public static bool necromancerAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         if (pSelf.a.data.health < pSelf.a.getMaxHealth() / 2)
         {
             //healing and summon skeleton
@@ -387,6 +404,7 @@ internal static class DarkieTraitActions
     /*???????*/
     public static bool theMysteriousTraitAttackSpecialEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
     {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         if (pTarget == null || pTarget.a == null) return false;
         if (!pTarget.a.isAlive()) return false;
         if (Randy.randomChance(0.5f))
@@ -452,6 +470,7 @@ internal static class DarkieTraitActions
 
     public static bool vampireAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         if (!pSelf.a.hasWeapon())
         {
             //If no weapon, give teleport dagger
@@ -479,6 +498,7 @@ internal static class DarkieTraitActions
 
     public static bool mirrorManSpecialAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         bool flagCreateMirroActor = true;
         if (Randy.randomChance(0.3f))
         {
