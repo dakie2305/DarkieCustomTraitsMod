@@ -27,7 +27,7 @@ internal static class DarkieTraitActions
         }
         //Shockwave
         World.world.applyForceOnTile(pTile, 3, 1.0f, pForceOut: true, 0, null, pByWho:pSelf); //Ignore force for self
-        EffectsLibrary.spawnExplosionWave(pTile.posV3, 3f, 0.5f);
+        EffectsLibrary.spawnExplosionWave(pTile.posV3, 1f, 0.5f);
         return true;
     }
 
@@ -68,20 +68,19 @@ internal static class DarkieTraitActions
 
     public static bool thorGodThunderAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
-        if (Randy.randomChance(0.3f)) //Percent
+        if (Randy.randomChance(0.3f) && pTarget != null && pTarget.current_tile != null) //Percent
         {
             //Only spawn lightning effect without the actual damage
             EffectsLibrary.spawnAtTile("fx_lightning_medium", pTarget.current_tile, 0.4f);
             World.world.applyForceOnTile(pTarget.current_tile, 3, 0.5f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
-            EffectsLibrary.spawnExplosionWave(pTile.posV3, 3f, 0.5f);
             //Small chance of double striking
             if (Randy.randomChance(0.1f)) //Percent
             {
                 EffectsLibrary.spawnAtTile("fx_lightning_big", pTarget.current_tile, 0.3f);
+                EffectsLibrary.spawnExplosionWave(pTile.posV3, 3f, 0.5f);
             }
             return true;
         }
-
         return false;
     }
 
@@ -93,7 +92,6 @@ internal static class DarkieTraitActions
             ActionLibrary.teleportRandom(null, pTarget, null);
             return true;
         }
-
         return false;
     }
 
@@ -523,9 +521,15 @@ internal static class DarkieTraitActions
         pTarget.a.spawnParticle(UnityEngine.Color.red);
 
         //low health, summon Mjolnir
-        if (pTarget.a.data.health < pTarget.a.getMaxHealth() / 10)
+        if (pTarget.a.data.health < pTarget.a.getMaxHealth() / 4)
         {
-            //To do later
+            var weapon = AssetManager.items.get("mjolnir");
+            var pData = new ItemManager().generateItem(pItemAsset: weapon);
+            var pSlot = pTarget.a.equipment.getSlot(EquipmentType.Weapon);
+            pSlot.setItem(pData, pTarget.a);
+            pTarget.setStatsDirty();
+            EffectsLibrary.spawnAtTile("fx_lightning_small", pTile, 0.1f);
+            ActionLibrary.castBloodRain(pTarget, pTarget, pTile);
         }
         return true;
     }

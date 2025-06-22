@@ -90,17 +90,13 @@ namespace DarkieCustomTraits.Content
                     {
                         if (unit.a.kingdom != pSelf.a?.kingdom)
                         {
-                            BaseEffect baseEffect = EffectsLibrary.spawnAtTile("fx_lightning_medium", pTile, 0.25f);
-                            int pRad = (int)(0.15f * 25f);
-                            MapAction.checkLightningAction(pTile.pos, pRad);
-                            //MapAction.damageWorld(pTile, pRad, AssetManager.terraform.get("lightning_normal"), pActor);
-                            baseEffect.sprite_renderer.flipX = Randy.randomBool();
-                            MapAction.checkTornadoHit(pTile.pos, pRad);
+                            BaseEffect baseEffect = EffectsLibrary.spawnAtTile("fx_lightning_medium", pTile, 0.1f);
+                            //Just the effect
+                            EffectsLibrary.spawnExplosionWave(pTile.posV3, 1f, 0.5f);
                         }
                     }
                 }
             }
-
             return true;
         }
 

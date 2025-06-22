@@ -14,7 +14,7 @@ internal static class DarkieTraits
 
 
     private static int NoChance = 0;
-    private static int Rare = 5;
+    private static int Rare = 3;
     private static int LowChance = 15;
     private static int MediumChance = 30;
     private static int ExtraChance = 45;
@@ -362,7 +362,7 @@ internal static class DarkieTraits
         thorTrait.base_stats.set(CustomBaseStatsConstant.Damage, 45f);
         thorTrait.base_stats.set(CustomBaseStatsConstant.Scale, 0.04f);
         thorTrait.base_stats.set(CustomBaseStatsConstant.Range, 15f);
-        thorTrait.base_stats.set(CustomBaseStatsConstant.Lifespan, 15.0f);
+        thorTrait.base_stats.set(CustomBaseStatsConstant.Lifespan, 0f); //To be immortal
 
         thorTrait.type = TraitType.Positive;
         thorTrait.unlock(true);
