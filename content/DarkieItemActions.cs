@@ -16,6 +16,7 @@ namespace DarkieCustomTraits.Content
         [Hotfixable]
         public static bool teleportDaggerAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
         {
+            pSelf.a.asset.effect_teleport = "fx_DarkieCustomTeleport_effect"; //My very own effect
             if (Randy.randomChance(0.1f))
             {
                 //Get all units from other kingdoms in the area

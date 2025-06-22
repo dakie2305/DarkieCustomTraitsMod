@@ -25,6 +25,13 @@ namespace DarkieCustomTraits.Content
             customAntiMatterEffect.sound_launch = "event:/SFX/EXPLOSIONS/ExplosionAntimatterBomb";
             AssetManager.effects_library.add(customAntiMatterEffect);
 
+            EffectAsset customTeleportEffect = new EffectAsset();
+            customTeleportEffect.id = "fx_DarkieCustomTeleport_effect";
+            customTeleportEffect.use_basic_prefab = true;
+            customTeleportEffect.sorting_layer_id = "EffectsTop";
+            customTeleportEffect.sprite_path = "effects/fx_tele_minato";
+            AssetManager.effects_library.add(customTeleportEffect);
+
             //To-do: convert old effects here
 
             //Status antManEffect = new();

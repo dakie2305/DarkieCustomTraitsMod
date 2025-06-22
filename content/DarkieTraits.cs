@@ -1133,6 +1133,7 @@ internal static class DarkieTraits
 
         the_vampire.base_stats = new BaseStats();
         the_vampire.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 0.3f);
+        the_vampire.base_stats.set(CustomBaseStatsConstant.Health, 300f);
         the_vampire.base_stats.set(CustomBaseStatsConstant.AttackSpeed, 80f);
         the_vampire.base_stats.set(CustomBaseStatsConstant.Accuracy, 80f);
         the_vampire.base_stats.set(CustomBaseStatsConstant.Scale, 0.04f);
