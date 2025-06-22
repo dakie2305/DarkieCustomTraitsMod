@@ -136,6 +136,7 @@ namespace DarkieCustomTraits.Content
 
         public static bool glassSwordAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
         {
+            if (pTarget == null || pTarget.a == null) return false;
             if (Randy.randomChance(0.1f))
             {
                 if (pTarget.a.isAlive() && !pTarget.a.hasStatus("bleeding_effect"))

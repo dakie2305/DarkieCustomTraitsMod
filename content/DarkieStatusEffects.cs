@@ -225,6 +225,40 @@ namespace DarkieCustomTraits.Content
             AssetManager.status.add(bleedingEffect);
             addToLocale(bleedingEffect.id, "Bleeding", "Bleeding Out");
             #endregion
+
+            //Let it gooo
+            #region ice_storm_effect
+            var iceStormEffect = new StatusAsset()
+            {
+                id = "ice_storm_effect",
+                render_priority = 5,
+                duration = 10f,
+                animated = true,
+                is_animated_in_pause = false,
+                can_be_flipped = false,
+                use_parent_rotation = false,
+                removed_on_damage = false,
+                cancel_actor_job = true
+            };
+
+            iceStormEffect.locale_id = $"status_title_{iceStormEffect.id}";
+            iceStormEffect.locale_description = $"status_description_{iceStormEffect.id}";
+            iceStormEffect.tier = StatusTier.Advanced;
+
+            iceStormEffect.texture = "fx_ice_storm_attack"; // Make sure this folder exists in effects/
+            iceStormEffect.path_icon = "ui/Icons/iconIceStorm";
+
+            iceStormEffect.base_stats = new();
+            iceStormEffect.base_stats.set(CustomBaseStatsConstant.Damage, 20f);
+            iceStormEffect.base_stats.set(CustomBaseStatsConstant.Speed, 20f);
+
+            var iceStormSprite = Resources.Load<Sprite>("effects/fx_ice_storm_attack");
+            iceStormEffect.sprite_list = new Sprite[] { iceStormSprite };
+
+            AssetManager.status.add(iceStormEffect);
+            addToLocale(iceStormEffect.id, "Ice Storm", "Let it gooo. Freeze them all");
+            #endregion
+
         }
 
         private static void addToLocale(string id, string name, string description)
