@@ -14,10 +14,6 @@ namespace DarkieCustomTraits.Content
             //Just add titan trait to actor
             if (!pTarget.a.hasTrait("titan"))
                 pTarget.a.addTrait("titan");
-            //pTarget.a.actor_scale = 0.5f;
-            //pTarget.a.target_scale = 0.5f;
-            //pTarget.a.setActorScale(0.5f);
-            //pTarget.a.updateChangeScale(0.5f);
             return true;
         }
 

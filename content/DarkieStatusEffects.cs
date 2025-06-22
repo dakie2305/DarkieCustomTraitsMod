@@ -89,6 +89,40 @@ namespace DarkieCustomTraits.Content
             addToLocale(antManEffect.id, "Ant Man Effect", "He is getting smaller");
             #endregion
 
+            //Don't piss him off
+            #region wolf_attack_effect
+            var wolfAttackEffect = new StatusAsset()
+            {
+                id = "wolf_attack_effect",
+                render_priority = 5,
+                duration = 5f,
+                animated = true,
+                is_animated_in_pause = false,
+                can_be_flipped = false,
+                use_parent_rotation = false,
+                removed_on_damage = false,
+            };
+
+            wolfAttackEffect.locale_id = $"status_title_{wolfAttackEffect.id}";
+            wolfAttackEffect.locale_description = $"status_description_{wolfAttackEffect.id}";
+            wolfAttackEffect.tier = StatusTier.Advanced;
+
+            wolfAttackEffect.texture = "fx_wolf_form_attack"; // Make sure this folder exists in effects/
+            wolfAttackEffect.path_icon = "ui/Icons/iconWolfAttack";
+
+            wolfAttackEffect.base_stats = new();
+            wolfAttackEffect.base_stats.set(CustomBaseStatsConstant.Damage, 50f);
+            wolfAttackEffect.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.5f);
+            wolfAttackEffect.base_stats.set(CustomBaseStatsConstant.Knockback, 1f);
+            wolfAttackEffect.base_stats.set(CustomBaseStatsConstant.Scale, 0.01f);
+
+            var wolfSprite = Resources.Load<Sprite>("effects/fx_wolf_form_attack");
+            wolfAttackEffect.sprite_list = new Sprite[] { wolfSprite };
+
+            AssetManager.status.add(wolfAttackEffect);
+            addToLocale(wolfAttackEffect.id, "Wolf Form", "Don't piss him off");
+            #endregion
+
         }
 
         private static void addToLocale(string id, string name, string description)

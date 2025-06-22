@@ -315,9 +315,9 @@ internal static class DarkieTraitActions
 
     public static bool werewolfSpecialAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
-        if (!pSelf.a.hasStatus("wolf_attack"))
+        if (!pSelf.a.hasStatus("wolf_attack_effect"))
         {
-            pSelf.a.addStatusEffect("wolf_attack");
+            pSelf.a.addStatusEffect("wolf_attack_effect");
             return true;
         }
         return false;
