@@ -663,11 +663,8 @@ internal static class DarkieTraitActions
             var allClosestUnits = Finder.getUnitsFromChunk(pTile, 1);
             if (allClosestUnits.Any())
             {
-                int maxCount = 5;
-                int count = 0;
                 foreach (var unit in allClosestUnits)
                 {
-                    if (count >= maxCount) break;
                     if (unit.a.kingdom == pTarget.a.kingdom)
                     {
                         removeBadTrait(unit);
@@ -676,7 +673,6 @@ internal static class DarkieTraitActions
                             unit.a.restoreHealth(10);
                             unit.a.spawnParticle(Toolbox.color_heal);
                         }
-                        count++;
                     }
                 }
             }
