@@ -216,10 +216,10 @@ internal static class DarkieTraits
         List<string> oppositesTitanShifter = new() { "titan", "ant_man" };
         titanShifterTrait.addOpposites(oppositesTitanShifter);
 
-        //titanShifterTrait.action_attack_target = new AttackAction(DarkieTraitActions.titanShifterAttackEffect);
+        //For now, action_get_hit does not work so transformation effect will take place inside attack effect
+        titanShifterTrait.action_attack_target = new AttackAction(DarkieTraitActions.titanShifterAttackEffect);
         titanShifterTrait.action_special_effect = (WorldAction)Delegate.Combine(titanShifterTrait.action_special_effect, new WorldAction(DarkieTraitActions.titanShifterSpecialEffect));
         titanShifterTrait.action_get_hit = (GetHitAction)Delegate.Combine(titanShifterTrait.action_get_hit, new GetHitAction(DarkieTraitActions.titanShifterGetHit));
-        //titanShifterTrait.action_get_hit = (GetHitAction)Delegate.Combine(titanShifterTrait.action_get_hit, new GetHitAction(ActionLibrary.bubbleDefense));
         AssetManager.traits.add(titanShifterTrait);
         addToLocale(titanShifterTrait.id, "Titan Shifter", "Shinzo wo Sasageyo! Will turn into Titan when get hit");
         #endregion
@@ -708,6 +708,8 @@ internal static class DarkieTraits
 
         antManTrait.addOpposites(new List<string> { "titan_shifter", "titan" });
 
+        //Since action get hit does not work, we will use action attack to transform into ant man
+        antManTrait.action_attack_target = new AttackAction(DarkieTraitActions.antManAttackEffect);
         antManTrait.action_get_hit = (GetHitAction)Delegate.Combine(antManTrait.action_get_hit, new GetHitAction(DarkieTraitActions.antManGetHit));
 
         AssetManager.traits.add(antManTrait);

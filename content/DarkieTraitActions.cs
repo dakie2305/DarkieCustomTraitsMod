@@ -32,13 +32,22 @@ internal static class DarkieTraitActions
 
     public static bool titanShifterAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
-        //Add new trait
-        pSelf.a.addTrait("titan", true);
-        //Shockwave
+        //Add effect to transform into titan. After effect end, the titan trait will be removed automatically
+        if (!pSelf.a.hasStatus("titan_shifter_effect"))
+            pSelf.a.addStatusEffect("titan_shifter_effect");
+        //Only spawn lightning effect without the actual damage
         BaseEffect baseEffect = EffectsLibrary.spawnAtTile("fx_lightning_medium", pTile, 0.25f);
+        //Shockwave
         World.world.applyForceOnTile(pTile, 3, 0.5f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
         EffectsLibrary.spawnExplosionWave(pTile.posV3, 3f, 0.5f);
-        //Only spawn lightning effect without the actual damage
+        return true;
+    }
+
+    public static bool antManAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        //Add effect to transform into ant man. After effect end, actor will be back to normal size
+        if (!pSelf.a.hasStatus("ant_man_effect"))
+            pSelf.a.addStatusEffect("ant_man_effect");
         return true;
     }
 
@@ -1144,10 +1153,9 @@ internal static class DarkieTraitActions
     public static bool antManGetHit(BaseSimObject pSelf, BaseSimObject pAttackedBy, WorldTile pTile = null)
     {
         //shrink down size
+        //Add effect to transform into ant man. After effect end, actor will be back to normal size
         if (!pSelf.a.hasStatus("ant_man_effect"))
-        {
-            pSelf.a.addStatusEffect("ant_man_effect", 30f);
-        }
+            pSelf.a.addStatusEffect("ant_man_effect");
         return true;
     }
 
