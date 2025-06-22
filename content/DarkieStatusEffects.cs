@@ -191,7 +191,40 @@ namespace DarkieCustomTraits.Content
             addToLocale(sparklingEffect.id, "Sparkling", "Sparkling");
             #endregion
 
+            //Bleeding Out
+            #region bleeding_effect
+            var bleedingEffect = new StatusAsset()
+            {
+                id = "bleeding_effect",
+                render_priority = 5,
+                duration = 8f,
+                animated = false,
+                is_animated_in_pause = false,
+                can_be_flipped = false,
+                use_parent_rotation = false,
+                removed_on_damage = false,
+                cancel_actor_job = true
+            };
 
+            bleedingEffect.locale_id = $"status_title_{bleedingEffect.id}";
+            bleedingEffect.locale_description = $"status_description_{bleedingEffect.id}";
+            bleedingEffect.tier = StatusTier.Basic;
+
+            bleedingEffect.texture = "fx_bleeding"; // Make sure this folder exists in effects/
+            bleedingEffect.path_icon = "ui/Icons/iconBleeding";
+
+            bleedingEffect.base_stats = new();
+            bleedingEffect.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, -0.3f);
+            bleedingEffect.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, -0.1f);
+
+            bleedingEffect.action = (WorldAction)Delegate.Combine(titanShifter.action_on_receive, new WorldAction(DarkieStatusEffectAction.bleedingStatusSpecialEffect));
+
+            var bleedingSprite = Resources.Load<Sprite>("effects/fx_bleeding");
+            bleedingEffect.sprite_list = new Sprite[] { bleedingSprite };
+
+            AssetManager.status.add(bleedingEffect);
+            addToLocale(bleedingEffect.id, "Bleeding", "Bleeding Out");
+            #endregion
         }
 
         private static void addToLocale(string id, string name, string description)

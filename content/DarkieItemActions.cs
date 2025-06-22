@@ -136,25 +136,13 @@ namespace DarkieCustomTraits.Content
 
         public static bool glassSwordAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
         {
-            if (Randy.randomChance(0.05f))
+            if (Randy.randomChance(0.1f))
             {
-                pTarget.a.addStatusEffect("bleeding", 10f);
-                pTarget.a.addStatusEffect("slowness", 5f);
-                pTarget.a.spawnParticle(Toolbox.color_red);
-                pTarget.a.spawnParticle(Toolbox.color_red);
-                pTarget.a.spawnParticle(Toolbox.color_red);
-                pTarget.a.spawnParticle(Toolbox.color_red);
-                pTarget.a.spawnParticle(Toolbox.color_red);
-                pTarget.a.spawnParticle(Toolbox.color_red);
-                pTarget.a.spawnParticle(Toolbox.color_red);
-                pTarget.a.spawnParticle(Toolbox.color_red);
-                pTarget.a.spawnParticle(Toolbox.color_red);
-                pTarget.a.spawnParticle(Toolbox.color_red);
-                pTarget.a.spawnParticle(Toolbox.color_red);
-                pTarget.a.spawnParticle(Toolbox.color_red);
-                pTarget.a.spawnParticle(Toolbox.color_red);
-                pTarget.a.spawnParticle(Toolbox.color_red);
-                pTarget.a.spawnParticle(Toolbox.color_red);
+                if (pTarget.a.isAlive() && !pTarget.a.hasStatus("bleeding_effect"))
+                {
+                    pTarget.a.addStatusEffect("bleeding_effect");
+                    pTarget.a.addStatusEffect("slowness", 5f);
+                }
             }
             return true;
         }

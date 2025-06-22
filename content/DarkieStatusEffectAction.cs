@@ -25,5 +25,28 @@ namespace DarkieCustomTraits.Content
             return true;
         }
 
+        public static bool bleedingStatusSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
+        {
+            if (Randy.randomChance(0.1f) && pTarget.a.isAlive())
+            {
+                pTarget.getHit(10, true, AttackType.Weapon, null, true, false);
+            }
+            pTarget.a.spawnParticle(Toolbox.color_red);
+            pTarget.a.spawnParticle(Toolbox.color_red);
+            pTarget.a.spawnParticle(Toolbox.color_red);
+            pTarget.a.spawnParticle(Toolbox.color_red);
+            pTarget.a.spawnParticle(Toolbox.color_red);
+            pTarget.a.spawnParticle(Toolbox.color_red);
+            pTarget.a.spawnParticle(Toolbox.color_red);
+            pTarget.a.spawnParticle(Toolbox.color_red);
+            pTarget.a.spawnParticle(Toolbox.color_red);
+            pTarget.a.spawnParticle(Toolbox.color_red);
+            pTarget.a.spawnParticle(Toolbox.color_red);
+            pTarget.a.spawnParticle(Toolbox.color_red);
+            pTarget.a.spawnParticle(Toolbox.color_red);
+            pTarget.a.spawnParticle(Toolbox.color_red);
+            pTarget.a.spawnParticle(Toolbox.color_red);
+            return true;
+        }
     }
 }
