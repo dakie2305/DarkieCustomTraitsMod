@@ -18,7 +18,7 @@ namespace DarkieCustomTraits.Content
             if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
             pSelf.a.asset.effect_teleport = "fx_DarkieCustomTeleport_effect"; //My very own effect
                                                                               //Small chance to teleport to enemy destination
-            if (Randy.randomChance(0.1f) && pTarget.a.is_moving)
+            if (Randy.randomChance(0.01f) && pTarget.a.is_moving)
             {
                 teleportToSpecificLocation(pSelf, pSelf, pTarget.a.tile_target);
             }
@@ -26,14 +26,11 @@ namespace DarkieCustomTraits.Content
             {
                 //Get all units from other kingdoms in the area
                 var allClosestUnits = Finder.getUnitsFromChunk(pTile, 2);
-                int maxCount = 10;
-                int count = 0;
                 if (allClosestUnits.Any())
                 {
                     foreach (var unit in allClosestUnits)
                     {
                         if (!unit.isAlive()) continue;
-                        if (count >= maxCount) break;
                         if (unit.a.kingdom != pSelf.a.kingdom && unit.a != pSelf.a)
                         {
                             if (Randy.randomChance(0.1f))
@@ -45,7 +42,6 @@ namespace DarkieCustomTraits.Content
                                 teleportToSpecificLocation(pSelf, pSelf, unit.a.current_tile);
                             }
                         }
-                        count++;
                     }
                 }
             }
