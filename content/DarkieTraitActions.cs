@@ -326,6 +326,7 @@ internal static class DarkieTraitActions
             pSelf.a.takeItems(pTarget.a, 1, 5);
             foreach(var trait in pTarget.a.getTraits())
             {
+                if (trait.id == "the_mysterious_trait") continue;
                 pSelf.a.addTrait(trait, true);
             }
             pTarget.addStatusEffect("slowness", 3f);
@@ -378,6 +379,8 @@ internal static class DarkieTraitActions
     /*???????*/
     public static bool theMysteriousTraitAttackSpecialEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
     {
+        if (pTarget == null || pTarget.a == null) return false;
+        if (!pTarget.a.isAlive()) return false;
         if (Randy.randomChance(0.5f))
         {
             pTarget.a.addTrait("madness");
@@ -396,11 +399,11 @@ internal static class DarkieTraitActions
             var allClosestUnits = Finder.getUnitsFromChunk(pTile, 3);
             if (allClosestUnits.Any())
             {
+                EffectsLibrary.spawnAtTile("fx_YOYO_effect", pTarget.current_tile, 0.35f);
                 foreach (var unit in allClosestUnits)
                 {
                     if (unit.a != pSelf.a)
                     {
-                        EffectsLibrary.spawnAtTile("fx_YOYO_effect", pSelf.current_tile, 0.35f);
                         unit.die();
                     }
                 }
@@ -922,7 +925,7 @@ internal static class DarkieTraitActions
     public static bool theMysteriousTraitSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
         ///*??H???*/
-        if (pTarget.a.data.health/*???E??*/ < pTarget.a.getMaxHealth() / 8)
+        if (pTarget.a.data.health/*???E??*/ < pTarget.a.getMaxHealth() / 3)
         {
             /*???????*/
             pTarget.a.restoreHealth(pTarget.a.getMaxHealth());

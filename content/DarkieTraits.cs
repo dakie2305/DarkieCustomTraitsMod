@@ -1049,7 +1049,8 @@ internal static class DarkieTraits
         };
 
         question.base_stats = new BaseStats();
-        question.base_stats.set(CustomBaseStatsConstant.Health, 3000f);
+        question.base_stats.set(CustomBaseStatsConstant.Health, 4000f);
+        question.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 0.5f);
         question.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.8f);
         question.base_stats.set(CustomBaseStatsConstant.MultiplierLifespan, 8.0f);
         question.base_stats.set(CustomBaseStatsConstant.Accuracy, 80f);
@@ -1078,9 +1079,9 @@ internal static class DarkieTraits
         };
 
         reviver.base_stats = new BaseStats();
-        question.base_stats.set(CustomBaseStatsConstant.Range, 5f);
-        question.base_stats.set(CustomBaseStatsConstant.Health, 50f);
-        question.base_stats.set(CustomBaseStatsConstant.Offspring, -50f);
+        reviver.base_stats.set(CustomBaseStatsConstant.Range, 5f);
+        reviver.base_stats.set(CustomBaseStatsConstant.Health, 50f);
+        reviver.base_stats.set(CustomBaseStatsConstant.Offspring, -50f);
         reviver.type = TraitType.Positive;
         reviver.unlock(true);
 

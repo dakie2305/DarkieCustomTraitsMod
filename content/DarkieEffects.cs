@@ -15,6 +15,16 @@ namespace DarkieCustomTraits.Content
 
         private static void loadCustomEffects()
         {
+            EffectAsset customAntiMatterEffect = new EffectAsset();
+            customAntiMatterEffect.id = "fx_YOYO_effect";
+            customAntiMatterEffect.use_basic_prefab = true;
+            customAntiMatterEffect.sorting_layer_id = "EffectsTop";
+            customAntiMatterEffect.prefab_id = "effects/prefabs/PrefabAntimatterEffect";
+            customAntiMatterEffect.sprite_path = "effects/antimatterEffect";
+            customAntiMatterEffect.draw_light_area = false;
+            customAntiMatterEffect.sound_launch = "event:/SFX/EXPLOSIONS/ExplosionAntimatterBomb";
+            AssetManager.effects_library.add(customAntiMatterEffect);
+
             //To-do: convert old effects here
 
             //Status antManEffect = new();
