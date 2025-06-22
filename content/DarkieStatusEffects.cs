@@ -135,7 +135,8 @@ namespace DarkieCustomTraits.Content
                 can_be_flipped = false,
                 use_parent_rotation = false,
                 removed_on_damage = false,
-                cancel_actor_job = true
+                cancel_actor_job = true,
+                animation_speed = 0.1f
             };
 
             phoenixRiseEffect.locale_id = $"status_title_{phoenixRiseEffect.id}";
@@ -144,15 +145,19 @@ namespace DarkieCustomTraits.Content
 
             phoenixRiseEffect.texture = "fx_phoenix"; // Make sure this folder exists in effects/
             phoenixRiseEffect.path_icon = "ui/Icons/iconPhoenix";
+            phoenixRiseEffect.draw_light_area = true;
+            phoenixRiseEffect.draw_light_size = 0.1f;
 
             phoenixRiseEffect.base_stats = new();
             phoenixRiseEffect.base_stats.set(CustomBaseStatsConstant.Damage, 50f);
             phoenixRiseEffect.base_stats.set(CustomBaseStatsConstant.Speed, 100f);
 
-            var phoenixSprite = Resources.Load<Sprite>("effects/fx_phoenix");
-            phoenixRiseEffect.sprite_list = new Sprite[] { phoenixSprite };
+            //var phoenixSprite = Resources.Load<Sprite>("effects/fx_status_shield_t");
+            var phoenixSprite = SpriteTextureLoader.getSpriteList("effects/fx_phoenix", false);
+            phoenixRiseEffect.sprite_list = phoenixSprite;
             var t = phoenixRiseEffect.getSprite();
-            //DarkieTraitsMain.LogInfo("Test sprite name: {t.name}");
+            //DarkieTraitsMain.LogInfo($"Test sprite name: {t.name}");
+            //DarkieTraitsMain.LogInfo($"Test sprite count: {phoenixSprite.Length}");
             AssetManager.status.add(phoenixRiseEffect);
             addToLocale(phoenixRiseEffect.id, "Phoenix Rise", "I have risen from the ashes");
             #endregion
