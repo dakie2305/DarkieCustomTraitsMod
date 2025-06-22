@@ -471,7 +471,7 @@ internal static class DarkieTraitActions
     public static bool vampireAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
         if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
-        if (!pSelf.a.hasWeapon())
+        if (!pSelf.a.hasWeapon() && !pSelf.a.asset.id.Equals("vampire_bat"))
         {
             //If no weapon, give teleport dagger
             var dagger = AssetManager.items.get("teleport_dagger");
@@ -660,11 +660,14 @@ internal static class DarkieTraitActions
         if (Randy.randomChance(0.2f))
         {
             //Get all units  in the area
-            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 3);
+            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 1);
             if (allClosestUnits.Any())
             {
+                int maxCount = 5;
+                int count = 0;
                 foreach (var unit in allClosestUnits)
                 {
+                    if (count >= maxCount) break;
                     if (unit.a.kingdom == pTarget.a.kingdom)
                     {
                         removeBadTrait(unit);
@@ -673,6 +676,7 @@ internal static class DarkieTraitActions
                             unit.a.restoreHealth(10);
                             unit.a.spawnParticle(Toolbox.color_heal);
                         }
+                        count++;
                     }
                 }
             }
@@ -1137,7 +1141,7 @@ internal static class DarkieTraitActions
     public static bool mirrorManSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
         //Add glass sword if no weapon
-        if (!pTarget.a.hasWeapon())
+        if (!pTarget.a.hasWeapon() && !pTarget.a.asset.id.Equals("vampire_bat"))
         {
             var weapon = AssetManager.items.get("glass_sword");
             var pData = new ItemManager().generateItem(pItemAsset: weapon);

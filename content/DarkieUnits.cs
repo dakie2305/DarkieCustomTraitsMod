@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using UnityEngine;
 
 namespace DarkieCustomTraits.Content
@@ -26,8 +27,8 @@ namespace DarkieCustomTraits.Content
                 "insect_set"
                 });
             vampireBat.id = "vampire_bat";
-            vampireBat.architecture_id = "civ_druid";
-            vampireBat.banner_id = "civ_druid";
+            vampireBat.architecture_id = "civ_cold_one"; //So everyone will still attack it
+            vampireBat.banner_id = "civ_cold_one";
             vampireBat.use_phenotypes = false;
             vampireBat.can_flip = false; //no flipping texture
             vampireBat.unit_other = true;
@@ -71,7 +72,7 @@ namespace DarkieCustomTraits.Content
             //vampireBat.action_death = (WorldAction)Delegate.Combine(vampireBat.action_death, new WorldAction(ActionLibrary.tryToCreatePlants));
             AssetManager.actor_library.loadShadow(vampireBat);
             AssetManager.actor_library.loadTexturesAndSprites(vampireBat);
-            addToLocale(vampireBat.name_locale, vampireBat.name_locale);
+            LM.AddToCurrentLocale($"bat", "One of the rare lurker of the night. It looks sinister...");
         }
 
         private static void addToLocale(string id, string name)
