@@ -13,7 +13,6 @@ namespace DarkieCustomTraits;
 public class DarkieTraitsMain : BasicMod<DarkieTraitsMain>, IReloadable
 {
     internal static bool _reload_switch;
-    //internal static Transform? prefab_library;
 
     /// <summary>
     ///     <para>
@@ -38,5 +37,6 @@ public class DarkieTraitsMain : BasicMod<DarkieTraitsMain>, IReloadable
         DarkieItems.Init();
         DarkieEffects.Init();
         DarkieUnits.Init();
+        DarkieStatusEffects.Init();
     }
 }

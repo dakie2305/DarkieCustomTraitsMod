@@ -17,7 +17,6 @@ internal static class DarkieTraitActions
     private static Dictionary<ActorData, Actor> listOfTamedBeastsData = new Dictionary<ActorData, Actor>();
 
     #region Attack Action
-    [Hotfixable]
     public static bool causeShockwave(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
         //Stun target
@@ -508,6 +507,9 @@ internal static class DarkieTraitActions
             DarkieTraitsMain.LogInfo($"{pTarget.a.name} has removed trait titan");
             return true;
         }
+
+        pTarget.a.addStatusEffect("titan_shifter_effect");
+
         return false;
     }
 
@@ -1108,10 +1110,11 @@ internal static class DarkieTraitActions
         //Add glass sword if no weapon
         if (!pTarget.a.hasWeapon())
         {
-            //ItemData pData = ItemGenerator.generateItem(AssetManager.items.get("GlassSword"), "adamantine", 0, null, "", 1, null) as ItemData;
-            //var pSlot = pTarget.a.equipment.getSlot(EquipmentType.Weapon);
-            //pSlot.setItem(pData);
-            //pTarget.setStatsDirty();
+            var weapon = AssetManager.items.get("glass_sword");
+            var pData = new ItemManager().generateItem(pItemAsset: weapon);
+            var pSlot = pTarget.a.equipment.getSlot(EquipmentType.Weapon);
+            pSlot.setItem(pData, pTarget.a);
+            pTarget.setStatsDirty();
         }
         return true;
     }

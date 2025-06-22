@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using NCMS.Utils;
+using NeoModLoader.api.attributes;
 using NeoModLoader.General;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace DarkieCustomTraits.Content
     {
         private const string PathIcon = "ui/Icons/items";
         private const string PathSlash= "ui/effects/slashes";
+
+        [Hotfixable]
         public static void Init()
         {
             loadCustomItems();

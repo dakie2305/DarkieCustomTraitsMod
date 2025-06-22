@@ -13,7 +13,6 @@ namespace DarkieCustomTraits.Content
     public class DarkieItemActions
     {
         #region Attack Action
-        [Hotfixable]
         public static bool teleportDaggerAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
         {
             pSelf.a.asset.effect_teleport = "fx_DarkieCustomTeleport_effect"; //My very own effect
