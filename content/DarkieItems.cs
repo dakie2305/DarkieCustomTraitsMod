@@ -128,7 +128,7 @@ namespace DarkieCustomTraits.Content
             iceSword.equipment_type = EquipmentType.Weapon;
             iceSword.name_class = "item_class_weapon";
 
-            iceSword.path_slash_animation = "effects/slashes/slash_sword";
+            iceSword.path_slash_animation = "effects/slashes/iceSwordEffect";
             iceSword.path_icon = $"{PathIcon}/icon_ice_sword";
             iceSword.path_gameplay_sprite = $"weapons/{iceSword.id}"; //Make sure image share same name as id
             iceSword.gameplay_sprites = getWeaponSprites(iceSword.id); //Make sure this path is also valid
@@ -160,7 +160,7 @@ namespace DarkieCustomTraits.Content
             glassSword.equipment_type = EquipmentType.Weapon;
             glassSword.name_class = "item_class_weapon";
 
-            glassSword.path_slash_animation = "effects/slashes/slash_sword";
+            glassSword.path_slash_animation = "effects/slashes/glassSwordEffect";
             glassSword.path_icon = $"{PathIcon}/icon_glass_sword";
             glassSword.path_gameplay_sprite = $"weapons/{glassSword.id}"; //Make sure image share same name as id
             glassSword.gameplay_sprites = getWeaponSprites(glassSword.id); //Make sure this path is also valid
