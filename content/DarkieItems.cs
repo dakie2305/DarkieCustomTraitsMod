@@ -13,6 +13,7 @@ namespace DarkieCustomTraits.Content
     public class DarkieItems
     {
         private const string PathIcon = "ui/Icons/items";
+        private const string PathSlash= "ui/effects/slashes";
         public static void Init()
         {
             loadCustomItems();
@@ -74,6 +75,7 @@ namespace DarkieCustomTraits.Content
             mjolnir.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 1.0f);
             mjolnir.base_stats.set(CustomBaseStatsConstant.MultiplierMana, 0.5f);
             mjolnir.base_stats.set(CustomBaseStatsConstant.Knockback, 10f);
+            mjolnir.base_stats.set(CustomBaseStatsConstant.Range, 10f);
 
             mjolnir.equipment_value = 20000;
             mjolnir.special_effect_interval = 0.3f;
@@ -100,6 +102,40 @@ namespace DarkieCustomTraits.Content
             AssetManager.items.list.AddItem(mjolnir);
             addToLocale(mjolnir.id, mjolnir.translation_key, "The strongest weapon for only the worthy, with the power to summon lightning to strike foes!");
             #endregion
+
+            //Ice sword, freeze enemies.
+            #region ice sword
+            ItemAsset iceSword = AssetManager.items.clone("ice_sword", "$weapon");
+            iceSword.id = "ice_sword";
+            iceSword.material = "adamantine";
+            iceSword.translation_key = "Ice Sword";
+            iceSword.equipment_subtype = "ice_sword";
+            iceSword.group_id = "sword";
+            iceSword.animated = false;
+            iceSword.unlock(true);
+
+            iceSword.base_stats = new();
+            iceSword.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.25f);
+            iceSword.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, 0.27f);
+            iceSword.base_stats.set(CustomBaseStatsConstant.MultiplierMana, 0.4f);
+
+            iceSword.equipment_value = 5000;
+            iceSword.special_effect_interval = 0.1f;
+            iceSword.quality = Rarity.R3_Legendary;
+            iceSword.equipment_type = EquipmentType.Weapon;
+            iceSword.name_class = "item_class_weapon";
+
+            iceSword.path_slash_animation = "effects/slashes/slash_sword";
+            iceSword.path_icon = $"{PathIcon}/icon_ice_sword";
+            iceSword.path_gameplay_sprite = $"weapons/{iceSword.id}"; //Make sure image share same name as id
+            iceSword.gameplay_sprites = getWeaponSprites(iceSword.id); //Make sure this path is also valid
+
+            iceSword.action_attack_target = new AttackAction(DarkieItemActions.iceSwordAttack);
+
+            AssetManager.items.list.AddItem(iceSword);
+            addToLocale(iceSword.id, iceSword.translation_key, "A blade forged from eternal frost. Freezes all it touches.");
+            #endregion
+
 
 
         }

@@ -100,6 +100,40 @@ namespace DarkieCustomTraits.Content
             return true;
         }
 
+
+        public static bool iceSwordAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
+        {
+            if (!pSelf.a.hasTrait("freeze_proof"))
+            {
+                pSelf.a.addTrait("freeze_proof");
+            }
+            if (Randy.randomChance(0.05f))
+            {
+                if (!pSelf.a.hasStatus("ice_storm_effect"))
+                {
+                    pSelf.a.addStatusEffect("ice_storm_effect");
+                    pSelf.a.makeWait(3f);
+                    EffectsLibrary.spawnExplosionWave(pTile.posV3, 1f, 2f);
+                    var allClosestUnits = Finder.getUnitsFromChunk(pTile, 7);
+                    if (allClosestUnits.Any())
+                    {
+                        foreach (var unit in allClosestUnits)
+                        {
+                            if (unit.a.kingdom != pSelf.a?.kingdom && unit.a != pSelf.a)
+                            {
+                                unit.addStatusEffect("frozen", 6f);
+                            }
+                        }
+                    }
+                }
+            }
+            if (!pTarget.a.hasTrait("freeze_proof") && Randy.randomChance(0.1f))
+            {
+                pTarget.a.addStatusEffect("frozen", 5f);
+            }
+            return true;
+        }
+
         #endregion
     }
 }
