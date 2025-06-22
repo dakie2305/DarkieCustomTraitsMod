@@ -446,11 +446,11 @@ internal static class DarkieTraitActions
         if (!pSelf.a.hasWeapon())
         {
             //If no weapon, give teleport dagger
-
-            //ItemData pData = ItemGenerator.generateItem(AssetManager.items.get("TeleportDagger"), "adamantine", 0, null, "", 1, null) as ItemData;
-            //var pSlot = pSelf.a.equipment.getSlot(EquipmentType.Weapon);
-            //pSlot.setItem(pData);
-            //pSelf.setStatsDirty();
+            var dagger = AssetManager.items.get("teleport_dagger");
+            var pData = new ItemManager().generateItem(pItemAsset: dagger, pKingdom: pSelf.kingdom, pActor:pSelf.a);
+            var pSlot = pSelf.a.equipment.getSlot(EquipmentType.Weapon);
+            pSlot.setItem(pData, pSelf.a);
+            pSelf.setStatsDirty();
         }
         if (Randy.randomChance(0.1f))
         {
@@ -1024,6 +1024,12 @@ internal static class DarkieTraitActions
 
     public static bool vampireSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
+        pTarget.a.spawnParticle(UnityEngine.Color.red);
+        pTarget.a.spawnParticle(UnityEngine.Color.black);
+        pTarget.a.spawnParticle(UnityEngine.Color.black);
+        pTarget.a.spawnParticle(UnityEngine.Color.red);
+        pTarget.a.spawnParticle(UnityEngine.Color.black);
+        pTarget.a.spawnParticle(UnityEngine.Color.red);
         //for human form only
         if (!pTarget.a.asset.id.Equals("vampire_bat"))
         {

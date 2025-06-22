@@ -16,32 +16,30 @@ namespace DarkieCustomTraits.Content
         [Hotfixable]
         public static bool teleportDaggerAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
         {
-            if (pTarget.a != null)
+            if (Randy.randomChance(0.1f))
             {
-                if (Randy.randomChance(0.1f))
+                //Get all units from other kingdoms in the area
+                var allClosestUnits = Finder.getUnitsFromChunk(pTile, 7);
+                if (allClosestUnits.Any())
                 {
-                    //Get all units from other kingdoms in the area
-                    var allClosestUnits = Finder.getUnitsFromChunk(pTile, 7);
-                    if (allClosestUnits.Any())
+                    foreach (var unit in allClosestUnits)
                     {
-                        foreach (var unit in allClosestUnits)
+                        if (unit.a.kingdom != pSelf.a.kingdom && unit.a != pSelf.a)
                         {
-                            if(unit.a.kingdom != pSelf.a.kingdom)
+                            unit.a.addStatusEffect("stunned", 3f);
+                            pSelf.a.makeWait(1f);
+                            if (unit.a.hasStatus("stunned") && Randy.randomChance(0.6f))
                             {
-                                unit.a.addStatusEffect("stunned", 3f);
-                                pSelf.a.makeWait(1f);
-                                if (unit.a.hasStatus("stunned") && Randy.randomChance(0.6f))
-                                {
-                                    teleportToSpecificLocation(pSelf, pSelf, unit.a.current_tile);
-                                }
+                                teleportToSpecificLocation(pSelf, pSelf, unit.a.current_tile);
                             }
                         }
                     }
                 }
-                if (Randy.randomChance(0.6f))
-                {
-                    teleportToSpecificLocation(pSelf, pSelf, pTarget.current_tile);
-                }
+            }
+            //Small chance to teleport to enemy destination
+            if (Randy.randomChance(0.1f) && pTarget.a.is_moving)
+            {
+                teleportToSpecificLocation(pSelf, pSelf, pTarget.a.tile_target);
             }
             return true;
         }
@@ -49,14 +47,13 @@ namespace DarkieCustomTraits.Content
 
         public static bool teleportToSpecificLocation(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
         {
-
-            string text = "fx_CustomTeleport_effect";
+            string? text = pSelf.a.asset.effect_teleport;
             if (string.IsNullOrEmpty(text))
             {
                 text = "fx_teleport_blue";
             }
-            EffectsLibrary.spawnAt(text, pTarget.current_tile.pos, 1.0f);
-            BaseEffect baseEffect = EffectsLibrary.spawnAt(text, pTile.posV3, 1.0f);
+            EffectsLibrary.spawnAt(text, pTarget.current_tile.pos, 0.1f);
+            BaseEffect baseEffect = EffectsLibrary.spawnAt(text, pTile.posV3, 0.1f);
             pTarget.a.cancelAllBeh();
             pTarget.a.spawnOn(pTile, 0f);
             return true;

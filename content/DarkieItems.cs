@@ -13,7 +13,6 @@ namespace DarkieCustomTraits.Content
     public class DarkieItems
     {
         private const string PathIcon = "ui/Icons/items";
-        private const string PathWeapon = "ui/weapons";
         public static void Init()
         {
             loadCustomItems();
@@ -86,7 +85,7 @@ namespace DarkieCustomTraits.Content
 
             teleportDagger.path_icon = $"{PathIcon}/icon_teleport_dagger"; //I do not have separate sprite for icon, I use also just use that
             teleportDagger.path_gameplay_sprite = $"weapons/{teleportDagger.id}"; //Make sure image share same name as id
-            teleportDagger.gameplay_sprites = getWeaponSprites(teleportDagger.id);
+            teleportDagger.gameplay_sprites = getWeaponSprites(teleportDagger.id); //Make sure this path is also valid
 
             teleportDagger.action_attack_target = new AttackAction(DarkieItemActions.teleportDaggerAttackEffect);        //special attack action
             AssetManager.items.list.AddItem(teleportDagger);
