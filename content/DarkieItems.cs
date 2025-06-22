@@ -136,8 +136,59 @@ namespace DarkieCustomTraits.Content
             addToLocale(iceSword.id, iceSword.translation_key, "A blade forged from eternal frost. Freezes all it touches.");
             #endregion
 
+            //Shatteringly fast blade that causes bleeding.
+            #region glass sword
+            ItemAsset glassSword = AssetManager.items.clone("glass_sword", "$weapon");
+            glassSword.id = "glass_sword";
+            glassSword.material = "adamantine";
+            glassSword.translation_key = "Glass Sword";
+            glassSword.equipment_subtype = "glass_sword";
+            glassSword.group_id = "sword";
+            glassSword.animated = false;
+            glassSword.unlock(true);
+
+            glassSword.base_stats = new();
+            glassSword.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.25f);
+            glassSword.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, 0.27f);
+
+            glassSword.equipment_value = 5000;
+            glassSword.special_effect_interval = 0.1f;
+            glassSword.quality = Rarity.R3_Legendary;
+            glassSword.equipment_type = EquipmentType.Weapon;
+            glassSword.name_class = "item_class_weapon";
+
+            glassSword.path_slash_animation = "effects/slashes/slash_sword";
+            glassSword.path_icon = $"{PathIcon}/icon_glass_sword";
+            glassSword.path_gameplay_sprite = $"weapons/{glassSword.id}"; //Make sure image share same name as id
+            glassSword.gameplay_sprites = getWeaponSprites(glassSword.id); //Make sure this path is also valid
+
+            glassSword.action_attack_target = new AttackAction(DarkieItemActions.glassSwordAttack);
+
+            AssetManager.items.list.AddItem(glassSword);
+            addToLocale(glassSword.id, glassSword.translation_key, "A deadly blade that can slow and inflict bleeding on every slash.");
+            #endregion
+
+            addWeaponsToWorld();
+
+        }
 
 
+        public static void addWeaponsToWorld()
+        {
+            //now walker can spawn with ice sword
+            var walker = AssetManager.actor_library.get("cold_one");
+            if (walker != null)
+            {
+                walker.use_items = true;
+                var defaultWeaponWalker = walker.default_weapons;
+                if (defaultWeaponWalker == null)
+                {
+                    defaultWeaponWalker = new[] { "ice_sword" };
+                }
+                defaultWeaponWalker.AddItem("ice_sword");
+                walker.default_weapons = defaultWeaponWalker;
+                walker.take_items = false;
+            }
         }
 
         private static void addToLocale(string id, string translation_key, string description)

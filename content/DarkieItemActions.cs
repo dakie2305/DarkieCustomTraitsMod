@@ -134,6 +134,31 @@ namespace DarkieCustomTraits.Content
             return true;
         }
 
+        public static bool glassSwordAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
+        {
+            if (Randy.randomChance(0.05f))
+            {
+                pTarget.a.addStatusEffect("bleeding", 10f);
+                pTarget.a.addStatusEffect("slowness", 5f);
+                pTarget.a.spawnParticle(Toolbox.color_red);
+                pTarget.a.spawnParticle(Toolbox.color_red);
+                pTarget.a.spawnParticle(Toolbox.color_red);
+                pTarget.a.spawnParticle(Toolbox.color_red);
+                pTarget.a.spawnParticle(Toolbox.color_red);
+                pTarget.a.spawnParticle(Toolbox.color_red);
+                pTarget.a.spawnParticle(Toolbox.color_red);
+                pTarget.a.spawnParticle(Toolbox.color_red);
+                pTarget.a.spawnParticle(Toolbox.color_red);
+                pTarget.a.spawnParticle(Toolbox.color_red);
+                pTarget.a.spawnParticle(Toolbox.color_red);
+                pTarget.a.spawnParticle(Toolbox.color_red);
+                pTarget.a.spawnParticle(Toolbox.color_red);
+                pTarget.a.spawnParticle(Toolbox.color_red);
+                pTarget.a.spawnParticle(Toolbox.color_red);
+            }
+            return true;
+        }
+
         #endregion
     }
 }
