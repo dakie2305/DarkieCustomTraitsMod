@@ -500,15 +500,8 @@ internal static class DarkieTraitActions
     #region special effects
     public static bool titanShifterSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
-        //Randomly chance to remove the titan trait
-        if (Randy.randomChance(0.2f) && pTarget.a.hasTrait("titan")) //Percent
-        {
-            pTarget.a.removeTrait("titan");
-            DarkieTraitsMain.LogInfo($"{pTarget.a.name} has removed trait titan");
-            return true;
-        }
-
-        pTarget.a.addStatusEffect("titan_shifter_effect");
+        if (!pTarget.a.hasStatus("titan_shifter_effect"))
+            pTarget.a.addStatusEffect("titan_shifter_effect");
 
         return false;
     }
@@ -1125,17 +1118,15 @@ internal static class DarkieTraitActions
     public static bool titanShifterGetHit(BaseSimObject pSelf, BaseSimObject pAttackedBy, WorldTile pTile = null)
     {
         DarkieTraitsMain.LogInfo($"Test");
-        if (pSelf == null || !pSelf.isAlive() || pSelf.a.hasTrait("titan"))
-        {
-            return false;
-        }
-        //Add new trait
-        pSelf.a.addTrait("titan", true);
         //Shockwave
-        BaseEffect baseEffect = EffectsLibrary.spawnAtTile("fx_lightning_medium", pTile, 0.25f);
-        World.world.applyForceOnTile(pTile, 3, 0.5f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
-        EffectsLibrary.spawnExplosionWave(pTile.posV3, 3f, 0.5f);
         //Only spawn lightning effect without the actual damage
+        BaseEffect baseEffect = EffectsLibrary.spawnAtTile("fx_lightning_medium", pSelf.current_tile, 0.25f);
+        World.world.applyForceOnTile(pSelf.current_tile, 3, 0.5f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
+        EffectsLibrary.spawnExplosionWave(pSelf.current_tile.posV3, 3f, 0.5f);
+        //Add effect titan shifter, it will add trait titan and remove trait titan on finish
+        if (!pSelf.a.hasStatus("titan_shifter_effect"))
+            pSelf.a.addStatusEffect("titan_shifter_effect");
+
         return true;
     }
 

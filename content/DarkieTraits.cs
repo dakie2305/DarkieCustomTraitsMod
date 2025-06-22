@@ -218,8 +218,8 @@ internal static class DarkieTraits
 
         //titanShifterTrait.action_attack_target = new AttackAction(DarkieTraitActions.titanShifterAttackEffect);
         titanShifterTrait.action_special_effect = (WorldAction)Delegate.Combine(titanShifterTrait.action_special_effect, new WorldAction(DarkieTraitActions.titanShifterSpecialEffect));
-        //titanShifterTrait.action_get_hit = (GetHitAction)Delegate.Combine(titanShifterTrait.action_get_hit, new GetHitAction(DarkieTraitActions.titanShifterGetHit));
-        titanShifterTrait.action_get_hit = (GetHitAction)Delegate.Combine(titanShifterTrait.action_get_hit, new GetHitAction(ActionLibrary.bubbleDefense));
+        titanShifterTrait.action_get_hit = (GetHitAction)Delegate.Combine(titanShifterTrait.action_get_hit, new GetHitAction(DarkieTraitActions.titanShifterGetHit));
+        //titanShifterTrait.action_get_hit = (GetHitAction)Delegate.Combine(titanShifterTrait.action_get_hit, new GetHitAction(ActionLibrary.bubbleDefense));
         AssetManager.traits.add(titanShifterTrait);
         addToLocale(titanShifterTrait.id, "Titan Shifter", "Shinzo wo Sasageyo! Will turn into Titan when get hit");
         #endregion
