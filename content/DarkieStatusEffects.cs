@@ -46,7 +46,7 @@ namespace DarkieCustomTraits.Content
             titanShifter.base_stats.set(CustomBaseStatsConstant.Health, 500f);
             titanShifter.base_stats.set(CustomBaseStatsConstant.Damage, 50f);
 
-            titanShifter.sprite_list  = new Sprite[] { sprite };
+            titanShifter.sprite_list = new Sprite[] { sprite };
             titanShifter.action_on_receive = (WorldAction)Delegate.Combine(titanShifter.action_on_receive, new WorldAction(DarkieStatusEffectAction.titanShifterStatusSpecialEffect));
             titanShifter.action_finish = (WorldAction)Delegate.Combine(titanShifter.action_finish, new WorldAction(DarkieStatusEffectAction.titanShifterStatusOnFinish));
             AssetManager.status.add(titanShifter);
@@ -151,10 +151,46 @@ namespace DarkieCustomTraits.Content
 
             var phoenixSprite = Resources.Load<Sprite>("effects/fx_phoenix");
             phoenixRiseEffect.sprite_list = new Sprite[] { phoenixSprite };
-
+            var t = phoenixRiseEffect.getSprite();
+            //DarkieTraitsMain.LogInfo("Test sprite name: {t.name}");
             AssetManager.status.add(phoenixRiseEffect);
             addToLocale(phoenixRiseEffect.id, "Phoenix Rise", "I have risen from the ashes");
             #endregion
+
+            //Sparkling
+            #region sparkling_effect
+            var sparklingEffect = new StatusAsset()
+            {
+                id = "sparkling_effect",
+                render_priority = 5,
+                duration = 15f,
+                animated = true,
+                is_animated_in_pause = false,
+                can_be_flipped = false,
+                use_parent_rotation = false,
+                removed_on_damage = false,
+                random_frame = true
+            };
+
+            sparklingEffect.locale_id = $"status_title_{sparklingEffect.id}";
+            sparklingEffect.locale_description = $"status_description_{sparklingEffect.id}";
+            sparklingEffect.tier = StatusTier.Advanced;
+
+            sparklingEffect.texture = "fx_electric_sparkling"; // Make sure this folder exists in effects/
+            sparklingEffect.path_icon = "ui/Icons/iconSparkling";
+
+            sparklingEffect.base_stats = new();
+            sparklingEffect.base_stats.set(CustomBaseStatsConstant.Damage, 20f);
+            sparklingEffect.base_stats.set(CustomBaseStatsConstant.Speed, 10f);
+            sparklingEffect.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.2f);
+
+            var sparklingSprite = Resources.Load<Sprite>("effects/fx_electric_sparkling");
+            sparklingEffect.sprite_list = new Sprite[] { sparklingSprite };
+
+            AssetManager.status.add(sparklingEffect);
+            addToLocale(sparklingEffect.id, "Sparkling", "Sparkling");
+            #endregion
+
 
         }
 

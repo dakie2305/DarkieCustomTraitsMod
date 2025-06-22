@@ -961,7 +961,7 @@ internal static class DarkieTraits
         pheonix.type = TraitType.Positive;
         pheonix.unlock(true);
 
-        pheonix.action_special_effect = (WorldAction)Delegate.Combine(duplikateTrait.action_special_effect, new WorldAction(DarkieTraitActions.pheonixPowerSpecialEffect));
+        pheonix.action_special_effect = (WorldAction)Delegate.Combine(pheonix.action_special_effect, new WorldAction(DarkieTraitActions.pheonixPowerSpecialEffect));
         pheonix.action_death = (WorldAction)Delegate.Combine(pheonix.action_death, new WorldAction(DarkieTraitActions.rebornANew));
 
         AssetManager.traits.add(pheonix);
