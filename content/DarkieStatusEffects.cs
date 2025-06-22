@@ -123,6 +123,39 @@ namespace DarkieCustomTraits.Content
             addToLocale(wolfAttackEffect.id, "Wolf Form", "Don't piss him off");
             #endregion
 
+            //I have risen from the ashes
+            #region phoenix_rise_effect
+            var phoenixRiseEffect = new StatusAsset()
+            {
+                id = "phoenix_rise_effect",
+                render_priority = 5,
+                duration = 5f,
+                animated = true,
+                is_animated_in_pause = false,
+                can_be_flipped = false,
+                use_parent_rotation = false,
+                removed_on_damage = false,
+                cancel_actor_job = true
+            };
+
+            phoenixRiseEffect.locale_id = $"status_title_{phoenixRiseEffect.id}";
+            phoenixRiseEffect.locale_description = $"status_description_{phoenixRiseEffect.id}";
+            phoenixRiseEffect.tier = StatusTier.Advanced;
+
+            phoenixRiseEffect.texture = "fx_phoenix"; // Make sure this folder exists in effects/
+            phoenixRiseEffect.path_icon = "ui/Icons/iconPhoenix";
+
+            phoenixRiseEffect.base_stats = new();
+            phoenixRiseEffect.base_stats.set(CustomBaseStatsConstant.Damage, 50f);
+            phoenixRiseEffect.base_stats.set(CustomBaseStatsConstant.Speed, 100f);
+
+            var phoenixSprite = Resources.Load<Sprite>("effects/fx_phoenix");
+            phoenixRiseEffect.sprite_list = new Sprite[] { phoenixSprite };
+
+            AssetManager.status.add(phoenixRiseEffect);
+            addToLocale(phoenixRiseEffect.id, "Phoenix Rise", "I have risen from the ashes");
+            #endregion
+
         }
 
         private static void addToLocale(string id, string name, string description)

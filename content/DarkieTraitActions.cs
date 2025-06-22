@@ -884,7 +884,7 @@ internal static class DarkieTraitActions
         act.data.favorite = pTarget.a.data.favorite;
         act.data.health += 1000;
         EffectsLibrary.spawnAtTile("fx_lightning_medium", pTile, 0.25f);
-        act.addStatusEffect("phoenix", 7f);
+        act.addStatusEffect("phoenix_rise_effect", 7f);
         act.a.makeWait(3);
         act.addStatusEffect("invincible", 5);
         //spawn effect for cooler looks
