@@ -196,8 +196,9 @@ namespace DarkieCustomTraits.Content
 
         private static void addToLocale(string id, string translation_key, string description)
         {
-            LM.AddToCurrentLocale(translation_key, translation_key);
-            LM.AddToCurrentLocale($"{id}_description", description);
+            //Already have Locales folder, so this is no need anymore
+            //LM.AddToCurrentLocale(translation_key, translation_key);
+            //LM.AddToCurrentLocale($"{id}_description", description);
         }
 
         public static Sprite[] getWeaponSprites(string id)

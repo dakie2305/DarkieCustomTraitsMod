@@ -268,8 +268,9 @@ namespace DarkieCustomTraits.Content
 
         private static void addToLocale(string id, string name, string description)
         {
-            LM.AddToCurrentLocale($"status_title_{id}", name);
-            LM.AddToCurrentLocale($"status_description_{id}", description);
+            //Already have Locales folder, so this is no need anymore
+            //LM.AddToCurrentLocale($"status_title_{id}", name);
+            //LM.AddToCurrentLocale($"status_description_{id}", description);
         }
 
         public static Sprite[] getStatusSprites(string id)

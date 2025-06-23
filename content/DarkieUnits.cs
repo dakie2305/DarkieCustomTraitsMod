@@ -72,7 +72,8 @@ namespace DarkieCustomTraits.Content
             //vampireBat.action_death = (WorldAction)Delegate.Combine(vampireBat.action_death, new WorldAction(ActionLibrary.tryToCreatePlants));
             AssetManager.actor_library.loadShadow(vampireBat);
             AssetManager.actor_library.loadTexturesAndSprites(vampireBat);
-            LM.AddToCurrentLocale($"bat", "One of the rare lurker of the night. It looks sinister...");
+            //Already have Locales folder, so this is no need anymore
+            //LM.AddToCurrentLocale($"bat", "One of the rare lurker of the night. It looks sinister...");
         }
 
         private static void addToLocale(string id, string name)

@@ -1209,7 +1209,8 @@ internal static class DarkieTraits
 
     private static void addToLocale(string id, string name, string description)
     {
-        LM.AddToCurrentLocale($"trait_{id}", name);
-        LM.AddToCurrentLocale($"trait_{id}_info", description);
+        //Already have Locales folder, so this is no need anymore
+        //LM.AddToCurrentLocale($"trait_{id}", name);
+        //LM.AddToCurrentLocale($"trait_{id}_info", description);
     }
 }
