@@ -115,6 +115,10 @@ namespace DarkieCustomTraits.Content
             {
                 pSelf.a.addTrait("freeze_proof");
             }
+            if (!pTarget.a.hasTrait("freeze_proof") && Randy.randomChance(0.1f))
+            {
+                pTarget.a.addStatusEffect("frozen", 5f);
+            }
             if (Randy.randomChance(0.05f))
             {
                 if (!pSelf.a.hasStatus("ice_storm_effect"))
@@ -129,15 +133,11 @@ namespace DarkieCustomTraits.Content
                         {
                             if (unit.a.kingdom != pSelf.a?.kingdom && unit.a != pSelf.a)
                             {
-                                unit.addStatusEffect("frozen", 6f);
+                                unit.addStatusEffect("frozen", 4f);
                             }
                         }
                     }
                 }
-            }
-            if (!pTarget.a.hasTrait("freeze_proof") && Randy.randomChance(0.1f))
-            {
-                pTarget.a.addStatusEffect("frozen", 5f);
             }
             return true;
         }
