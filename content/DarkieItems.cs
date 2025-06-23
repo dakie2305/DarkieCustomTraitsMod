@@ -183,13 +183,10 @@ namespace DarkieCustomTraits.Content
             if (walker != null)
             {
                 walker.use_items = true;
-                var defaultWeaponWalker = walker.default_weapons;
-                if (defaultWeaponWalker == null)
+                walker.default_weapons = AssetLibrary<ActorAsset>.a<string>(new string[]
                 {
-                    defaultWeaponWalker = new[] { "ice_sword" };
-                }
-                defaultWeaponWalker.AddItem("ice_sword");
-                walker.default_weapons = defaultWeaponWalker;
+                    "ice_hammer", "ice_sword"
+                });
                 walker.take_items = false;
             }
         }
