@@ -1,4 +1,5 @@
 using ai;
+using HarmonyLib.Tools;
 using NeoModLoader.api.attributes;
 using System;
 using System.Collections.Generic;
@@ -475,7 +476,7 @@ internal static class DarkieTraitActions
         {
             //If no weapon, give teleport dagger
             var dagger = AssetManager.items.get("teleport_dagger");
-            var pData = new ItemManager().generateItem(pItemAsset: dagger, pKingdom: pSelf.kingdom, pActor:pSelf.a);
+            var pData = World.world.items.generateItem(pItemAsset: dagger, pKingdom: pSelf.kingdom, pActor:pSelf.a);
             var pSlot = pSelf.a.equipment.getSlot(EquipmentType.Weapon);
             pSlot.setItem(pData, pSelf.a);
             pSelf.setStatsDirty();
@@ -548,10 +549,10 @@ internal static class DarkieTraitActions
         pTarget.a.spawnParticle(UnityEngine.Color.red);
 
         //low health, summon Mjolnir
-        if (pTarget.a.data.health < pTarget.a.getMaxHealth() / 4)
+        if (pTarget.a.data.health < pTarget.a.getMaxHealth() / 4 && !pTarget.a.asset.id.Equals("vampire_bat"))
         {
             var weapon = AssetManager.items.get("mjolnir");
-            var pData = new ItemManager().generateItem(pItemAsset: weapon);
+            var pData = World.world.items.generateItem(pItemAsset: weapon);
             var pSlot = pTarget.a.equipment.getSlot(EquipmentType.Weapon);
             pSlot.setItem(pData, pTarget.a);
             pTarget.setStatsDirty();
@@ -1140,7 +1141,7 @@ internal static class DarkieTraitActions
         if (!pTarget.a.hasWeapon() && !pTarget.a.asset.id.Equals("vampire_bat"))
         {
             var weapon = AssetManager.items.get("glass_sword");
-            var pData = new ItemManager().generateItem(pItemAsset: weapon);
+            var pData = World.world.items.generateItem(pItemAsset: weapon);
             var pSlot = pTarget.a.equipment.getSlot(EquipmentType.Weapon);
             pSlot.setItem(pData, pTarget.a);
             pTarget.setStatsDirty();
