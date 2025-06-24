@@ -558,14 +558,10 @@ internal static class DarkieTraitActions
             pTarget.setStatsDirty();
             EffectsLibrary.spawnAtTile("fx_lightning_small", pTile, 0.1f);
             ActionLibrary.castBloodRain(pTarget, pTarget, pTile);
-        }
+            if (!pTarget.a.hasStatus("sparkling_effect"))
+                pTarget.a.addStatusEffect("sparkling_effect");
 
-        if (Randy.randomChance(0.1f) && !pTarget.a.hasStatus("sparkling_effect"))
-        {
-            //Add effect
-            pTarget.a.addStatusEffect("sparkling_effect");
         }
-
         return true;
     }
 
