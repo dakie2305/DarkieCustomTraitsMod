@@ -104,7 +104,7 @@ internal static class DarkieTraitActions
         if (Randy.randomChance(0.3f)) //Percent
         {
             EffectsLibrary.spawnAtTile("fx_teleport_blue", pTarget.current_tile, 0.1f);
-            ActionLibrary.teleportRandom(null, pTarget, null);
+            ActionLibrary.teleportRandom(pSelf, pTarget, null);
             return true;
         }
         return false;
@@ -601,11 +601,11 @@ internal static class DarkieTraitActions
         if (Randy.randomChance(0.02f))
         {
             pTarget.a.doCastAnimation();
-            ActionLibrary.teleportRandom(null, pTarget, null);
+            ActionLibrary.teleportRandom(pTarget, pTarget, null);
         }
         if (pTarget.a.data.health <= pTarget.a.getMaxHealth() / 2)
         {
-            ActionLibrary.castBloodRain(null, pTarget, null);
+            ActionLibrary.castBloodRain(pTarget, pTarget, null);
         }
         return true;
     }
@@ -744,7 +744,7 @@ internal static class DarkieTraitActions
         }
         if (pTarget.a.data.health < pTarget.a.getMaxHealth() / 10)        //tele random
         {
-            ActionLibrary.teleportRandom(null, pTarget, null);
+            ActionLibrary.teleportRandom(pTarget, pTarget, null);
         }
         if (Randy.randomChance(0.2f))
         {
@@ -773,11 +773,11 @@ internal static class DarkieTraitActions
         }
         if (Randy.randomChance(0.1f))
         {
-            ActionLibrary.castLightning(null, pTarget, null);
+            ActionLibrary.castLightning(pTarget, pTarget, null);
         }
         if (Randy.randomChance(0.2f))
         {
-            ActionLibrary.castCurses(null, pTarget, null);
+            ActionLibrary.castCurses(pTarget, pTarget, null);
         }
         if (Randy.randomChance(0.05f))
         {
@@ -988,7 +988,7 @@ internal static class DarkieTraitActions
         }
         if (Randy.randomChance(0.05f))
         {
-            ActionLibrary.teleportRandom(null, pTarget.a, null);
+            ActionLibrary.teleportRandom(pTarget, pTarget, null);
         }/*??ME!!??*/
         return true;
     }
@@ -1010,7 +1010,7 @@ internal static class DarkieTraitActions
                     {
                         unit.kingdom = pTarget.kingdom;
                         reviveSpecialEffect(unit, pTile);
-                        ActionLibrary.castBloodRain(null, unit, null);
+                        ActionLibrary.castBloodRain(pTarget, unit, null);
                         unit.addTrait("the_revived");
                         unit.removeTrait("infected");
 
