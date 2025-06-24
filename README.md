@@ -112,6 +112,7 @@ An extensive custom trait and weapon overhaul for **Super Worldbox**, now update
 2. Extract content to the following folder:  
    `...\steamapps\common\worldbox\Mods\DarkieCustomTraits`
 3. File `Main.cs` must be at `...\steamapps\common\worldbox\Mods\DarkieCustomTraits\Main.cs` for the mod to work.
+
 **Option 2: NML One-Click Install**  
 Install directly from GameBanana:  
 [Darkie Custom Traits Mod](https://gamebanana.com/mods/434668)
