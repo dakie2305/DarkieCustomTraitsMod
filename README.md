@@ -110,7 +110,7 @@ An extensive custom trait and weapon overhaul for **Super Worldbox**, now update
 **Option 1: Manual**
 1. Download the mod.
 2. Extract to the following folder:  
-   `...\steamapps\common\worldbox\worldbox_Data\StreamingAssets\mods\DarkieCustomTraits`
+   `...\steamapps\common\worldbox\Mods\DarkieCustomTraits`
 
 **Option 2: NML One-Click Install**  
 Install directly from GameBanana:  
