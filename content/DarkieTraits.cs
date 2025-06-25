@@ -1203,7 +1203,31 @@ internal static class DarkieTraits
         addToLocale(mirror_man.id, "Mirror Man", "The Mirror Man can reflect damage and clone the enemies.");
         #endregion
 
+        //Time Stopper to stop enemy in track.
+        #region time stopper
+        ActorTrait timeStopper = new ActorTrait()
+        {
+            id = "time_stopper",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/time_stopper",
+            rate_birth = Rare,
+            rate_inherit = NoChance,
+            rarity = Rarity.R3_Legendary,
+        };
 
+        timeStopper.base_stats = new BaseStats();
+        timeStopper.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 0.1f);
+        timeStopper.base_stats.set(CustomBaseStatsConstant.MultiplierMana, 0.1f);
+        timeStopper.base_stats.set(CustomBaseStatsConstant.MultiplierStamina, 0.1f);
+
+        timeStopper.type = TraitType.Positive;
+        timeStopper.unlock(true);
+
+        timeStopper.action_attack_target = new AttackAction(DarkieTraitActions.timeStopperSpecialAttack);
+        timeStopper.action_get_hit = (GetHitAction)Delegate.Combine(timeStopper.action_get_hit, new GetHitAction(DarkieTraitActions.timeStopperGetHit));
+        AssetManager.traits.add(timeStopper);
+        addToLocale(timeStopper.id, "Time Stopper", "A dangerous entity that can freeze time the enemies, unfreeze their allies or make enemies grow older faster!");
+        #endregion
 
     }
 

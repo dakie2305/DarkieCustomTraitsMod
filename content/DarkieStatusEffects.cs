@@ -297,6 +297,82 @@ namespace DarkieCustomTraits.Content
             addToLocale(iceStormEffect.id, "Ice Storm", "Let it gooo. Freeze them all");
             #endregion
 
+            #region time stop effect
+            var timeStopEffect = new StatusAsset()
+            {
+                id = "time_stop_effect",
+                render_priority = 5,
+                duration = 5f,
+                animated = true,
+                is_animated_in_pause = true,
+                can_be_flipped = true,
+                use_parent_rotation = false,
+                removed_on_damage = false,
+                cancel_actor_job = false,
+                need_visual_render = true,
+                scale = 1.0f,
+                offset_y = 1.0f,
+            };
+
+            timeStopEffect.locale_id = $"status_title_{timeStopEffect.id}";
+            timeStopEffect.locale_description = $"status_description_{timeStopEffect.id}";
+            timeStopEffect.tier = StatusTier.Advanced;
+
+            timeStopEffect.texture = "fx_coolest_red"; // Make sure this folder exists in effects/
+            timeStopEffect.path_icon = "ui/Icons/iconTimeStop";
+
+            timeStopEffect.material_id = "mat_world_object_lit";
+            timeStopEffect.material = material;
+
+            timeStopEffect.base_stats = new();
+            timeStopEffect.base_stats.set(CustomBaseStatsConstant.Speed, -99999f);
+            timeStopEffect.base_stats.set(CustomBaseStatsConstant.AttackSpeed, -99999f);
+            timeStopEffect.base_stats.set(CustomBaseStatsConstant.SkillSpell, -99999f);
+            timeStopEffect.base_stats.set(CustomBaseStatsConstant.AttackSpeed, -99999f);
+
+            timeStopEffect.sprite_list = SpriteTextureLoader.getSpriteList($"effects/{timeStopEffect.texture}", false);
+
+            timeStopEffect.action_on_receive = (WorldAction)Delegate.Combine(timeStopEffect.action_on_receive, new WorldAction(DarkieStatusEffectAction.timeStopperStatusSpecialEffect));
+            AssetManager.status.add(timeStopEffect);
+            addToLocale(timeStopEffect.id, "Time Stop", "This person has been stopped in time!");
+
+            //Pure effect only
+            var timeStopUltimateEffect = new StatusAsset()
+            {
+                id = "time_stop_ultimate_effect",
+                render_priority = 5,
+                duration = 5f,
+                animated = true,
+                is_animated_in_pause = true,
+                can_be_flipped = true,
+                use_parent_rotation = false,
+                removed_on_damage = false,
+                cancel_actor_job = false,
+                need_visual_render = true,
+                scale = 1.0f,
+                offset_y = 1.0f, //Higher
+            };
+
+            timeStopUltimateEffect.locale_id = $"status_title_{timeStopUltimateEffect.id}";
+            timeStopUltimateEffect.locale_description = $"status_description_{timeStopUltimateEffect.id}";
+            timeStopUltimateEffect.tier = StatusTier.Advanced;
+
+            timeStopUltimateEffect.texture = "fx_white_atom"; // Make sure this folder exists in effects/
+            timeStopUltimateEffect.path_icon = "ui/Icons/iconWhiteAtom";
+
+            timeStopUltimateEffect.material_id = "mat_world_object_lit";
+            timeStopUltimateEffect.material = material;
+
+            //This one is just pure effect, no stats
+            timeStopUltimateEffect.base_stats = new();
+
+            timeStopUltimateEffect.sprite_list = SpriteTextureLoader.getSpriteList($"effects/{timeStopUltimateEffect.texture}", false);
+
+            AssetManager.status.add(timeStopUltimateEffect);
+            addToLocale(timeStopUltimateEffect.id, "Time Stop Ultimate", "This person just time-stopped all enemies around them!");
+            #endregion
+
+
         }
 
         private static void addToLocale(string id, string name, string description)

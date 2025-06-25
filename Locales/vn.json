@@ -28,6 +28,10 @@
   "status_description_bleeding_effect": "Đang chảy máu và nhận sát thương liên tục",
   "status_title_ice_storm_effect": "Hàn Băng Bão",
   "status_description_ice_storm_effect": "Let it gooo phiên bản khác",
+  "status_title_time_stop_effect": "Đóng Băng Thời Gian",
+  "status_description_time_stop_effect": "Kẻ này đã bị đóng băng trong thời gian!",
+  "status_title_time_stop_ultimate_effect": "Khóa Thời Gian Tối Thượng",
+  "status_description_time_stop_ultimate_effect": "Người này vừa dùng kỹ năng đóng băng thời gian tất cả kẻ địch xung quanh!",
 
   //DarkieTraits(group.name)
   "trait_group_darkie": "Traits của Darkie",
@@ -154,5 +158,8 @@
   "trait_the_mirroed_info_2": "",
   "trait_mirror_man": "Pha Li Nhân",
   "trait_mirror_man_info": "Kẻ này có thể phản công và nhân bản kẻ thù.",
-  "trait_mirror_man_info_2": ""
+  "trait_mirror_man_info_2": "",
+  "trait_time_stopper": "Ngưng Thời Gian",
+  "trait_time_stopper_info": "Một thực thể quyền năng có thể ngưng đọng thời gian của kẻ địch hoặc hóa giải cho đồng minh, hoặc khiến kẻ địch già đi nhanh hơn!",
+  "trait_time_stopper_info_2": ""
 }

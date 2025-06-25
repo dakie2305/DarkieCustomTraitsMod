@@ -37,9 +37,10 @@ internal static class DarkieTraitActions
         if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         //Add effect to transform into titan. After effect end, the titan trait will be removed automatically
         if (!pSelf.a.hasStatus("titan_shifter_effect"))
+        {
+            BaseEffect baseEffect = EffectsLibrary.spawnAtTile("fx_DarkieExplosionBlueOval_effect", pTarget.current_tile, 0.1f);
             pSelf.a.addStatusEffect("titan_shifter_effect");
-        //Only spawn lightning effect without the actual damage
-        BaseEffect baseEffect = EffectsLibrary.spawnAtTile("fx_lightning_medium", pTile, 0.25f);
+        }
         //Shockwave
         World.world.applyForceOnTile(pTile, 3, 0.5f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
         EffectsLibrary.spawnExplosionWave(pTile.posV3, 3f, 0.5f);
@@ -525,14 +526,54 @@ internal static class DarkieTraitActions
         }
         return true;
     }
+
+    public static bool timeStopperSpecialAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        if (Randy.randomChance(0.09f))
+        {
+            //Get all units  in the area
+            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 2);
+            if (allClosestUnits.Any())
+            {
+                //Spawn cool effect
+                pSelf.a.addStatusEffect("time_stop_ultimate_effect");
+                foreach (var unit in allClosestUnits)
+                {
+                    if (unit.kingdom != pSelf.kingdom && unit.a != pSelf.a && !unit.a.hasStatus("time_stop_effect"))
+                    {
+                        unit.a.addStatusEffect("time_stop_effect");
+                    }
+                    else if (unit.kingdom == pSelf.kingdom && unit.a != pSelf.a && unit.a.hasStatus("time_stop_effect"))
+                    {
+                        //Help allies remove status
+                        unit.a.finishStatusEffect("time_stop_effect");
+                    }
+                }
+            }
+        }
+        if (Randy.randomChance(0.1f) && !pTarget.a.hasStatus("time_stop_effect"))
+        {
+            pTarget.a.addStatusEffect("time_stop_effect");
+        }
+        if (Randy.randomChance(0.1f))
+        {
+            //Make target older
+            pTarget.a.data.age_overgrowth += 20;
+        }
+
+        return true;
+    }
     #endregion
 
     #region special effects
     public static bool titanShifterSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
         if (!pTarget.a.hasStatus("titan_shifter_effect"))
+        {
+            BaseEffect baseEffect = EffectsLibrary.spawnAtTile("fx_DarkieExplosionBlueOval_effect", pTarget.current_tile, 0.1f);
             pTarget.a.addStatusEffect("titan_shifter_effect");
-
+        }
         return false;
     }
 
@@ -1153,12 +1194,16 @@ internal static class DarkieTraitActions
         DarkieTraitsMain.LogInfo($"Test");
         //Shockwave
         //Only spawn lightning effect without the actual damage
-        BaseEffect baseEffect = EffectsLibrary.spawnAtTile("fx_lightning_medium", pSelf.current_tile, 0.25f);
+        EffectsLibrary.spawnAtTile("fx_lightning_medium", pSelf.current_tile, 0.25f);
         World.world.applyForceOnTile(pSelf.current_tile, 3, 0.5f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
         EffectsLibrary.spawnExplosionWave(pSelf.current_tile.posV3, 3f, 0.5f);
         //Add effect titan shifter, it will add trait titan and remove trait titan on finish
         if (!pSelf.a.hasStatus("titan_shifter_effect"))
+        {
+            EffectsLibrary.spawnAtTile("fx_DarkieExplosionBlueOval_effect", pSelf.current_tile, 0.1f);
             pSelf.a.addStatusEffect("titan_shifter_effect");
+
+        }
 
         return true;
     }
@@ -1192,6 +1237,14 @@ internal static class DarkieTraitActions
         return true;
     }
 
+    public static bool timeStopperGetHit(BaseSimObject pSelf, BaseSimObject pAttackedBy, WorldTile pTile = null)
+    {
+        if (Randy.randomChance(0.2f) && !pAttackedBy.a.hasStatus("time_stop_effect"))
+        {
+            pAttackedBy.a.addStatusEffect("time_stop_effect");
+        }
+        return true;
+    }
     #endregion
 
 

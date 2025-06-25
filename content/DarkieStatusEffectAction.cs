@@ -48,5 +48,14 @@ namespace DarkieCustomTraits.Content
             pTarget.a.spawnParticle(Toolbox.color_red);
             return true;
         }
+
+        public static bool timeStopperStatusSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
+        {
+            if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+            pTarget.a.cancelAllBeh();
+            pTarget.a.makeWait(5f);
+            return true;
+        }
+
     }
 }

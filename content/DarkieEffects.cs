@@ -84,6 +84,8 @@ namespace DarkieCustomTraits.Content
             customWhiteAtomEffect.sorting_layer_id = "EffectsTop";
             customWhiteAtomEffect.sprite_path = "effects/fx_white_atom";
             AssetManager.effects_library.add(customWhiteAtomEffect);
+
+
         }
     }
 }
