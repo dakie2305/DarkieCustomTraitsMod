@@ -59,21 +59,31 @@ internal static class DarkieTraitActions
     public static bool explosionAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
         if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
-        //Shockwave
-        World.world.applyForceOnTile(pTile, 3, 0.5f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
-        EffectsLibrary.spawnExplosionWave(pTile.posV3, 3f, 0.5f);
-        //Spawn explosion effect
-        if(Randy.randomChance(0.5f)) //Percent
+
+        //Spawn random explosion effect
+        if(Randy.randomChance(0.1f)) //Percent
         {
             //Chain explosion effect
-            EffectsLibrary.spawnAtTile("fx_explosion_small", pTarget.current_tile, 0.25f);
-            EffectsLibrary.spawnAtTile("fx_explosion_tiny", pTarget.current_tile, 0.25f);
-            EffectsLibrary.spawnAtTile("fx_explosion_crab_bomb", pSelf.current_tile, 0.25f);
+            EffectsLibrary.spawnAtTile("fx_DarkieExplosionTwoColor_effect", pTarget.current_tile, 0.25f);
+        }
+        else if (Randy.randomChance(0.1f))
+        {
+            //Chain explosion effect
             EffectsLibrary.spawnAtTile("fx_explosion_crab_bomb", pTarget.current_tile, 0.25f);
         }
-        else
+        else if(Randy.randomChance(0.1f))
         {
-            EffectsLibrary.spawnAtTile("fx_explosion_meteorite", pTile, 0.25f);
+            EffectsLibrary.spawnAtTile("fx_explosion_meteorite", pTarget.current_tile, 0.25f);
+        }
+        else if (Randy.randomChance(0.1f))
+        {
+            EffectsLibrary.spawnAtTile("fx_DarkieExplosionCircle_effect", pTarget.current_tile, 0.25f);
+        }
+        else if (Randy.randomChance(0.1f))
+        {
+            //Shockwave
+            World.world.applyForceOnTile(pTile, 3, 0.5f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
+            EffectsLibrary.spawnExplosionWave(pTile.posV3, 3f, 0.5f);
         }
 
         //Only spawn lightning effect without the actual damage
