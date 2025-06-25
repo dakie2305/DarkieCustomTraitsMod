@@ -304,9 +304,19 @@ internal static class DarkieTraitActions
         {
             ActionLibrary.teleportRandom(pSelf, pTarget, null);
         }
+        if (Randy.randomChance(0.04f))
+        {
+            pTarget.a.addStatusEffect("time_stop_effect");
+        }
         if (Randy.randomChance(0.05f))
         {
             ActionLibrary.castLightning(pSelf, pTarget, null);
+        }
+        if (Randy.randomChance(0.05f))
+        {
+            EffectsLibrary.spawnAtTile("fx_DarkieExplosionCircle_effect", pTarget.current_tile, 0.25f);
+            World.world.applyForceOnTile(pTile, 3, 0.5f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
+            EffectsLibrary.spawnExplosionWave(pTile.posV3, 3f, 0.5f);
         }
         if (Randy.randomChance(0.01f))
         {
