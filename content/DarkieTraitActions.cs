@@ -94,11 +94,19 @@ internal static class DarkieTraitActions
             //Only spawn lightning effect without the actual damage
             EffectsLibrary.spawnAtTile("fx_lightning_medium", pTarget.current_tile, 0.4f);
             World.world.applyForceOnTile(pTarget.current_tile, 3, 0.5f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
-            //Small chance of double striking
+            //Small chance of electrocute everyone around
             if (Randy.randomChance(0.1f)) //Percent
             {
-                EffectsLibrary.spawnAtTile("fx_lightning_big", pTarget.current_tile, 0.3f);
-                EffectsLibrary.spawnExplosionWave(pTile.posV3, 3f, 0.5f);
+                //Get all units  in the area
+                var allClosestUnits = Finder.getUnitsFromChunk(pTarget.current_tile, 1);
+                if (allClosestUnits.Any())
+                {
+                    foreach (var unit in allClosestUnits)
+                    {
+                        if (pTarget.a == unit.a) continue;
+                        unit.addStatusEffect("custom_electrocuted_effect", 4f);
+                    }
+                }
             }
             return true;
         }
@@ -604,7 +612,6 @@ internal static class DarkieTraitActions
         pTarget.a.spawnParticle(UnityEngine.Color.blue);
         pTarget.a.spawnParticle(UnityEngine.Color.blue);
         pTarget.a.spawnParticle(UnityEngine.Color.red);
-
         //low health, summon Mjolnir
         if (pTarget.a.data.health < pTarget.a.getMaxHealth() / 4 && !pTarget.a.asset.id.Equals("vampire_bat"))
         {

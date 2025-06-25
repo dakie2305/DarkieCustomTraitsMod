@@ -32,6 +32,8 @@
   "status_description_time_stop_effect": "Kẻ này đã bị đóng băng trong thời gian!",
   "status_title_time_stop_ultimate_effect": "Khóa Thời Gian Tối Thượng",
   "status_description_time_stop_ultimate_effect": "Người này vừa dùng kỹ năng đóng băng thời gian tất cả kẻ địch xung quanh!",
+  "status_title_custom_electrocuted_effect": "Bị Giật Điện",
+  "status_description_custom_electrocuted_effect": "Đm đau quá, không di chuyển được nữa!",
 
   //DarkieTraits(group.name)
   "trait_group_darkie": "Traits của Darkie",

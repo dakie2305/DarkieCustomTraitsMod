@@ -193,7 +193,7 @@ namespace DarkieCustomTraits.Content
                 random_frame = true,
                 cancel_actor_job = false,
                 need_visual_render = true,
-                scale = 1.5f,
+                scale = 1.0f,
             };
 
             sparklingEffect.locale_id = $"status_title_{sparklingEffect.id}";
@@ -372,7 +372,45 @@ namespace DarkieCustomTraits.Content
             addToLocale(timeStopUltimateEffect.id, "Time Stop Ultimate", "This person just time-stopped all enemies around them!");
             #endregion
 
+            #region electrocuted effect
+            //Same as time stop, just different texture
+            var electrocutedEffect = new StatusAsset()
+            {
+                id = "custom_electrocuted_effect",
+                render_priority = 5,
+                duration = 5f,
+                animated = true,
+                is_animated_in_pause = true,
+                can_be_flipped = true,
+                use_parent_rotation = false,
+                removed_on_damage = false,
+                cancel_actor_job = false,
+                need_visual_render = true,
+                scale = 1.0f,
+            };
 
+            electrocutedEffect.locale_id = $"status_title_{electrocutedEffect.id}";
+            electrocutedEffect.locale_description = $"status_description_{electrocutedEffect.id}";
+            electrocutedEffect.tier = StatusTier.Advanced;
+
+            electrocutedEffect.texture = "fx_electrocuted"; // Make sure this folder exists in effects/
+            electrocutedEffect.path_icon = "ui/Icons/iconElectrocuted";
+
+            electrocutedEffect.material_id = "mat_world_object_lit";
+            electrocutedEffect.material = material;
+
+            electrocutedEffect.base_stats = new();
+            electrocutedEffect.base_stats.set(CustomBaseStatsConstant.Speed, -99999f);
+            electrocutedEffect.base_stats.set(CustomBaseStatsConstant.AttackSpeed, -99999f);
+            electrocutedEffect.base_stats.set(CustomBaseStatsConstant.SkillSpell, -99999f);
+            electrocutedEffect.base_stats.set(CustomBaseStatsConstant.AttackSpeed, -99999f);
+
+            electrocutedEffect.sprite_list = SpriteTextureLoader.getSpriteList($"effects/{electrocutedEffect.texture}", false);
+            //Same as time stop
+            electrocutedEffect.action_on_receive = (WorldAction)Delegate.Combine(electrocutedEffect.action_on_receive, new WorldAction(DarkieStatusEffectAction.timeStopperStatusSpecialEffect));
+            AssetManager.status.add(electrocutedEffect);
+            addToLocale(electrocutedEffect.id, "Electrocuted", "Ow ow this hurts so much I can not move!");
+            #endregion
         }
 
         private static void addToLocale(string id, string name, string description)

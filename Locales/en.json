@@ -32,6 +32,8 @@
   "status_description_time_stop_effect": "This person has been stopped in time!",
   "status_title_time_stop_ultimate_effect": "Time Stop Ultimate",
   "status_description_time_stop_ultimate_effect": "This person just time-stopped all enemies around them!",
+  "status_title_custom_electrocuted_effect": "Electrocuted",
+  "status_description_custom_electrocuted_effect": "Ow ow this hurts so much I can not move!",
 
   //DarkieTraits(group.name)
   "trait_group_darkie": "Darkie Traits",
