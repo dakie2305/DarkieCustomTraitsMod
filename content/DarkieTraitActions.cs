@@ -27,7 +27,7 @@ internal static class DarkieTraitActions
             pTarget.addStatusEffect("stunned");
         }
         //Shockwave
-        World.world.applyForceOnTile(pTile, 3, 1.0f, pForceOut: true, 0, null, pByWho:pSelf); //Ignore force for self
+        World.world.applyForceOnTile(pTile, 3, 1.0f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
         EffectsLibrary.spawnExplosionWave(pTile.posV3, 1f, 0.5f);
         return true;
     }
@@ -61,7 +61,7 @@ internal static class DarkieTraitActions
         if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
 
         //Spawn random explosion effect
-        if(Randy.randomChance(0.1f)) //Percent
+        if (Randy.randomChance(0.1f)) //Percent
         {
             EffectsLibrary.spawnAtTile("fx_DarkieExplosionTwoColor_effect", pTarget.current_tile, 0.25f);
         }
@@ -69,7 +69,7 @@ internal static class DarkieTraitActions
         {
             EffectsLibrary.spawnAtTile("fx_explosion_crab_bomb", pTarget.current_tile, 0.25f);
         }
-        else if(Randy.randomChance(0.1f))
+        else if (Randy.randomChance(0.1f))
         {
             EffectsLibrary.spawnAtTile("fx_explosion_meteorite", pTarget.current_tile, 0.25f);
         }
@@ -93,7 +93,8 @@ internal static class DarkieTraitActions
         {
             //Only spawn lightning effect without the actual damage
             EffectsLibrary.spawnAtTile("fx_lightning_medium", pTarget.current_tile, 0.4f);
-            World.world.applyForceOnTile(pTarget.current_tile, 3, 0.5f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
+            if (Randy.randomChance(0.3f))
+                World.world.applyForceOnTile(pTarget.current_tile, 3, 0.5f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
             //Small chance of electrocute everyone around
             if (Randy.randomChance(0.1f)) //Percent
             {
@@ -377,7 +378,7 @@ internal static class DarkieTraitActions
             pSelf.a.removeTrait("scar_of_divinity");
 
             pSelf.a.takeItems(pTarget.a, 1, 5);
-            foreach(var trait in pTarget.a.getTraits())
+            foreach (var trait in pTarget.a.getTraits())
             {
                 if (trait.id == "the_mysterious_trait") continue;
                 pSelf.a.addTrait(trait, true);
@@ -1297,7 +1298,7 @@ internal static class DarkieTraitActions
     public static bool medicGetHit(BaseSimObject pSelf, BaseSimObject pAttackedBy, WorldTile pTile = null)
     {
         //Heal themselves on being hit
-        if(Randy.randomChance(0.4f) && (pSelf.a.data.health < pSelf.a.getMaxHealth()))
+        if (Randy.randomChance(0.4f) && (pSelf.a.data.health < pSelf.a.getMaxHealth()))
         {
             pSelf.a.restoreHealth(10);
             pSelf.a.spawnParticle(Toolbox.color_heal);
@@ -1339,7 +1340,7 @@ internal static class DarkieTraitActions
     public static bool teleportToSpecificLocation(BaseSimObject pTarget, WorldTile pTile, string effect_text = "fx_teleport_blue")
     {
         var size = 0.1f;
-        if(effect_text == "fx_DarkieExplosionBlueCircle_effect")
+        if (effect_text == "fx_DarkieExplosionBlueCircle_effect")
         {
             size = 0.05f; //My effect is too big
         }
