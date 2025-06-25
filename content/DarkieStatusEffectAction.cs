@@ -53,6 +53,7 @@ namespace DarkieCustomTraits.Content
         {
             if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
             pTarget.a.cancelAllBeh();
+            pTarget.a.stopMovement();
             pTarget.a.makeWait(5f);
             return true;
         }
