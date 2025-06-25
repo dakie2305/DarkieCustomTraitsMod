@@ -418,10 +418,10 @@ internal static class DarkieTraitActions
         {
             //healing and summon skeleton
             ActionLibrary.castBloodRain(pSelf, pSelf, null);
-            if (Randy.randomChance(0.2f))
-            {
-                ActionLibrary.castSpawnSkeleton(pSelf, pTarget, pTile);
-            }
+        }
+        if (Randy.randomChance(0.2f))
+        {
+            ActionLibrary.castSpawnSkeleton(pSelf, pTarget, pTile);
         }
         if (Randy.randomChance(0.1f))
         {
