@@ -1265,10 +1265,9 @@ internal static class DarkieTraitActions
         pTarget.a.spawnParticle(UnityEngine.Color.yellow);
         pTarget.a.spawnParticle(UnityEngine.Color.white);
         pTarget.a.spawnParticle(UnityEngine.Color.yellow);
-        pTarget.a.asset.effect_teleport = "fx_DarkieCustomTeleport_effect";
         if (Randy.randomChance(0.3f) && pTarget.a.is_moving) //Percent
         {
-            teleportToSpecificLocation(pTarget, pTarget.a.tile_target);
+            teleportToSpecificLocation(pTarget, pTarget.a.tile_target, "fx_DarkieCustomTeleport_effect");
         }
         return true;
     }
@@ -1337,19 +1336,14 @@ internal static class DarkieTraitActions
 
 
     #region Custom Functions
-    public static bool teleportToSpecificLocation(BaseSimObject pTarget, WorldTile pTile)
+    public static bool teleportToSpecificLocation(BaseSimObject pTarget, WorldTile pTile, string effect_text = "fx_teleport_blue")
     {
-        string text = pTarget.a.asset.effect_teleport;
         var size = 0.1f;
-        if (string.IsNullOrEmpty(text))
-        {
-            text = "fx_teleport_blue";
-        }
-        if(text == "fx_DarkieExplosionBlueCircle_effect")
+        if(effect_text == "fx_DarkieExplosionBlueCircle_effect")
         {
             size = 0.05f; //My effect is too big
         }
-        EffectsLibrary.spawnAt(text, pTarget.current_position, size);
+        EffectsLibrary.spawnAt(effect_text, pTarget.current_position, size);
         pTarget.a.cancelAllBeh();
         pTarget.a.spawnOn(pTile, 0f);
         return true;
