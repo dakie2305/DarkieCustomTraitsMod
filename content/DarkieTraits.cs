@@ -1229,6 +1229,33 @@ internal static class DarkieTraits
         addToLocale(timeStopper.id, "Time Stopper", "A dangerous entity that can freeze time the enemies, unfreeze their allies or make enemies grow older faster!");
         #endregion
 
+        //Electro, can move, teleport fast and electrocute
+        #region time stopper
+        ActorTrait electro = new ActorTrait()
+        {
+            id = "the_electro",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/electro",
+            rate_birth = Rare,
+            rate_inherit = NoChance,
+            rarity = Rarity.R3_Legendary,
+        };
+
+        electro.base_stats = new BaseStats();
+        electro.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, -0.3f);
+        electro.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.5f);
+        electro.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, 0.5f);
+        electro.base_stats.set(CustomBaseStatsConstant.ConstructionSpeed, 50f);
+        electro.base_stats.set(CustomBaseStatsConstant.MultiplierStamina, 0.1f);
+
+        electro.type = TraitType.Positive;
+        electro.unlock(true);
+        electro.action_special_effect = (WorldAction)Delegate.Combine(electro.action_special_effect, new WorldAction(DarkieTraitActions.electroSparklingSpecialEffect));
+        electro.action_attack_target = new AttackAction(DarkieTraitActions.electroSpecialAttack);
+        AssetManager.traits.add(electro);
+        addToLocale(electro.id, "Electro", "Living electricity with the power to electrocute their enemies and teleporting really fast!");
+        #endregion
+
     }
 
     private static void addToLocale(string id, string name, string description)

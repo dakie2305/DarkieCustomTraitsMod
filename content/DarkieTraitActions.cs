@@ -371,7 +371,7 @@ internal static class DarkieTraitActions
     {
         if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         //This one will steal enemy traits
-        if (Randy.randomChance(0.2f) && !pTarget.a.hasTrait("power_mimicry"))
+        if (Randy.randomChance(0.3f) && !pTarget.a.hasTrait("power_mimicry"))
         {
             pSelf.a.removeTrait("miracle_born");
             pSelf.a.removeTrait("scar_of_divinity");
@@ -603,6 +603,32 @@ internal static class DarkieTraitActions
             pTarget.a.data.age_overgrowth += 20;
         }
 
+        return true;
+    }
+
+    public static bool electroSpecialAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        if (Randy.randomChance(0.09f))
+        {
+            //Get all units  in the area
+            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 2);
+            if (allClosestUnits.Any())
+            {
+                //Spawn cool effect
+                foreach (var unit in allClosestUnits)
+                {
+                    if (unit.kingdom != pSelf.kingdom && unit.a != pSelf.a && !unit.a.hasStatus("custom_electrocuted_effect"))
+                    {
+                        unit.a.addStatusEffect("custom_electrocuted_effect");
+                    }
+                }
+            }
+        }
+        if (Randy.randomChance(0.1f) && !pTarget.a.hasStatus("custom_electrocuted_effect"))
+        {
+            pTarget.a.addStatusEffect("custom_electrocuted_effect");
+        }
         return true;
     }
     #endregion
@@ -1227,6 +1253,22 @@ internal static class DarkieTraitActions
             var pSlot = pTarget.a.equipment.getSlot(EquipmentType.Weapon);
             pSlot.setItem(pData, pTarget.a);
             pTarget.setStatsDirty();
+        }
+        return true;
+    }
+
+    public static bool electroSparklingSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
+    {
+        if (!pTarget.isAlive())
+            return false;
+        pTarget.a.spawnParticle(UnityEngine.Color.yellow);
+        pTarget.a.spawnParticle(UnityEngine.Color.yellow);
+        pTarget.a.spawnParticle(UnityEngine.Color.white);
+        pTarget.a.spawnParticle(UnityEngine.Color.yellow);
+        pTarget.a.asset.effect_teleport = "fx_DarkieCustomTeleport_effect";
+        if (Randy.randomChance(0.3f) && pTarget.a.is_moving) //Percent
+        {
+            teleportToSpecificLocation(pTarget, pTarget.a.tile_target);
         }
         return true;
     }
