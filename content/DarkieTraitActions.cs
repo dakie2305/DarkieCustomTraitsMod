@@ -316,6 +316,10 @@ internal static class DarkieTraitActions
         {
             pTarget.a.addStatusEffect("time_stop_effect");
         }
+        if (Randy.randomChance(0.04f))
+        {
+            pTarget.a.addStatusEffect("custom_electrocuted_effect");
+        }
         if (Randy.randomChance(0.05f))
         {
             ActionLibrary.castLightning(pSelf, pTarget, null);
@@ -451,7 +455,12 @@ internal static class DarkieTraitActions
             var allClosestUnits = Finder.getUnitsFromChunk(pTile, 3);
             if (allClosestUnits.Any())
             {
-                EffectsLibrary.spawnAtTile("fx_YOYO_effect", pTarget.current_tile, 0.35f);
+                string text = "fx_YOYO_effect";
+                if (Randy.randomBool())
+                {
+                    text = "fx_DarkieDarkBlueWave_effect";
+                }
+                EffectsLibrary.spawnAtTile(text, pTarget.current_tile, 0.35f);
                 foreach (var unit in allClosestUnits)
                 {
                     if (unit.a != pSelf.a)
@@ -486,6 +495,14 @@ internal static class DarkieTraitActions
                         if (Randy.randomChance(0.3f))
                         {
                             unit.addStatusEffect("slowness", 3f);
+                        }
+                        if (Randy.randomChance(0.1f))
+                        {
+                            unit.addStatusEffect("custom_electrocuted_effect");
+                        }
+                        if (Randy.randomChance(0.1f))
+                        {
+                            unit.addStatusEffect("time_stop_effect");
                         }
                     }
                 }
@@ -663,6 +680,10 @@ internal static class DarkieTraitActions
         {
             pTarget.a.doCastAnimation();
             ActionLibrary.teleportRandom(pTarget, pTarget, null);
+        }
+        if (Randy.randomChance(0.02f))
+        {
+            pTarget.a.addStatusEffect("sparkling_effect");
         }
         if (pTarget.a.data.health <= pTarget.a.getMaxHealth() / 2)
         {
