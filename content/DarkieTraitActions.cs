@@ -63,12 +63,10 @@ internal static class DarkieTraitActions
         //Spawn random explosion effect
         if(Randy.randomChance(0.1f)) //Percent
         {
-            //Chain explosion effect
             EffectsLibrary.spawnAtTile("fx_DarkieExplosionTwoColor_effect", pTarget.current_tile, 0.25f);
         }
         else if (Randy.randomChance(0.1f))
         {
-            //Chain explosion effect
             EffectsLibrary.spawnAtTile("fx_explosion_crab_bomb", pTarget.current_tile, 0.25f);
         }
         else if(Randy.randomChance(0.1f))
@@ -85,8 +83,6 @@ internal static class DarkieTraitActions
             World.world.applyForceOnTile(pTile, 3, 0.5f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
             EffectsLibrary.spawnExplosionWave(pTile.posV3, 3f, 0.5f);
         }
-
-        //Only spawn lightning effect without the actual damage
         return true;
     }
 
@@ -114,7 +110,7 @@ internal static class DarkieTraitActions
         if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         if (Randy.randomChance(0.3f)) //Percent
         {
-            EffectsLibrary.spawnAtTile("fx_teleport_blue", pTarget.current_tile, 0.1f);
+            EffectsLibrary.spawnAtTile("fx_DarkieExplosionBlueCircle_effect", pTarget.current_tile, 0.05f);
             ActionLibrary.teleportRandom(pSelf, pTarget, null);
             return true;
         }
@@ -624,6 +620,7 @@ internal static class DarkieTraitActions
         pTarget.a.spawnParticle(UnityEngine.Color.black);
         pTarget.a.spawnParticle(UnityEngine.Color.red);
         pTarget.a.spawnParticle(UnityEngine.Color.red);
+        pTarget.a.asset.effect_teleport = "fx_DarkieExplosionBlueCircle_effect";
         if (Randy.randomChance(0.3f) && pTarget.a.is_moving) //Percent
         {
             teleportToSpecificLocation(pTarget, pTarget.a.tile_target);
@@ -1262,13 +1259,17 @@ internal static class DarkieTraitActions
     #region Custom Functions
     public static bool teleportToSpecificLocation(BaseSimObject pTarget, WorldTile pTile)
     {
-
         string text = pTarget.a.asset.effect_teleport;
+        var size = 0.1f;
         if (string.IsNullOrEmpty(text))
         {
             text = "fx_teleport_blue";
         }
-        EffectsLibrary.spawnAt(text, pTarget.current_position, 0.1f);
+        if(text == "fx_DarkieExplosionBlueCircle_effect")
+        {
+            size = 0.05f; //My effect is too big
+        }
+        EffectsLibrary.spawnAt(text, pTarget.current_position, size);
         pTarget.a.cancelAllBeh();
         pTarget.a.spawnOn(pTile, 0f);
         return true;
