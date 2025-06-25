@@ -610,7 +610,7 @@ internal static class DarkieTraits
             path_icon = $"{PathToTraitIcon}/mage",
             rate_birth = Rare,
             rate_inherit = MediumChance,
-            rarity = Rarity.R2_Epic,
+            rarity = Rarity.R3_Legendary,
         };
 
         mageTrait.base_stats = new BaseStats();
