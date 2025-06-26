@@ -5,6 +5,7 @@
 
   //DarkieUnits(.name_locale id_description)
   "Bat": "吸血蝙蝠",
+  "bat": "吸血蝙蝠",
   "Bat_description": "夜晚少见的潜伏者之一。它看起来很邪恶…",
 
   //DarkieItems(.translation_key id_description)
@@ -32,12 +33,12 @@
   "status_description_bleeding_effect": "被割伤而死？这可不好笑",
   "status_title_ice_storm_effect": "冰风暴",
   "status_description_ice_storm_effect": "去吧！冻结万物",
-  "status_title_time_stop_effect": "Time Stop",
-  "status_description_time_stop_effect": "This person has been stopped in time!",
-  "status_title_time_stop_ultimate_effect": "Time Stop Ultimate",
-  "status_description_time_stop_ultimate_effect": "This person just time-stopped all enemies around them!",
-  "status_title_custom_electrocuted_effect": "Electrocuted",
-  "status_description_custom_electrocuted_effect": "Ow ow this hurts so much I can not move!",
+  "status_title_time_stop_effect": "时间暂停",
+  "status_description_time_stop_effect": "他和他的时间停滞不前，但生活仍要继续",
+  "status_title_time_stop_ultimate_effect": "时间法则",
+  "status_description_time_stop_ultimate_effect": "只是停止了周围敌人的时间而已",
+  "status_title_custom_electrocuted_effect": "电刑",
+  "status_description_custom_electrocuted_effect": "嗷嚎嗷，被电疼得不能动了!",
 
   //DarkieTraits(group.name)
   "trait_group_darkie": "Darkie的自制特质",
@@ -159,16 +160,16 @@
   "trait_the_vampire": "吸血伯爵",
   "trait_the_vampire_info": "古老的恐惧传说，但现在，苏醒了!",
   "trait_the_vampire_info_2": "畏惧太阳",
-  "trait_the_mirroed": "镜面傀儡",
+  "trait_the_mirroed": "镜像傀儡",
   "trait_the_mirroed_info": "怎么……那是我吗？",
   "trait_the_mirroed_info_2": "",
   "trait_mirror_man": "镜面人",
   "trait_mirror_man_info": "可以反射伤害并将对手镜像出来反击",
   "trait_mirror_man_info_2": "",
-  "trait_time_stopper": "Time Stopper",
-  "trait_time_stopper_info": "A dangerous entity that can freeze time the enemies, unfreeze their allies or make enemies grow older faster!",
+  "trait_time_stopper": "时间操纵",
+  "trait_time_stopper_info": "可让敌人的时间暂停也可快速老化!对峙时可以恢复友军时间流速",
   "trait_time_stopper_info_2": "",
-  "trait_the_electro": "Electro",
-  "trait_the_electro_info": "Living electricity with the power to electrocute their enemies and teleporting really fast!",
+  "trait_the_electro": "电瞬",
+  "trait_the_electro_info": "对敌人处以电刑!还可以进行快速传送",
   "trait_the_electro_info_2": ""
 }

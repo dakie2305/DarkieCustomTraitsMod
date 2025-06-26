@@ -1,8 +1,8 @@
 {
   //DarkieUnits(.name_locale id_description)
   "Bat": "Bat",
+  "bat": "Bat",
   "Bat_description": "One of the rare lurker of the night. It looks sinister...",
-
   //DarkieItems(.translation_key id_description)
   "Teleport Dagger": "Teleport Dagger",
   "teleport_dagger_description": "The fastest dagger with teleport attack!",
@@ -12,7 +12,6 @@
   "ice_sword_description": "A blade forged from eternal frost. Freezes all it touches.",
   "Glass Sword": "Glass Sword",
   "glass_sword_description": "A deadly blade that can slow and inflict bleeding on every slash.",
-
   //DarkieStatusEffects(.locale_id .locale_description)
   "status_title_titan_shifter_effect": "Titan Shifter",
   "status_description_titan_shifter_effect": "One of the most dangerous titan shifter that will wreck everything!",
@@ -34,7 +33,6 @@
   "status_description_time_stop_ultimate_effect": "This person just time-stopped all enemies around them!",
   "status_title_custom_electrocuted_effect": "Electrocuted",
   "status_description_custom_electrocuted_effect": "Ow ow this hurts so much I can not move!",
-
   //DarkieTraits(group.name)
   "trait_group_darkie": "Darkie Traits",
   //DarkieTraits(trait_id trait_id_info trait_id_info_2)

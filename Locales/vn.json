@@ -1,8 +1,8 @@
 {
   //DarkieUnits(.name_locale id_description)
   "Bat": "Dơi",
+  "bat": "Dơi",
   "Bat_description": "Một trong số những con thú nguy hiểm của màn đêm, đôi khi là kẻ hung ác tàn bạo...",
-
   //DarkieItems(.translation_key id_description)
   "Teleport Dagger": "Dịch Chuyển Đại Đao",
   "teleport_dagger_description": "Thanh đao nhanh vô địch với khả năng tấn công dịch chuyển!",
@@ -12,7 +12,6 @@
   "ice_sword_description": "Lưỡi kiếm rèn từ kỷ băng hà lạnh giá, có thể đóng băng mọi kẻ địch.",
   "Glass Sword": "Pha Li Kiếm",
   "glass_sword_description": "Lưỡi kiếm nguy hiểm bậc nhất, một vết chém có thể làm kẻ địch chậm lại và chảy máu đến tử nạn.",
-
   //DarkieStatusEffects(.locale_id .locale_description)
   "status_title_titan_shifter_effect": "Dòng Máu Đại Hình",
   "status_description_titan_shifter_effect": "Một trong những quốc trưởng độc tài nguy hiểm muốn đòi tự do bằng cách tàn phá thế giới!",
@@ -34,7 +33,6 @@
   "status_description_time_stop_ultimate_effect": "Người này vừa dùng kỹ năng đóng băng thời gian tất cả kẻ địch xung quanh!",
   "status_title_custom_electrocuted_effect": "Bị Giật Điện",
   "status_description_custom_electrocuted_effect": "Đm đau quá, không di chuyển được nữa!",
-
   //DarkieTraits(group.name)
   "trait_group_darkie": "Traits của Darkie",
   //DarkieTraits(trait_id trait_id_info trait_id_info_2)
