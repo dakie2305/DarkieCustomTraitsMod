@@ -590,6 +590,7 @@ internal static class DarkieTraitActions
                     {
                         //Help allies remove status
                         unit.a.finishStatusEffect("time_stop_effect");
+                        unit.a.finishStatusEffect("frozen");
                     }
                 }
             }
