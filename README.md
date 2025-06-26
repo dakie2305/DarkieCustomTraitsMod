@@ -17,6 +17,10 @@ An extensive custom trait and weapon overhaul for **Super Worldbox**, now update
 
 ### Notable Traits
 
+- Electro (NEW): Can use the power of electricity to electrocute their enemies and teleporting really fast on moving!
+
+- Time Stopper (NEW): Will freeze enemies in time, or make them age faster and help unfreeze their allies in battle! Ultimate skill is wide spread time stop! 
+
 - **The Tortured**  
   Eternal pain, hellfire, toxic air, and cursed immortality. Trapped in ice if not burning. Your children will inherit the suffering. Periodic meteor strikes and lightning storms target you and your loved ones. Regeneration ensures you live through it all. You are cast out from civilization. You are the forsaken. You're here forever.  
   *Updated: All loopholes closed. No terrain abuse, no cursed trait workarounds. You live, suffer, and remember why this was made for you.*

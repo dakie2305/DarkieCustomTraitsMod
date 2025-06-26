@@ -1230,7 +1230,7 @@ internal static class DarkieTraits
         #endregion
 
         //Electro, can move, teleport fast and electrocute
-        #region time stopper
+        #region electro
         ActorTrait electro = new ActorTrait()
         {
             id = "the_electro",
