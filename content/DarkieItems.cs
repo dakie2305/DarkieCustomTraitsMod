@@ -36,6 +36,8 @@ namespace DarkieCustomTraits.Content
             teleportDagger.is_pool_weapon = false;
             teleportDagger.unlock(true);
 
+            teleportDagger.name_templates = AssetLibrary<EquipmentAsset>.l<string>("flame_sword_name");
+
             teleportDagger.base_stats = new();
             teleportDagger.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, 1.0f);
             teleportDagger.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 1.0f); //Percentage
@@ -117,6 +119,8 @@ namespace DarkieCustomTraits.Content
             iceSword.animated = false;
             iceSword.unlock(true);
 
+            iceSword.name_templates = AssetLibrary<EquipmentAsset>.l<string>("flame_sword_name");
+
             iceSword.base_stats = new();
             iceSword.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.25f);
             iceSword.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, 0.27f);
@@ -149,6 +153,8 @@ namespace DarkieCustomTraits.Content
             glassSword.group_id = "sword";
             glassSword.animated = false;
             glassSword.unlock(true);
+
+            glassSword.name_templates = AssetLibrary<EquipmentAsset>.l<string>("flame_sword_name");
 
             glassSword.base_stats = new();
             glassSword.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.25f);
