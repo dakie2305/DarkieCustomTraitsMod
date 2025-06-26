@@ -104,7 +104,7 @@ internal static class DarkieTraitActions
                 {
                     foreach (var unit in allClosestUnits)
                     {
-                        if (pTarget.a == unit.a) continue;
+                        if (pSelf.a == unit.a) continue;
                         unit.addStatusEffect("custom_electrocuted_effect", 4f);
                     }
                 }
