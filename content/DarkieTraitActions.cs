@@ -331,11 +331,6 @@ internal static class DarkieTraitActions
             World.world.applyForceOnTile(pTile, 3, 0.5f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
             EffectsLibrary.spawnExplosionWave(pTile.posV3, 3f, 0.5f);
         }
-        if (Randy.randomChance(0.01f))
-        {
-            EffectsLibrary.spawn("fx_meteorite", pTarget.current_tile, null, null, 0f, -1f, -1f);    //spawn 1 meteorite
-            pSelf.a.addStatusEffect("invincible", 5f);
-        }
         return true;
     }
 
