@@ -25,7 +25,6 @@ internal static class DarkieTraits
     {
         loadCustomTraitGroup();
         loadCustomTrait();
-
     }
 
     private static void loadCustomTraitGroup()

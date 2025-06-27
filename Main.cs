@@ -32,7 +32,7 @@ public class DarkieTraitsMain : BasicMod<DarkieTraitsMain>, IReloadable
     protected override void OnModLoad()
     {
         LogInfo("Darkie Traits Starting Up And Is Running!");
-        //Config.isEditor = true;
+        //Config.isEditor = true; //Only for debug purpose
         DarkieTraits.Init();
         DarkieItems.Init();
         DarkieEffects.Init();
