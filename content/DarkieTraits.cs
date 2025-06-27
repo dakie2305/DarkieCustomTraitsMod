@@ -49,8 +49,8 @@ internal static class DarkieTraits
             id = "turtleguy",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/turtleguy",
-            rate_birth = Rare, // 5% chance
-            rate_inherit = Rare, //Percentage
+            rate_birth = DarkieTraitsBirthRate.TurtleGuyRate, // 5% chance
+            rate_inherit = DarkieTraitsBirthRate.TurtleGuyRate, //Percentage
             rarity = Rarity.R0_Normal,
             can_be_removed_by_divine_light = true,
             can_be_given = true,
@@ -77,8 +77,8 @@ internal static class DarkieTraits
             id = "flash",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/flash",
-            rate_birth = Rare,
-            rate_inherit = LowChance,
+            rate_birth = DarkieTraitsBirthRate.FlashRate,
+            rate_inherit = DarkieTraitsBirthRate.FlashRate,
             rarity = Rarity.R1_Rare,
             can_be_given = true,
         };
@@ -108,8 +108,8 @@ internal static class DarkieTraits
             id = "berserker",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/berserker",
-            rate_birth = Rare,
-            rate_inherit = MediumChance,
+            rate_birth = DarkieTraitsBirthRate.BerserkerRate,
+            rate_inherit = DarkieTraitsBirthRate.BerserkerRate,
             rarity = Rarity.R0_Normal,
             can_be_given = true,
         };
@@ -138,8 +138,8 @@ internal static class DarkieTraits
             id = "hawkeye",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/hawkeye",
-            rate_birth = Rare,
-            rate_inherit = MediumChance,
+            rate_birth = DarkieTraitsBirthRate.HawkEyeRate,
+            rate_inherit = DarkieTraitsBirthRate.HawkEyeRate,
             rarity = Rarity.R0_Normal,
             can_be_given = true,
         };
@@ -166,8 +166,8 @@ internal static class DarkieTraits
             id = "titan",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/titan",
-            rate_birth = Rare,
-            rate_inherit = MediumChance,
+            rate_birth = DarkieTraitsBirthRate.TitanRate,
+            rate_inherit = DarkieTraitsBirthRate.TitanRate,
             rarity = Rarity.R0_Normal,
             can_be_given = true,
         };
@@ -198,8 +198,8 @@ internal static class DarkieTraits
             id = "titan_shifter",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/titanShifter",
-            rate_birth = Rare,
-            rate_inherit = HighChance,
+            rate_birth = DarkieTraitsBirthRate.TitanShifterRate,
+            rate_inherit = DarkieTraitsBirthRate.TitanShifterRate,
             rarity = Rarity.R1_Rare,
             can_be_given = true,
         };
@@ -232,8 +232,8 @@ internal static class DarkieTraits
             id = "wise_old_one",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/old_wise",
-            rate_birth = Rare,
-            rate_inherit = NoChance,
+            rate_birth = DarkieTraitsBirthRate.WiseOldOneRate,
+            rate_inherit = DarkieTraitsBirthRate.WiseOldOneRate,
             rarity = Rarity.R1_Rare,
         };
 
@@ -263,8 +263,8 @@ internal static class DarkieTraits
             id = "idiot_savant",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/idiot",
-            rate_birth = Rare,
-            rate_inherit = LowChance,
+            rate_birth = DarkieTraitsBirthRate.IdiotRate,
+            rate_inherit = DarkieTraitsBirthRate.IdiotRate,
             rarity = Rarity.R0_Normal,
         };
 
@@ -290,8 +290,8 @@ internal static class DarkieTraits
             id = "mountain",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/mountain",
-            rate_birth = Rare,
-            rate_inherit = LowChance,
+            rate_birth = DarkieTraitsBirthRate.MountaintRate,
+            rate_inherit = DarkieTraitsBirthRate.MountaintRate,
             rarity = Rarity.R0_Normal,
         };
 
@@ -317,8 +317,8 @@ internal static class DarkieTraits
             id = "almighty",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/almighty",
-            rate_birth = Rare,
-            rate_inherit = MediumChance,
+            rate_birth = DarkieTraitsBirthRate.AlmightyRate,
+            rate_inherit = DarkieTraitsBirthRate.AlmightyRate,
             rarity = Rarity.R2_Epic,
             can_be_given = true,
         };
@@ -348,8 +348,8 @@ internal static class DarkieTraits
             id = "thor_odinson",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/thor",
-            rate_birth = Rare,
-            rate_inherit = NoChance,
+            rate_birth = DarkieTraitsBirthRate.ThorRate,
+            rate_inherit = DarkieTraitsBirthRate.ThorRate,
             rarity = Rarity.R3_Legendary,
         };
 
@@ -381,8 +381,8 @@ internal static class DarkieTraits
             id = "nightcrawler",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/nightcrawler",
-            rate_birth = Rare,
-            rate_inherit = ExtraChance,
+            rate_birth = DarkieTraitsBirthRate.NightCrawlerRate,
+            rate_inherit = DarkieTraitsBirthRate.NightCrawlerRate,
             rarity = Rarity.R2_Epic,
             can_be_given = true,
         };
@@ -410,8 +410,8 @@ internal static class DarkieTraits
             id = "shield_guy",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/shield",
-            rate_birth = LowChance,
-            rate_inherit = NoChance,
+            rate_birth = DarkieTraitsBirthRate.ShieldGuyRate,
+            rate_inherit = DarkieTraitsBirthRate.ShieldGuyRate,
             rarity = Rarity.R1_Rare,
             can_be_given = true,
         };
@@ -438,8 +438,8 @@ internal static class DarkieTraits
             id = "dej_wolf_tamer",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/beasttamer",
-            rate_birth = LowChance,
-            rate_inherit = MediumChance,
+            rate_birth = DarkieTraitsBirthRate.WolfTamerRate,
+            rate_inherit = DarkieTraitsBirthRate.WolfTamerRate,
             rarity = Rarity.R1_Rare,
         };
 
@@ -495,8 +495,8 @@ internal static class DarkieTraits
             id = "dej_bear_tamer",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/beartamer",
-            rate_birth = LowChance,
-            rate_inherit = MediumChance,
+            rate_birth = DarkieTraitsBirthRate.BearTamerRate,
+            rate_inherit = DarkieTraitsBirthRate.BearTamerRate,
             rarity = Rarity.R2_Epic,
             can_be_given = true,
         };
@@ -522,8 +522,8 @@ internal static class DarkieTraits
             id = "dej_dragon_trainer",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/dragon_trainer",
-            rate_birth = Rare,
-            rate_inherit = MediumChance,
+            rate_birth = DarkieTraitsBirthRate.DragonTrainerRate,
+            rate_inherit = DarkieTraitsBirthRate.DragonTrainerRate,
             rarity = Rarity.R3_Legendary,
             can_be_given = true,
         };
@@ -551,8 +551,8 @@ internal static class DarkieTraits
             id = "medic_healer",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/medic",
-            rate_birth = LowChance,
-            rate_inherit = LowChance,
+            rate_birth = DarkieTraitsBirthRate.MedicRate,
+            rate_inherit = DarkieTraitsBirthRate.MedicRate,
             rarity = Rarity.R2_Epic,
             can_be_given = true,
         };
@@ -579,8 +579,8 @@ internal static class DarkieTraits
             id = "gangster",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/gangster",
-            rate_birth = NoChance,
-            rate_inherit = Rare,
+            rate_birth = DarkieTraitsBirthRate.GangsterRate,
+            rate_inherit = DarkieTraitsBirthRate.GangsterRate,
             rarity = Rarity.R1_Rare,
             can_be_given = true,
         };
@@ -608,8 +608,8 @@ internal static class DarkieTraits
             id = "master_magister",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/mage",
-            rate_birth = Rare,
-            rate_inherit = MediumChance,
+            rate_birth = DarkieTraitsBirthRate.MagisterRate,
+            rate_inherit = DarkieTraitsBirthRate.MagisterRate,
             rarity = Rarity.R3_Legendary,
         };
 
@@ -638,8 +638,8 @@ internal static class DarkieTraits
             id = "wololo",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/wololo",
-            rate_birth = MediumChance,
-            rate_inherit = MediumChance,
+            rate_birth = DarkieTraitsBirthRate.WololoRate,
+            rate_inherit = DarkieTraitsBirthRate.WololoRate,
             rarity = Rarity.R1_Rare,
             can_be_given = true,
         };
@@ -692,8 +692,8 @@ internal static class DarkieTraits
             id = "ant_man",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/antman",
-            rate_birth = Rare,
-            rate_inherit = Rare,
+            rate_birth = DarkieTraitsBirthRate.AntManRate,
+            rate_inherit = DarkieTraitsBirthRate.AntManRate,
             rarity = Rarity.R1_Rare,
             can_be_given = true,
         };
@@ -723,8 +723,8 @@ internal static class DarkieTraits
             id = "esteemed_commander",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/commander",
-            rate_birth = Rare,
-            rate_inherit = MediumChance,
+            rate_birth = DarkieTraitsBirthRate.CommanderRate,
+            rate_inherit = DarkieTraitsBirthRate.CommanderRate,
             rarity = Rarity.R1_Rare,
             can_be_given = true,
             can_be_removed_by_divine_light = true,
@@ -788,8 +788,8 @@ internal static class DarkieTraits
             id = "blood_of_wolf",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/bloodwerewolf",
-            rate_birth = Rare,
-            rate_inherit = HighChance,
+            rate_birth = DarkieTraitsBirthRate.BloodWolfRate,
+            rate_inherit = DarkieTraitsBirthRate.BloodWolfRate,
             rarity = Rarity.R1_Rare,
         };
 
@@ -847,8 +847,8 @@ internal static class DarkieTraits
             id = "stuffed",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/cake",
-            rate_birth = Rare,
-            rate_inherit = NoChance,
+            rate_birth = DarkieTraitsBirthRate.StuffedRate,
+            rate_inherit = DarkieTraitsBirthRate.StuffedRate,
             rarity = Rarity.R0_Normal,
         };
 
@@ -870,8 +870,8 @@ internal static class DarkieTraits
             id = "insatiable_hunger",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/hunger",
-            rate_birth = Rare,
-            rate_inherit = NoChance,
+            rate_birth = DarkieTraitsBirthRate.HungerRate,
+            rate_inherit = DarkieTraitsBirthRate.HungerRate,
             rarity = Rarity.R0_Normal,
             can_be_given = true,
             can_be_removed_by_divine_light = true,
@@ -894,8 +894,8 @@ internal static class DarkieTraits
             id = "duplikate",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/Dupli-Kate",
-            rate_birth = Rare,
-            rate_inherit = NoChance,
+            rate_birth = DarkieTraitsBirthRate.DuplikateRate,
+            rate_inherit = DarkieTraitsBirthRate.DuplikateRate,
             rarity = Rarity.R2_Epic,
         };
 
@@ -946,8 +946,8 @@ internal static class DarkieTraits
             id = "pheonix",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/phoenix",
-            rate_birth = Rare,
-            rate_inherit = NoChance,
+            rate_birth = DarkieTraitsBirthRate.PhoenixRate,
+            rate_inherit = DarkieTraitsBirthRate.PhoenixRate,
             rarity = Rarity.R2_Epic,
             can_be_given = true,
         };
@@ -998,8 +998,8 @@ internal static class DarkieTraits
             id = "power_mimicry",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/mimicry",
-            rate_birth = Rare,
-            rate_inherit = LowChance,
+            rate_birth = DarkieTraitsBirthRate.PowerMimicryRate,
+            rate_inherit = DarkieTraitsBirthRate.PowerMimicryRate,
             rarity = Rarity.R3_Legendary,
         };
         hungerTrait.addOpposites(new List<string> { "nullify" });
@@ -1021,8 +1021,8 @@ internal static class DarkieTraits
             id = "nullify",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/nullify",
-            rate_birth = Rare,
-            rate_inherit = HighChance,
+            rate_birth = DarkieTraitsBirthRate.NullifyRate,
+            rate_inherit = DarkieTraitsBirthRate.NullifyRate,
             rarity = Rarity.R3_Legendary,
         };
         nullify.addOpposites(new List<string> { "power_mimicry" });
@@ -1075,8 +1075,8 @@ internal static class DarkieTraits
             id = "reviver_of_dead",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/lich",
-            rate_birth = Rare,
-            rate_inherit = Rare,
+            rate_birth = DarkieTraitsBirthRate.ReviverOfDeathRate,
+            rate_inherit = DarkieTraitsBirthRate.ReviverOfDeathRate,
             rarity = Rarity.R2_Epic,
         };
 
@@ -1100,8 +1100,8 @@ internal static class DarkieTraits
             id = "the_dark_necromancer",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/necromancer",
-            rate_birth = Rare,
-            rate_inherit = NoChance,
+            rate_birth = DarkieTraitsBirthRate.DarkNecromancerRate,
+            rate_inherit = DarkieTraitsBirthRate.DarkNecromancerRate,
             rarity = Rarity.R2_Epic,
             can_be_given = true,
         };
@@ -1128,8 +1128,8 @@ internal static class DarkieTraits
             id = "the_vampire",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/the_vampire",
-            rate_birth = Rare,
-            rate_inherit = HighChance,
+            rate_birth = DarkieTraitsBirthRate.VampireRate,
+            rate_inherit = DarkieTraitsBirthRate.VampireRate,
             rarity = Rarity.R3_Legendary,
         };
 
@@ -1182,8 +1182,8 @@ internal static class DarkieTraits
             id = "mirror_man",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/mirror_man",
-            rate_birth = Rare,
-            rate_inherit = NoChance,
+            rate_birth = DarkieTraitsBirthRate.MirrorManRate,
+            rate_inherit = DarkieTraitsBirthRate.MirrorManRate,
             rarity = Rarity.R3_Legendary,
         };
 
@@ -1210,8 +1210,8 @@ internal static class DarkieTraits
             id = "time_stopper",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/time_stopper",
-            rate_birth = Rare,
-            rate_inherit = NoChance,
+            rate_birth = DarkieTraitsBirthRate.TimeStopperRate,
+            rate_inherit = DarkieTraitsBirthRate.TimeStopperRate,
             rarity = Rarity.R3_Legendary,
         };
 
@@ -1236,8 +1236,8 @@ internal static class DarkieTraits
             id = "the_electro",
             group_id = TraitGroupId,
             path_icon = $"{PathToTraitIcon}/electro",
-            rate_birth = Rare,
-            rate_inherit = NoChance,
+            rate_birth = DarkieTraitsBirthRate.ElectroRate,
+            rate_inherit = DarkieTraitsBirthRate.ElectroRate,
             rarity = Rarity.R3_Legendary,
         };
 

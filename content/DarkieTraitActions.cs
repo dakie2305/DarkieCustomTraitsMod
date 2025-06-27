@@ -1364,22 +1364,6 @@ internal static class DarkieTraitActions
         }
         return true;
     }
-
-
     #endregion
 
-
-
-
-    //// This method will be called when config value set. ATTENTION: It might be called when game start.
-    public static void ExampleSwitchConfigCallBack(bool pCurrentValue)
-    {
-        //DarkieTraitsMain.LogInfo($"Current value of a switch config is '{pCurrentValue}'");
-    }
-
-    // This method will be called when config value set. ATTENTION: It might be called when game start.
-    public static void ExampleSliderConfigCallback(float pCurrentValue)
-    {
-        //ExampleModMain.LogInfo($"Current value of a slider config is '{pCurrentValue}'");
-    }
 }
