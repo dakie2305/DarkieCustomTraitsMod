@@ -35,6 +35,7 @@
   "status_description_custom_electrocuted_effect": "Đm đau quá, không di chuyển được nữa!",
   //DarkieTraits(group.name)
   "trait_group_darkie": "Traits của Darkie",
+  "darkie_birth_rate_config": "Thay Đổi Tuần Suất Xuất Hiện",
   //DarkieTraits(trait_id trait_id_info trait_id_info_2)
   "trait_turtleguy": "Chậm Rì",
   "trait_turtleguy_info": "Chúa lề mề. Cực kỳ chậm, nhưng sống dai hơn, trâu bò hơn, và đẻ nhiều con hơn.",

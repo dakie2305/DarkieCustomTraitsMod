@@ -42,6 +42,8 @@
 
   //DarkieTraits(group.name)
   "trait_group_darkie": "Darkie的自制特質",
+  "darkie_birth_rate_config": "更改特質誕生率",
+
   //DarkieTraits(trait_id trait_id_info trait_id_info_2)
   "trait_turtleguy": "龜速",
   "trait_turtleguy_info": "像烏龜一樣慢，但同樣可以更長壽、更硬、更多後代",
