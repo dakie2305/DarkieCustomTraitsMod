@@ -9,7 +9,7 @@ namespace DarkieCustomTraits.Content
     public class DarkieTraitsBirthRate
     {
         private static int NoChance = 0;
-        private static int Rare = 3;
+        private static int Rare = 0;
         private static int LowChance = 15;
         private static int MediumChance = 30;
         private static int ExtraChance = 45;

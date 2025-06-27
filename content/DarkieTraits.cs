@@ -67,6 +67,7 @@ internal static class DarkieTraits
         //turtleGuyTrait.action_death = (WorldAction)Delegate.Combine(turtleGuyTrait.action_death, new WorldAction(ActionLibrary.fireDropsSpawn));
         // Add trait to trait library
         AssetManager.traits.add(turtleGuyTrait);
+        reAddToPotTraitBirth(turtleGuyTrait);
         addToLocale(turtleGuyTrait.id, "Turtle Guy", "The turtle. He is extremely slow but he can live a bit longer, a bit tougher, and with more kids.");
         #endregion
 
@@ -98,6 +99,7 @@ internal static class DarkieTraits
         flashTrait.addOpposites(oppositesFlash);
 
         AssetManager.traits.add(flashTrait);
+        reAddToPotTraitBirth(flashTrait);
         addToLocale(flashTrait.id, "Flash", "The True Flash. Has extremely high speed and attack speed, but sacrifices health.");
         #endregion
 
@@ -127,6 +129,7 @@ internal static class DarkieTraits
         berserkerTrait.addOpposites(oppositesBerserker);
 
         AssetManager.traits.add(berserkerTrait);
+        reAddToPotTraitBirth(berserkerTrait);
         addToLocale(berserkerTrait.id, "Berserker", "A warrior who battles a lot! Has great health and attack power, but is slower than normal.");
         #endregion
 
@@ -156,6 +159,7 @@ internal static class DarkieTraits
         hawkeyeTrait.addOpposites(oppositesHawkeye);
 
         AssetManager.traits.add(hawkeyeTrait);
+        reAddToPotTraitBirth(hawkeyeTrait);
         addToLocale(hawkeyeTrait.id, "Hawkeye", "I do not miss any shot.");
         #endregion
 
@@ -187,6 +191,7 @@ internal static class DarkieTraits
 
         titanTrait.action_attack_target = new AttackAction(DarkieTraitActions.causeShockwave);
         AssetManager.traits.add(titanTrait);
+        reAddToPotTraitBirth(titanTrait);
         addToLocale(titanTrait.id, "The Titan", "Quick! Someone call Levi immediately!");
         #endregion
 
@@ -220,6 +225,7 @@ internal static class DarkieTraits
         titanShifterTrait.action_special_effect = (WorldAction)Delegate.Combine(titanShifterTrait.action_special_effect, new WorldAction(DarkieTraitActions.titanShifterSpecialEffect));
         titanShifterTrait.action_get_hit = (GetHitAction)Delegate.Combine(titanShifterTrait.action_get_hit, new GetHitAction(DarkieTraitActions.titanShifterGetHit));
         AssetManager.traits.add(titanShifterTrait);
+        reAddToPotTraitBirth(titanShifterTrait);
         addToLocale(titanShifterTrait.id, "Titan Shifter", "Shinzo wo Sasageyo! Will turn into Titan when get hit");
         #endregion
 
@@ -252,6 +258,7 @@ internal static class DarkieTraits
         wiseOldOneTrait.addOpposites(oppositesWiseOldOne);
 
         AssetManager.traits.add(wiseOldOneTrait);
+        reAddToPotTraitBirth(wiseOldOneTrait);
         addToLocale(wiseOldOneTrait.id, "Wise Old One", "The old, wise elder. Has high intelligence and diplomacy, and low HP!");
         #endregion
 
@@ -280,6 +287,7 @@ internal static class DarkieTraits
         idiotSavantTrait.addOpposites(oppositesIdiotSavant);
 
         AssetManager.traits.add(idiotSavantTrait);
+        reAddToPotTraitBirth(idiotSavantTrait);
         addToLocale(idiotSavantTrait.id, "Idiot Savant", "The idiot savant. Has extremely low intelligence and diplomacy!");
         #endregion
 
@@ -306,6 +314,7 @@ internal static class DarkieTraits
         mountainTrait.unlock(true);
 
         AssetManager.traits.add(mountainTrait);
+        reAddToPotTraitBirth(mountainTrait);
         addToLocale(mountainTrait.id, "The Mountain", "The mountain. Immovable object with high resistance!");
         #endregion
 
@@ -337,6 +346,7 @@ internal static class DarkieTraits
         almightyTrait.action_attack_target = new AttackAction(DarkieTraitActions.explosionAttackEffect);
 
         AssetManager.traits.add(almightyTrait);
+        reAddToPotTraitBirth(almightyTrait);
         addToLocale(almightyTrait.id, "The Almighty", "The Almighty One. Unstopabble object with boom boom attack! Super OP!");
         #endregion
 
@@ -368,8 +378,8 @@ internal static class DarkieTraits
 
         thorTrait.action_attack_target = new AttackAction(DarkieTraitActions.thorGodThunderAttackEffect);
         thorTrait.action_special_effect = (WorldAction)Delegate.Combine(thorTrait.action_special_effect, new WorldAction(DarkieTraitActions.thorSparklingSpecialEffect));
-
         AssetManager.traits.add(thorTrait);
+        reAddToPotTraitBirth(thorTrait);
         addToLocale(thorTrait.id, "Thor Odinson", "The god of Hammer with lightning summon power. It's hammer time!");
         #endregion
 
@@ -399,6 +409,7 @@ internal static class DarkieTraits
         );
 
         AssetManager.traits.add(nightcrawlerTrait);
+        reAddToPotTraitBirth(nightcrawlerTrait);
         addToLocale(nightcrawlerTrait.id, "Nightcrawler", "The lurker of the night! He can teleport around the map and teleport his enemies too.");
         #endregion
 
@@ -428,6 +439,7 @@ internal static class DarkieTraits
         shieldGuyTrait.action_attack_target = new AttackAction(DarkieTraitActions.shieldGuyAttackEffect);
 
         AssetManager.traits.add(shieldGuyTrait);
+        reAddToPotTraitBirth(shieldGuyTrait);
         addToLocale(shieldGuyTrait.id, "Shield Guy", "A total tanker of the team, can cast shield on themselves and sometime others too!");
         #endregion
 
@@ -455,6 +467,7 @@ internal static class DarkieTraits
         beastTamerTrait.action_attack_target = new AttackAction(DarkieTraitActions.spawnWolfBeastsAttackEffect);
 
         AssetManager.traits.add(beastTamerTrait);
+        reAddToPotTraitBirth(beastTamerTrait);
         addToLocale(beastTamerTrait.id, "Wolf Tamer", "The master of the pack! Can summon 3 allied wolfs to aid them on combat.");
         #endregion
 
@@ -511,6 +524,7 @@ internal static class DarkieTraits
         beartamerTrait.addOpposites(oppositesBearTamer);
         beartamerTrait.action_attack_target = new AttackAction(DarkieTraitActions.spawnBearAttackEffect);
         AssetManager.traits.add(beartamerTrait);
+        reAddToPotTraitBirth(beartamerTrait);
         addToLocale(beartamerTrait.id, "Bear Tamer", "The ruler of the Bear! Will summon 2 bear to aid in battle.");
         #endregion
 
@@ -540,6 +554,7 @@ internal static class DarkieTraits
 
         dragonTrainerTrait.action_attack_target = new AttackAction(DarkieTraitActions.spawnDragonAttackEffect);
         AssetManager.traits.add(dragonTrainerTrait);
+        reAddToPotTraitBirth(dragonTrainerTrait);
         addToLocale(dragonTrainerTrait.id, "Dragon Trainer", "The ultimate trainer ever alive! Will summon one big ass dragon to aid in battle.");
         #endregion
 
@@ -568,6 +583,7 @@ internal static class DarkieTraits
         //medicHealerTrait.action_get_hit = (GetHitAction)Delegate.Combine(medicHealerTrait.action_get_hit, new GetHitAction(DarkieTraitActions.medicGetHit));
         //Not needed get hit, since action special already heal themselves 
         AssetManager.traits.add(medicHealerTrait);
+        reAddToPotTraitBirth(medicHealerTrait);
         addToLocale(medicHealerTrait.id, "Medic Healer", "A medic to save the team! Can heal themselves and other allies.");
         #endregion
 
@@ -597,6 +613,7 @@ internal static class DarkieTraits
         gangsterTrait.unlock(true);
         gangsterTrait.action_attack_target = new AttackAction(DarkieTraitActions.spawnBanditAttackEffect);
         AssetManager.traits.add(gangsterTrait);
+        reAddToPotTraitBirth(gangsterTrait);
         addToLocale(gangsterTrait.id, "Gangster", "What are you looking at huh!? Don't make me call my brothers in bandit here!");
         #endregion
 
@@ -627,6 +644,7 @@ internal static class DarkieTraits
         mageTrait.action_special_effect = (WorldAction)Delegate.Combine(mageTrait.action_special_effect, new WorldAction(DarkieTraitActions.mageSparklingSpecialEffect));
 
         AssetManager.traits.add(mageTrait);
+        reAddToPotTraitBirth(mageTrait);
         addToLocale(mageTrait.id, "Master Magister", "A magister!? Unleash the chaos with magic!");
         #endregion
 
@@ -654,6 +672,7 @@ internal static class DarkieTraits
         wololoTrait.action_attack_target = new AttackAction(DarkieTraitActions.wololoConvertUnitAttackEffect);
 
         AssetManager.traits.add(wololoTrait);
+        reAddToPotTraitBirth(wololoTrait);
         addToLocale(wololoTrait.id, "Wololo", "Wololo? Now you're on my side!");
         #endregion
 
@@ -681,6 +700,7 @@ internal static class DarkieTraits
         chainedTrait.unlock(true);
 
         AssetManager.traits.add(chainedTrait);
+        reAddToPotTraitBirth(chainedTrait);
         addToLocale(chainedTrait.id, "Chained", "Someone converted me :(");
         #endregion
 
@@ -713,6 +733,7 @@ internal static class DarkieTraits
 
         AssetManager.traits.add(antManTrait);
         addToLocale(antManTrait.id, "Ant Man", "Bring me Kang!");
+        reAddToPotTraitBirth(antManTrait);
         #endregion
 
         //Esteemed Commander
@@ -744,6 +765,7 @@ internal static class DarkieTraits
         esteemedCommanderTrait.action_special_effect = (WorldAction)Delegate.Combine(esteemedCommanderTrait.action_special_effect, new WorldAction(DarkieTraitActions.commanderSpecialEffect));
 
         AssetManager.traits.add(esteemedCommanderTrait);
+        reAddToPotTraitBirth(esteemedCommanderTrait);
         addToLocale(esteemedCommanderTrait.id, "Esteemed Commander", "The country needs YOU to join the ARMY! Will convert nearby units into soldier to serve the nation!");
         #endregion
 
@@ -777,6 +799,7 @@ internal static class DarkieTraits
         theTorturedTrait.action_special_effect = (WorldAction)Delegate.Combine(theTorturedTrait.action_special_effect, new WorldAction(DarkieTraitActions.livingHellEffect));
 
         AssetManager.traits.add(theTorturedTrait);
+        reAddToPotTraitBirth(theTorturedTrait);
         addToLocale(theTorturedTrait.id, "The Tortured", "You should never have existed. Your mere existence is blasphemy and an insult to everyone.");
         #endregion
 
@@ -802,6 +825,7 @@ internal static class DarkieTraits
         bloodOfWolfTrait.action_special_effect = (WorldAction)Delegate.Combine(bloodOfWolfTrait.action_special_effect, new WorldAction(DarkieTraitActions.turnWerewolvesSpecialEffect));
 
         AssetManager.traits.add(bloodOfWolfTrait);
+        reAddToPotTraitBirth(bloodOfWolfTrait);
         addToLocale(bloodOfWolfTrait.id, "Blood of Wolf", "Can turn into horrible creature during full moon era!");
         #endregion
 
@@ -836,6 +860,7 @@ internal static class DarkieTraits
         theWerewolfTrait.action_attack_target = new AttackAction(DarkieTraitActions.werewolfSpecialAttack);
 
         AssetManager.traits.add(theWerewolfTrait);
+        reAddToPotTraitBirth(theWerewolfTrait);
         addToLocale(theWerewolfTrait.id,"The Werewolf", "Horrible creature emmerge from the dark era of full moon. Only those with Blood of Wolf can become this creature of nightmare");
         #endregion
 
@@ -859,6 +884,7 @@ internal static class DarkieTraits
         stuffedTrait.action_special_effect = (WorldAction)Delegate.Combine(stuffedTrait.action_special_effect, new WorldAction(DarkieTraitActions.fullHungerSpecialEffect));
 
         AssetManager.traits.add(stuffedTrait);
+        reAddToPotTraitBirth(stuffedTrait);
         addToLocale(stuffedTrait.id, "Stuffed", "Sweetheart, you can never go hungry again!");
         #endregion
 
@@ -883,6 +909,7 @@ internal static class DarkieTraits
         hungerTrait.action_special_effect = (WorldAction)Delegate.Combine(hungerTrait.action_special_effect, new WorldAction(DarkieTraitActions.insatiableSpecialEffect));
 
         AssetManager.traits.add(hungerTrait);
+        reAddToPotTraitBirth(hungerTrait);
         addToLocale(hungerTrait.id, "Insatiable Hunger", "Too hungry. I can eat the whole world.");
         #endregion
 
@@ -912,6 +939,7 @@ internal static class DarkieTraits
         duplikateTrait.action_death = new WorldAction(DarkieTraitActions.killAllClone);
 
         AssetManager.traits.add(duplikateTrait);
+        reAddToPotTraitBirth(duplikateTrait);
         addToLocale(duplikateTrait.id, "DupliKate", "You can never kill me enough.");
         #endregion
 
@@ -964,6 +992,7 @@ internal static class DarkieTraits
         pheonix.action_death = (WorldAction)Delegate.Combine(pheonix.action_death, new WorldAction(DarkieTraitActions.rebornANew));
 
         AssetManager.traits.add(pheonix);
+        reAddToPotTraitBirth(pheonix);
         addToLocale(pheonix.id, "Pheonix", "From the ashes, I will reborn.");
         #endregion
 
@@ -987,6 +1016,7 @@ internal static class DarkieTraits
         revive.unlock(true);
         revive.action_special_effect = (WorldAction)Delegate.Combine(revive.action_special_effect, new WorldAction(DarkieTraitActions.reviveSpecialEffect));
         AssetManager.traits.add(revive);
+        reAddToPotTraitBirth(revive);
         addToLocale(revive.id, "Revived", "This person has been revived to the living realm once again.");
         #endregion
 
@@ -1010,6 +1040,7 @@ internal static class DarkieTraits
         mimicry.unlock(true);
         mimicry.action_attack_target = new AttackAction(DarkieTraitActions.powerMimicryAttackEffect);
         AssetManager.traits.add(mimicry);
+        reAddToPotTraitBirth(mimicry);
         addToLocale(mimicry.id, "Power Mimicry", "Will be able to copy all traits and equipment from enemies who dare to fight this person.");
         #endregion
 
@@ -1034,6 +1065,7 @@ internal static class DarkieTraits
         nullify.action_attack_target = new AttackAction(DarkieTraitActions.nullifyAttackEffect);
 
         AssetManager.traits.add(nullify);
+        reAddToPotTraitBirth(nullify);
         addToLocale(nullify.id, "Nullify", "Errorr 404, traits not found. Will slowly delete enemy traits, extremely dangerous to deal with!");
         #endregion
 
@@ -1064,6 +1096,7 @@ internal static class DarkieTraits
         question.action_attack_target = new AttackAction(DarkieTraitActions.theMysteriousTraitAttackSpecialEffect);
 
         AssetManager.traits.add(question);
+        reAddToPotTraitBirth(question);
         addToLocale(question.id, "?", "???");
         #endregion
 
@@ -1089,6 +1122,7 @@ internal static class DarkieTraits
         reviver.action_special_effect = (WorldAction)Delegate.Combine(reviver.action_special_effect, new WorldAction(DarkieTraitActions.undoZombify));
 
         AssetManager.traits.add(reviver);
+        reAddToPotTraitBirth(reviver);
         addToLocale(reviver.id, "Reviver of Dead", "He revives the zombie back to the living, the very opposite of the death bringer!");
         #endregion
 
@@ -1117,6 +1151,7 @@ internal static class DarkieTraits
         necromancer.action_attack_target = new AttackAction(DarkieTraitActions.necromancerAttackEffect);
 
         AssetManager.traits.add(necromancer);
+        reAddToPotTraitBirth(necromancer);
         addToLocale(necromancer.id, "The Dark Necromancer", "Master of dark magic. Can summon and control wild skeletons.");
         #endregion
 
@@ -1148,6 +1183,7 @@ internal static class DarkieTraits
         the_vampire.action_attack_target = new AttackAction(DarkieTraitActions.vampireAttackEffect);
 
         AssetManager.traits.add(the_vampire);
+        reAddToPotTraitBirth(the_vampire);
         addToLocale(the_vampire.id, "Vampire Lord", "The ancient terrors, once a legend. Vampire Lord can make brainwawsh enemy or turn them mad forever, but is afraid of sunlight!");
         #endregion
 
@@ -1199,6 +1235,7 @@ internal static class DarkieTraits
         //Reflect damage
         mirror_man.action_get_hit = (GetHitAction)Delegate.Combine(mirror_man.action_get_hit, new GetHitAction(DarkieTraitActions.mirrorManGetHit));
         AssetManager.traits.add(mirror_man);
+        reAddToPotTraitBirth(mirror_man);
         addToLocale(mirror_man.id, "Mirror Man", "The Mirror Man can reflect damage and clone the enemies.");
         #endregion
 
@@ -1225,6 +1262,7 @@ internal static class DarkieTraits
         timeStopper.action_attack_target = new AttackAction(DarkieTraitActions.timeStopperSpecialAttack);
         timeStopper.action_get_hit = (GetHitAction)Delegate.Combine(timeStopper.action_get_hit, new GetHitAction(DarkieTraitActions.timeStopperGetHit));
         AssetManager.traits.add(timeStopper);
+        reAddToPotTraitBirth(timeStopper);
         addToLocale(timeStopper.id, "Time Stopper", "A dangerous entity that can freeze time the enemies, unfreeze their allies or make enemies grow older faster!");
         #endregion
 
@@ -1252,6 +1290,7 @@ internal static class DarkieTraits
         electro.action_special_effect = (WorldAction)Delegate.Combine(electro.action_special_effect, new WorldAction(DarkieTraitActions.electroSparklingSpecialEffect));
         electro.action_attack_target = new AttackAction(DarkieTraitActions.electroSpecialAttack);
         AssetManager.traits.add(electro);
+        reAddToPotTraitBirth(electro);
         addToLocale(electro.id, "Electro", "Living electricity with the power to electrocute their enemies and teleporting really fast!");
         #endregion
 
@@ -1262,5 +1301,22 @@ internal static class DarkieTraits
         //Already have Locales folder, so this is no need anymore
         //LM.AddToCurrentLocale($"trait_{id}", name);
         //LM.AddToCurrentLocale($"trait_{id}_info", description);
+
+    }
+
+    /// <summary>
+    /// Traits need to be properly registered to the birth pool so the birth rate can works properly.
+    /// This may change in the future version, but for now, this is how it works
+    /// </summary>
+    /// <param name="trait"></param>
+    private static void reAddToPotTraitBirth(ActorTrait trait)
+    {
+        if (trait.rate_birth != 0)
+        {
+            for (int i = 0; i < trait.rate_birth; i++)
+            {
+                AssetManager.traits.pot_traits_birth.Add(trait);
+            }
+        }
     }
 }

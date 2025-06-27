@@ -177,7 +177,6 @@ internal static class DarkieTraitActions
             //This will help marks the ownership
             act.data.setName($"Wolf of {pSelf.a.getName()}");
             act.goTo(pSelf.current_tile);
-
             if (!listOfTamedBeasts.ContainsKey(act))
                 listOfTamedBeasts.Add(act, pSelf.a);     //add the beast and actor who spawned them into custom list
             count++;
@@ -718,7 +717,7 @@ internal static class DarkieTraitActions
 
     public static bool tamedBeastSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
-        if (!pTarget.isAlive())
+        if (pTarget == null || pTarget.a == null || !pTarget.isAlive())
             return false;
 
         Actor beast = pTarget.a;
