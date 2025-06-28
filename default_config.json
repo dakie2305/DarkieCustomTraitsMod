@@ -40,7 +40,7 @@
       "Id": "trait_titan",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/titan",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:TitanSliderConfigCallback"
@@ -49,7 +49,7 @@
       "Id": "trait_titan_shifter",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/titanShifter",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:TitanShifterSliderConfigCallback"
@@ -67,7 +67,7 @@
       "Id": "trait_idiot_savant",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/idiot",
-      "FloatVal": 5.0,
+      "FloatVal": 1.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:IdiotSliderConfigCallback"
@@ -76,7 +76,7 @@
       "Id": "trait_mountain",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/mountain",
-      "FloatVal": 5.0,
+      "FloatVal": 1.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:MountaintSliderConfigCallback"
@@ -85,7 +85,7 @@
       "Id": "trait_almighty",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/almighty",
-      "FloatVal": 5.0,
+      "FloatVal": 1.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:AlmightySliderConfigCallback"
@@ -94,7 +94,7 @@
       "Id": "trait_thor_odinson",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/thor",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:ThorSliderConfigCallback"
@@ -112,7 +112,7 @@
       "Id": "trait_shield_guy",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/shield",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:ShieldGuySliderConfigCallback"
@@ -121,7 +121,7 @@
       "Id": "trait_dej_wolf_tamer",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/beasttamer",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:WolfTamerSliderConfigCallback"
@@ -130,7 +130,7 @@
       "Id": "trait_dej_bear_tamer",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/beartamer",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:BearTamerSliderConfigCallback"
@@ -139,7 +139,7 @@
       "Id": "trait_dej_dragon_trainer",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/dragon_trainer",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:DragonTrainerSliderConfigCallback"
@@ -148,7 +148,7 @@
       "Id": "trait_medic_healer",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/medic",
-      "FloatVal": 5.0,
+      "FloatVal": 1.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:MedicSliderConfigCallback"
@@ -166,7 +166,7 @@
       "Id": "trait_master_magister",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/mage",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:MagisterSliderConfigCallback"
@@ -175,7 +175,7 @@
       "Id": "trait_wololo",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/wololo",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:WololoSliderConfigCallback"
@@ -184,7 +184,7 @@
       "Id": "trait_ant_man",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/antman",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:AntManSliderConfigCallback"
@@ -193,7 +193,7 @@
       "Id": "trait_esteemed_commander",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/commander",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:CommanderSliderConfigCallback"
@@ -202,7 +202,7 @@
       "Id": "trait_blood_of_wolf",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/bloodwerewolf",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:BloodWolfSliderConfigCallback"
@@ -211,7 +211,7 @@
       "Id": "trait_stuffed",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/cake",
-      "FloatVal": 5.0,
+      "FloatVal": 1.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:StuffedSliderConfigCallback"
@@ -220,7 +220,7 @@
       "Id": "trait_insatiable_hunger",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/hunger",
-      "FloatVal": 5.0,
+      "FloatVal": 1.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:HungerSliderConfigCallback"
@@ -229,7 +229,7 @@
       "Id": "trait_duplikate",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/Dupli-Kate",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:DuplikateSliderConfigCallback"
@@ -238,7 +238,7 @@
       "Id": "trait_pheonix",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/phoenix",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:PhoenixSliderConfigCallback"
@@ -247,7 +247,7 @@
       "Id": "trait_power_mimicry",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/mimicry",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:PowerMimicrySliderConfigCallback"
@@ -256,7 +256,7 @@
       "Id": "trait_nullify",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/nullify",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:NullifySliderConfigCallback"
@@ -265,7 +265,7 @@
       "Id": "trait_reviver_of_dead",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/Lich",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:ReviverOfDeathSliderConfigCallback"
@@ -274,7 +274,7 @@
       "Id": "trait_the_dark_necromancer",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/necromancer",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:DarkNecromancerSliderConfigCallback"
@@ -283,7 +283,7 @@
       "Id": "trait_the_vampire",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/the_vampire",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:VampireSliderConfigCallback"
@@ -292,7 +292,7 @@
       "Id": "trait_mirror_man",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/mirror_man",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:MirrorManSliderConfigCallback"
@@ -301,7 +301,7 @@
       "Id": "trait_time_stopper",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/time_stopper",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:TimeStopperSliderConfigCallback"
@@ -310,7 +310,7 @@
       "Id": "trait_the_electro",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/electro",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:ElectroSliderConfigCallback"
