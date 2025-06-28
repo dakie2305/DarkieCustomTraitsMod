@@ -786,7 +786,7 @@ internal static class DarkieTraitActions
 
     public static bool commanderSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
-        if (pTarget == null || pTarget.a == null || !pTarget.a  ())
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive())
             return false;
 
         Actor actor = pTarget.a;
