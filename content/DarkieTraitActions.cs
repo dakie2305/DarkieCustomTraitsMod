@@ -735,19 +735,28 @@ internal static class DarkieTraitActions
         }
         else
         {
-            //When reloading save or game, we need to re-populate the list tamed beasts
-            if (beast.data.custom_data_long.TryGetValue("master_id", out long masterId))
+            if (beast.data?.custom_data_long != null &&
+                beast.data.custom_data_long.TryGetValue("master_id", out long masterId))
             {
                 Actor master = World.world.units.get(masterId);
-                if (master != null && master.a.isAlive())
+                if (master != null)
                 {
-                    listOfTamedBeasts.Add(beast, master);
-                    DarkieTraitsMain.LogInfo($"[Darkie TamedBeasts] Re-added beast {beast.getName()} with master {master.getName()}");
-                    beast.kingdom = master.kingdom;
+                    if (listOfTamedBeasts == null)
+                    {
+                        return false;
+                    }
+                    listOfTamedBeasts[beast] = master;
+                    string beastName = beast.getName() ?? "<null>";
+                    string masterName = master.getName() ?? "<null>";
+                    DarkieTraitsMain.LogInfo($"[TamedBeasts] Re-added beast {beastName} with master {masterName}");
+                    if (master.kingdom != null)
+                        beast.kingdom = master.kingdom;
+
                     return true;
                 }
             }
         }
+
         return false;
     }
 
