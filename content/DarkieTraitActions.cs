@@ -642,7 +642,7 @@ internal static class DarkieTraitActions
 
     public static bool thorSparklingSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
-        if (!pTarget.isAlive())
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive())
             return false;
         if (!pTarget.a.hasTrait("fire_proof"))
             pTarget.a.addTrait("fire_proof");
@@ -670,8 +670,7 @@ internal static class DarkieTraitActions
 
     public static bool nightCrawlerSparklingSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
-        if (!pTarget.isAlive())
-            return false;
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         pTarget.a.spawnParticle(UnityEngine.Color.red);
         pTarget.a.spawnParticle(UnityEngine.Color.black);
         pTarget.a.spawnParticle(UnityEngine.Color.red);
@@ -686,7 +685,7 @@ internal static class DarkieTraitActions
 
     public static bool mageSparklingSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
-        if (!pTarget.isAlive())
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive())
             return false;
         pTarget.a.spawnParticle(UnityEngine.Color.white);
         pTarget.a.spawnParticle(UnityEngine.Color.cyan);
@@ -717,7 +716,7 @@ internal static class DarkieTraitActions
 
     public static bool tamedBeastSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
-        if (pTarget == null || pTarget.a == null || !pTarget.isAlive())
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive())
             return false;
 
         Actor beast = pTarget.a;
@@ -740,7 +739,7 @@ internal static class DarkieTraitActions
             if (beast.data.custom_data_long.TryGetValue("master_id", out long masterId))
             {
                 Actor master = World.world.units.get(masterId);
-                if (master != null && master.isAlive())
+                if (master != null && master.a.isAlive())
                 {
                     listOfTamedBeasts.Add(beast, master);
                     DarkieTraitsMain.LogInfo($"[Darkie TamedBeasts] Re-added beast {beast.getName()} with master {master.getName()}");
@@ -754,7 +753,7 @@ internal static class DarkieTraitActions
 
     public static bool medicSuperHealing(BaseSimObject pTarget, WorldTile pTile = null)
     {
-        if (!pTarget.isAlive())
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive())
             return false;
         pTarget.a.spawnParticle(Toolbox.color_heal);
         pTarget.a.spawnParticle(Toolbox.color_heal);
@@ -787,7 +786,7 @@ internal static class DarkieTraitActions
 
     public static bool commanderSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
-        if (!pTarget.isAlive())
+        if (pTarget == null || pTarget.a == null || !pTarget.a  ())
             return false;
 
         Actor actor = pTarget.a;
@@ -829,7 +828,7 @@ internal static class DarkieTraitActions
 
     public static bool livingHellEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
-        if (!pTarget.isAlive())
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive())
             return false;
         pTarget.a.spawnParticle(Toolbox.color_plague);
         pTarget.a.spawnParticle(Toolbox.color_plague);
@@ -945,7 +944,7 @@ internal static class DarkieTraitActions
 
     public static bool clonePowerSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
-        if (!pTarget.isAlive())
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive())
             return false;
         if (pTarget.a.hasTrait("duplikate_clone"))
         {
@@ -992,7 +991,7 @@ internal static class DarkieTraitActions
 
     public static bool pheonixPowerSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
-        if (!pTarget.isAlive())
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive())
             return false;
         if (Randy.randomChance(0.2f))
         {
@@ -1028,7 +1027,7 @@ internal static class DarkieTraitActions
 
     public static bool reviveSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
     {
-        if (!pTarget.isAlive())
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive())
             return false;
         // Define a mapping from zombie unit IDs to their living counterparts.
         var zombieToLivingUnitMap = new Dictionary<string, string>
@@ -1099,7 +1098,7 @@ internal static class DarkieTraitActions
 
     public static bool undoZombify(BaseSimObject pTarget, WorldTile pTile = null)
     {
-        if (!pTarget.isAlive())
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive())
             return false;
         pTarget.a.removeTrait("infected");
         if (Randy.randomChance(0.2f))
@@ -1255,7 +1254,7 @@ internal static class DarkieTraitActions
 
     public static bool electroSparklingSpecialEffect(BaseSimObject pTarget, WorldTile pTile = null)
     {
-        if (!pTarget.isAlive())
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive())
             return false;
         pTarget.a.spawnParticle(UnityEngine.Color.yellow);
         pTarget.a.spawnParticle(UnityEngine.Color.yellow);
