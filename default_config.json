@@ -4,7 +4,7 @@
       "Id": "trait_turtleguy", //Make sure this one exists in locale
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/turtleguy",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:TurtleGuySliderConfigCallback"
@@ -13,7 +13,7 @@
       "Id": "trait_flash",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/flash",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:FlashSliderConfigCallback"
@@ -22,7 +22,7 @@
       "Id": "trait_berserker",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/berserker",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:BerserkerSliderConfigCallback"
@@ -31,7 +31,7 @@
       "Id": "trait_hawkeye",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/hawkeye",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:HawkEyeSliderConfigCallback"
@@ -58,7 +58,7 @@
       "Id": "trait_wise_old_one",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/old_wise",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:WiseOldOneSliderConfigCallback"
@@ -103,7 +103,7 @@
       "Id": "trait_nightcrawler",
       "Type": "SLIDER",
       "IconPath": "ui/Icons/actor_traits/darkie_traits/nightcrawler",
-      "FloatVal": 5.0,
+      "FloatVal": 0.0,
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:NightCrawlerSliderConfigCallback"
