@@ -1281,12 +1281,11 @@ internal static class DarkieTraitActions
     #region get hit action
     public static bool titanShifterGetHit(BaseSimObject pSelf, BaseSimObject pAttackedBy, WorldTile pTile = null)
     {
-        DarkieTraitsMain.LogInfo($"Test");
         //Shockwave
         //Only spawn lightning effect without the actual damage
         EffectsLibrary.spawnAtTile("fx_lightning_medium", pSelf.current_tile, 0.25f);
         World.world.applyForceOnTile(pSelf.current_tile, 3, 0.5f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
-        EffectsLibrary.spawnExplosionWave(pSelf.current_tile.posV3, 3f, 0.5f);
+        EffectsLibrary.spawnExplosionWave(pSelf.current_tile.posV3, 1f, 0.5f);
         //Add effect titan shifter, it will add trait titan and remove trait titan on finish
         if (!pSelf.a.hasStatus("titan_shifter_effect"))
         {
@@ -1301,7 +1300,7 @@ internal static class DarkieTraitActions
     public static bool medicGetHit(BaseSimObject pSelf, BaseSimObject pAttackedBy, WorldTile pTile = null)
     {
         //Heal themselves on being hit
-        if (Randy.randomChance(0.4f) && (pSelf.a.data.health < pSelf.a.getMaxHealth()))
+        if (Randy.randomChance(0.1f) && (pSelf.a.data.health < pSelf.a.getMaxHealth()/2))
         {
             pSelf.a.restoreHealth(10);
             pSelf.a.spawnParticle(Toolbox.color_heal);
