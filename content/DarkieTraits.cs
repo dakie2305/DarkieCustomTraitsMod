@@ -1,8 +1,9 @@
 ﻿using NeoModLoader.api.attributes;
-using System.Collections.Generic;
-using UnityEngine;
 using NeoModLoader.General;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 
 namespace DarkieCustomTraits.Content;
@@ -19,6 +20,7 @@ internal static class DarkieTraits
     private static int MediumChance = 30;
     private static int ExtraChance = 45;
     private static int HighChance = 75;
+    private static List<ActorTrait> myListTraits = new();
 
     [Hotfixable]
     public static void Init()
@@ -64,7 +66,6 @@ internal static class DarkieTraits
         turtleGuyTrait.type = TraitType.Negative;
         List<string> oppositeArrTur = new () { "flash", "berserker" };
         turtleGuyTrait.addOpposites(oppositeArrTur);
-        //turtleGuyTrait.action_death = (WorldAction)Delegate.Combine(turtleGuyTrait.action_death, new WorldAction(ActionLibrary.fireDropsSpawn));
         // Add trait to trait library
         AssetManager.traits.add(turtleGuyTrait);
         reAddToPotTraitBirth(turtleGuyTrait);
@@ -1292,7 +1293,9 @@ internal static class DarkieTraits
         addToLocale(electro.id, "Electro", "Living electricity with the power to electrocute their enemies and teleporting really fast!");
         #endregion
 
+        populateListOppositeTraits();
     }
+
 
     private static void addToLocale(string id, string name, string description)
     {
@@ -1309,6 +1312,8 @@ internal static class DarkieTraits
     /// <param name="trait"></param>
     private static void reAddToPotTraitBirth(ActorTrait trait)
     {
+        if (!myListTraits.Contains(trait))
+            myListTraits.Add(trait);
         if (trait.rate_birth != 0)
         {
             for (int i = 0; i < trait.rate_birth; i++)
@@ -1317,4 +1322,35 @@ internal static class DarkieTraits
             }
         }
     }
+
+    /// <summary>
+    /// Need to fill in list trait's opposite_traits
+    /// </summary>
+    private static void populateListOppositeTraits()
+    {
+        if (myListTraits.Any())
+        {
+            foreach(var trait in myListTraits)
+            {
+                List<string>? curentTraitOppositeList = trait.opposite_list;
+                if (curentTraitOppositeList.Any())
+                {
+                    // Ensure opposite_traits list exists
+                    if (trait.opposite_traits == null)
+                        trait.opposite_traits = new();
+                    foreach (var opposite in trait.opposite_list)
+                    {
+                        var matchedTrait = myListTraits.FirstOrDefault(t => t.id == opposite);
+                        if (matchedTrait != null && !trait.opposite_traits.Contains(matchedTrait))
+                        {
+                            trait.opposite_traits.Add(matchedTrait);
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+
 }
