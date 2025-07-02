@@ -39,7 +39,7 @@ internal static class DarkieTraits
         };
         // Add trait group to trait group library
         AssetManager.trait_groups.add(group);
-        LM.AddToCurrentLocale($"{group.name}", $"Darkie Traits");
+        //LM.AddToCurrentLocale($"{group.name}", $"Darkie Traits");
     }
 
     private static void loadCustomTrait()
