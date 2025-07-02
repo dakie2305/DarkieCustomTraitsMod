@@ -187,7 +187,7 @@ internal static class DarkieTraits
         titanTrait.type = TraitType.Positive;
         titanTrait.unlock(true);
 
-        List<string> oppositesTitan = new() { "titan_shifter", "ant_man" };
+        List<string> oppositesTitan = new() { "ant_man" };
         titanTrait.addOpposites(oppositesTitan);
 
         titanTrait.action_attack_target = new AttackAction(DarkieTraitActions.causeShockwave);
@@ -218,7 +218,7 @@ internal static class DarkieTraits
         titanShifterTrait.type = TraitType.Positive;
         titanShifterTrait.unlock(true);
 
-        List<string> oppositesTitanShifter = new() { "titan", "ant_man" };
+        List<string> oppositesTitanShifter = new() { "ant_man" };
         titanShifterTrait.addOpposites(oppositesTitanShifter);
 
         //titanShifterTrait.action_attack_target = new AttackAction(DarkieTraitActions.titanShifterAttackEffect);
