@@ -177,6 +177,9 @@
   "trait_the_electro": "電瞬",
   "trait_the_electro_info": "對敵人處以電刑!還可以進行快速傳送",
   "trait_the_electro_info_2": "",
+  "trait_the_silencer": "Silencer",
+  "trait_the_silencer_info": "You have speak your last word. Prepare to shut up!!",
+  "trait_the_silencer_info_2": "Can summon Speechless Sword when low on health!",
 
   "NML_AUTHENTICATION": "NML AUTHENTICATION"
 }

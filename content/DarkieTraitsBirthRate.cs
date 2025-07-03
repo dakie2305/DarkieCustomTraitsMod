@@ -50,6 +50,7 @@ namespace DarkieCustomTraits.Content
         public static int MirrorManRate { get; set; } = Rare;
         public static int TimeStopperRate { get; set; } = Rare;
         public static int ElectroRate { get; set; } = Rare;
+        public static int SilencerRate { get; set; } = Rare;
 
 
         // This method will be called when config value set. ATTENTION: It might be called when game start.
@@ -260,6 +261,12 @@ namespace DarkieCustomTraits.Content
         {
             ElectroRate = Convert.ToInt32(pCurrentValue);
             DarkieTraitsMain.LogInfo($"Set birth rate of Electro trait to '{ElectroRate}'%");
+        }
+
+        public static void SilencerSliderConfigCallback(float pCurrentValue)
+        {
+            SilencerRate = Convert.ToInt32(pCurrentValue);
+            DarkieTraitsMain.LogInfo($"Set birth rate of Silencer trait to '{SilencerRate}'%");
         }
 
     }

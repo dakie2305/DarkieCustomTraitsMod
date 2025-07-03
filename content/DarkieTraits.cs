@@ -27,6 +27,7 @@ internal static class DarkieTraits
     {
         loadCustomTraitGroup();
         loadCustomTrait();
+        populateListOppositeTraits();
     }
 
     private static void loadCustomTraitGroup()
@@ -1254,7 +1255,7 @@ internal static class DarkieTraits
         timeStopper.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 0.1f);
         timeStopper.base_stats.set(CustomBaseStatsConstant.MultiplierMana, 0.1f);
         timeStopper.base_stats.set(CustomBaseStatsConstant.MultiplierStamina, 0.1f);
-
+        timeStopper.addOpposites(new List<string> { "the_silencer", "the_electro" });
         timeStopper.type = TraitType.Positive;
         timeStopper.unlock(true);
 
@@ -1283,7 +1284,7 @@ internal static class DarkieTraits
         electro.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, 0.5f);
         electro.base_stats.set(CustomBaseStatsConstant.ConstructionSpeed, 50f);
         electro.base_stats.set(CustomBaseStatsConstant.MultiplierStamina, 0.1f);
-
+        electro.addOpposites(new List<string> { "time_stopper", "the_silencer" });
         electro.type = TraitType.Positive;
         electro.unlock(true);
         electro.action_special_effect = (WorldAction)Delegate.Combine(electro.action_special_effect, new WorldAction(DarkieTraitActions.electroSparklingSpecialEffect));
@@ -1293,11 +1294,37 @@ internal static class DarkieTraits
         addToLocale(electro.id, "Electro", "Living electricity with the power to electrocute their enemies and teleporting really fast!");
         #endregion
 
-        populateListOppositeTraits();
+        //Silencer, can mute other and summon sword
+        #region silencer
+        ActorTrait silencer = new ActorTrait()
+        {
+            id = "the_silencer",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/silencer",
+            rate_birth = DarkieTraitsBirthRate.SilencerRate,
+            rate_inherit = DarkieTraitsBirthRate.SilencerRate,
+            rarity = Rarity.R3_Legendary,
+        };
+        silencer.addOpposites(new List<string> { "time_stopper", "the_electro" });
+        silencer.base_stats = new BaseStats();
+        silencer.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.5f);
+        silencer.base_stats.set(CustomBaseStatsConstant.MultiplierStamina, 0.1f);
+        silencer.base_stats.set(CustomBaseStatsConstant.MultiplierMana, 0.3f);
+
+        silencer.type = TraitType.Positive;
+        silencer.unlock(true);
+
+        silencer.action_attack_target = new AttackAction(DarkieTraitActions.silencerSpecialAttack);
+
+        AssetManager.traits.add(silencer);
+        reAddToPotTraitBirth(silencer);
+        addToLocale(silencer.id, "Silencer", "You have speak your last word. Prepare to shut up!", "Can summon Speechless Sword when low on health!");
+        #endregion
+
     }
 
 
-    private static void addToLocale(string id, string name, string description)
+    private static void addToLocale(string id, string name, string description, string description2 = "")
     {
         //Already have Locales folder, so this is no need anymore
         //LM.AddToCurrentLocale($"trait_{id}", name);

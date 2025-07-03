@@ -314,6 +314,15 @@
       "MaxFloatVal": 100.0,
       "MinFloatVal": 0.0,
       "Callback": "DarkieTraitsBirthRate:ElectroSliderConfigCallback"
+    },
+    {
+      "Id": "trait_the_silencer",
+      "Type": "SLIDER",
+      "IconPath": "ui/Icons/actor_traits/darkie_traits/silencer",
+      "FloatVal": 0.0,
+      "MaxFloatVal": 100.0,
+      "MinFloatVal": 0.0,
+      "Callback": "DarkieTraitsBirthRate:SilencerSliderConfigCallback"
     }
   ]
 }

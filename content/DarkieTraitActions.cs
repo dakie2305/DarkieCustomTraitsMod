@@ -608,7 +608,7 @@ internal static class DarkieTraitActions
         if (Randy.randomChance(0.09f))
         {
             //Get all units  in the area
-            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 2);
+            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 1);
             if (allClosestUnits.Any())
             {
                 //Spawn cool effect
@@ -624,6 +624,44 @@ internal static class DarkieTraitActions
         if (Randy.randomChance(0.1f) && !pTarget.a.hasStatus("custom_electrocuted_effect"))
         {
             pTarget.a.addStatusEffect("custom_electrocuted_effect");
+        }
+        return true;
+    }
+
+
+    internal static bool silencerSpecialAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+
+        if (Randy.randomChance(0.01f))
+        {
+            //Get all units  in the area
+            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 1);
+            if (allClosestUnits.Any())
+            {
+                //Spawn cool effect
+                foreach (var unit in allClosestUnits)
+                {
+                    if (unit.kingdom != pSelf.kingdom && unit.a != pSelf.a && !unit.a.hasStatus("custom_muted_effect"))
+                    {
+                        unit.a.addStatusEffect("custom_muted_effect");
+                    }
+                }
+            }
+        }
+        if (Randy.randomChance(0.1f) && !pTarget.a.hasStatus("custom_muted_effect"))
+        {
+            pTarget.a.addStatusEffect("custom_muted_effect");
+        }
+
+        //low health, summon weapon
+        if (pSelf.a.data.health < pSelf.a.getMaxHealth() / 4)
+        {
+            var weapon = AssetManager.items.get("speechless_sword");
+            var pData = World.world.items.generateItem(pItemAsset: weapon);
+            var pSlot = pSelf.a.equipment.getSlot(EquipmentType.Weapon);
+            pSlot.setItem(pData, pSelf.a);
+            pSelf.setStatsDirty();
         }
         return true;
     }
