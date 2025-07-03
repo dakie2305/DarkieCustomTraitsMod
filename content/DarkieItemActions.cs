@@ -22,10 +22,10 @@ namespace DarkieCustomTraits.Content
             {
                 teleportToSpecificLocation(pSelf, pSelf, pTarget.a.tile_target);
             }
-            if (Randy.randomChance(0.1f))
+            if (Randy.randomChance(0.01f))
             {
                 //Get all units from other kingdoms in the area
-                var allClosestUnits = Finder.getUnitsFromChunk(pTile, 2);
+                var allClosestUnits = Finder.getUnitsFromChunk(pTile, 1);
                 if (allClosestUnits.Any())
                 {
                     foreach (var unit in allClosestUnits)
@@ -68,6 +68,7 @@ namespace DarkieCustomTraits.Content
         public static bool thorWeaponAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
         {
             if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+            if (pSelf == null || pSelf.a == null || !pSelf.a.isAlive()) return false;
             //only the worthy can wield the weapon
             if (pSelf.a != null)
             {
@@ -80,14 +81,14 @@ namespace DarkieCustomTraits.Content
                 }
                 if (pSelf.a.asset.banner_id != "human" && pSelf.a.asset.banner_id != "elf" && pSelf.a.asset.banner_id != "orc" && pSelf.a.asset.banner_id != "dwarf")
                 {
-                    ActionLibrary.castLightning(null, pSelf, null);
+                    ActionLibrary.castLightning(pSelf, pSelf, null);
                     pSelf.a.setHealth(0, false);
                     return false;
                 }
             }
 
             //cast ligtning
-            if (Randy.randomChance(0.3f))
+            if (Randy.randomChance(0.01f))
             {
                 //Get all units from other kingdoms in the area
                 var allClosestUnits = Finder.getUnitsFromChunk(pTile, 1);

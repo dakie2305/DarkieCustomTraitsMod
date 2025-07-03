@@ -96,7 +96,7 @@ internal static class DarkieTraitActions
             if (Randy.randomChance(0.3f))
                 World.world.applyForceOnTile(pTarget.current_tile, 3, 0.5f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
             //Small chance of electrocute everyone around
-            if (Randy.randomChance(0.1f)) //Percent
+            if (Randy.randomChance(0.01f)) //Percent
             {
                 //Get all units  in the area
                 var allClosestUnits = Finder.getUnitsFromChunk(pTarget.current_tile, 1);
@@ -136,7 +136,7 @@ internal static class DarkieTraitActions
             ActionLibrary.castShieldOnHimself(pSelf, pSelf, pTile);
         }
         //Rare chance to cast shield on ally of same kingdom
-        if (Randy.randomChance(0.1f))
+        if (Randy.randomChance(0.01f))
         {
             //Get all units  in the area
             var allClosestUnits = Finder.getUnitsFromChunk(pTile, 3);
@@ -447,7 +447,7 @@ internal static class DarkieTraitActions
         //ulti
         if (Randy.randomChance(0.05f))
         {
-            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 3);
+            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 1);
             if (allClosestUnits.Any())
             {
                 string text = "fx_YOYO_effect";
@@ -466,9 +466,9 @@ internal static class DarkieTraitActions
             }
         }
 
-        if (Randy.randomChance(0.2f))
+        if (Randy.randomChance(0.01f))
         {
-            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 3);
+            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 1);
             if (allClosestUnits.Any())
             {
                 foreach (var unit in allClosestUnits)
@@ -550,10 +550,10 @@ internal static class DarkieTraitActions
     {
         if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         bool flagCreateMirroActor = true;
-        if (Randy.randomChance(0.3f))
+        if (Randy.randomChance(0.01f))
         {
             //Get all units  in the area
-            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 2);
+            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 1);
             if (allClosestUnits.Any())
             {
                 foreach (var unit in allClosestUnits)
@@ -578,7 +578,7 @@ internal static class DarkieTraitActions
     public static bool timeStopperSpecialAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
         if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
-        if (Randy.randomChance(0.09f))
+        if (Randy.randomChance(0.01f))
         {
             //Get all units  in the area
             var allClosestUnits = Finder.getUnitsFromChunk(pTile, 2);
@@ -617,7 +617,7 @@ internal static class DarkieTraitActions
     public static bool electroSpecialAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
         if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
-        if (Randy.randomChance(0.09f))
+        if (Randy.randomChance(0.01f))
         {
             //Get all units  in the area
             var allClosestUnits = Finder.getUnitsFromChunk(pTile, 1);
@@ -820,7 +820,7 @@ internal static class DarkieTraitActions
         if (!pTarget.a.hasTrait("immune"))
             pTarget.a.addTrait("immune");
 
-        if (Randy.randomChance(0.2f))
+        if (Randy.randomChance(0.01f))
         {
             //Get all units  in the area
             var allClosestUnits = Finder.getUnitsFromChunk(pTile, 1);
@@ -865,7 +865,7 @@ internal static class DarkieTraitActions
             return false;
 
         // Try to convert nearby allies to warriors
-        if (Randy.randomChance(0.1f))
+        if (Randy.randomChance(0.01f))
         {
             var nearbyUnits = Finder.getUnitsFromChunk(pTile, 3);
             foreach (var unit in nearbyUnits)
@@ -1160,10 +1160,10 @@ internal static class DarkieTraitActions
         if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive())
             return false;
         pTarget.a.removeTrait("infected");
-        if (Randy.randomChance(0.2f))
+        if (Randy.randomChance(0.02f))
         {
             //Get all units  in the area
-            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 3);
+            var allClosestUnits = Finder.getUnitsFromChunk(pTile, 1);
             if (allClosestUnits.Any())
             {
                 foreach (var unit in allClosestUnits)
@@ -1192,7 +1192,7 @@ internal static class DarkieTraitActions
             pTarget.a.removeTrait("cursed");
         }
         //convert all nearby skeletons to his side
-        if (Randy.randomChance(0.4f))
+        if (Randy.randomChance(0.04f))
         {
             //Get all units  in the area
             var allClosestUnits = Finder.getUnitsFromChunk(pTile, 1);
