@@ -519,10 +519,13 @@ internal static class DarkieTraitActions
                 var pData = World.world.items.generateItem(pItemAsset: dagger);
                 if (pData != null)
                 {
-                    var pSlot = pSelf.a.equipment.getSlot(EquipmentType.Weapon);
-                    if (pSlot != null)
+                    if (pSelf.a.equipment != null)
                     {
-                        pSlot.setItem(pData, pSelf.a);
+                        var pSlot = pSelf.a.equipment.getSlot(EquipmentType.Weapon);
+                        if (pSlot != null)
+                        {
+                            pSlot.setItem(pData, pSelf.a);
+                        }
                     }
                 }
             }
@@ -531,7 +534,7 @@ internal static class DarkieTraitActions
         {
             pTarget.a.restoreHealth(10);
         }
-        if (Randy.randomChance(0.1f))
+        if (Randy.randomChance(0.1f) && pSelf.kingdom != null)
         {
             pTarget.kingdom = pSelf.kingdom;
             pTarget.a.addTrait("chained");
