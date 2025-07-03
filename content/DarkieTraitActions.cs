@@ -509,6 +509,7 @@ internal static class DarkieTraitActions
     public static bool vampireAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
     {
         if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        if (pSelf == null || pSelf.a == null || !pSelf.a.isAlive()) return false;
         if (!pSelf.a.hasWeapon() && !pSelf.a.asset.id.Equals("vampire_bat"))
         {
             //If no weapon, give teleport dagger
@@ -522,7 +523,6 @@ internal static class DarkieTraitActions
                     if (pSlot != null)
                     {
                         pSlot.setItem(pData, pSelf.a);
-                        pSelf.setStatsDirty();
                     }
                 }
             }
@@ -1328,6 +1328,9 @@ internal static class DarkieTraitActions
     #region get hit action
     public static bool titanShifterGetHit(BaseSimObject pSelf, BaseSimObject pAttackedBy, WorldTile pTile = null)
     {
+        if (pSelf == null || pSelf.a == null || !pSelf.a.isAlive()) return false;
+        if (pAttackedBy == null || pAttackedBy.a == null || !pAttackedBy.a.isAlive()) return false;
+
         //Shockwave
         //Only spawn lightning effect without the actual damage
         EffectsLibrary.spawnAtTile("fx_lightning_medium", pSelf.current_tile, 0.25f);
@@ -1346,6 +1349,9 @@ internal static class DarkieTraitActions
 
     public static bool medicGetHit(BaseSimObject pSelf, BaseSimObject pAttackedBy, WorldTile pTile = null)
     {
+        if (pSelf == null || pSelf.a == null || !pSelf.a.isAlive()) return false;
+        if (pAttackedBy == null || pAttackedBy.a == null || !pAttackedBy.a.isAlive()) return false;
+
         //Heal themselves on being hit
         if (Randy.randomChance(0.1f) && (pSelf.a.data.health < pSelf.a.getMaxHealth()/2))
         {
@@ -1357,6 +1363,9 @@ internal static class DarkieTraitActions
 
     public static bool antManGetHit(BaseSimObject pSelf, BaseSimObject pAttackedBy, WorldTile pTile = null)
     {
+        if (pSelf == null || pSelf.a == null || !pSelf.a.isAlive()) return false;
+        if (pAttackedBy == null || pAttackedBy.a == null || !pAttackedBy.a.isAlive()) return false;
+
         //shrink down size
         //Add effect to transform into ant man. After effect end, actor will be back to normal size
         if (!pSelf.a.hasStatus("ant_man_effect"))
@@ -1366,7 +1375,10 @@ internal static class DarkieTraitActions
 
     public static bool mirrorManGetHit(BaseSimObject pSelf, BaseSimObject pAttackedBy, WorldTile pTile = null)
     {
-        if (Randy.randomChance(0.5f))
+        if (pSelf == null || pSelf.a == null || !pSelf.a.isAlive()) return false;
+        if (pAttackedBy == null || pAttackedBy.a == null || !pAttackedBy.a.isAlive()) return false;
+
+        if (Randy.randomChance(0.3f))
         {
             pAttackedBy.getHit(15, true, AttackType.Weapon, null, true, false);    //reflect a bit of damage back to enemies
         }
@@ -1375,6 +1387,9 @@ internal static class DarkieTraitActions
 
     public static bool timeStopperGetHit(BaseSimObject pSelf, BaseSimObject pAttackedBy, WorldTile pTile = null)
     {
+        if (pSelf == null || pSelf.a == null || !pSelf.a.isAlive()) return false;
+        if (pAttackedBy == null || pAttackedBy.a == null || !pAttackedBy.a.isAlive()) return false;
+
         if (Randy.randomChance(0.2f) && !pAttackedBy.a.hasStatus("time_stop_effect"))
         {
             pAttackedBy.a.addStatusEffect("time_stop_effect");
