@@ -12,6 +12,8 @@
   "ice_sword_description": "Lưỡi kiếm rèn từ kỷ băng hà lạnh giá, có thể đóng băng mọi kẻ địch.",
   "Glass Sword": "Pha Li Kiếm",
   "glass_sword_description": "Lưỡi kiếm nguy hiểm bậc nhất, một vết chém có thể làm kẻ địch chậm lại và chảy máu đến tử nạn.",
+  "Speechless Sword": "Vô Thanh Kiếm",
+  "speechless_sword_description": "Một lưỡi kiếm quỷ tha ma bắt có thể khóa mõm đối thủ, trong khi làm kẻ địch chảy máu đến tử nạn.",
   //DarkieStatusEffects(.locale_id .locale_description)
   "status_title_titan_shifter_effect": "Dòng Máu Đại Hình",
   "status_description_titan_shifter_effect": "Một trong những quốc trưởng độc tài nguy hiểm muốn đòi tự do bằng cách tàn phá thế giới!",
@@ -33,6 +35,9 @@
   "status_description_time_stop_ultimate_effect": "Người này vừa dùng kỹ năng đóng băng thời gian tất cả kẻ địch xung quanh!",
   "status_title_custom_electrocuted_effect": "Bị Giật Điện",
   "status_description_custom_electrocuted_effect": "Đm đau quá, không di chuyển được nữa!",
+  "status_title_custom_muted_effect": "Khóa Mõm",
+  "status_description_custom_muted_effect": "Hmmm... hmmm! Hmmmm!",
+
   //DarkieTraits(group.name)
   "trait_group_darkie": "Traits của Darkie",
   "darkie_birth_rate_config": "Thay Đổi Tuần Suất Xuất Hiện",

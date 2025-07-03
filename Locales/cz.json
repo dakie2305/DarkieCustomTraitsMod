@@ -17,7 +17,8 @@
   "ice_sword_description": "永霜铸成的刃，冻结所有接触的生物",
   "Glass Sword": "玻璃利刃",
   "glass_sword_description": "脆弱且致命，每一次划伤可导致迟缓和流血",
-
+  "Speechless Sword": "Speechless Sword",
+  "speechless_sword_description": "A god forsaken blade that can shut the enemies mouth while inflict bleeding on every slash.",
   //DarkieStatusEffects(.locale_id .locale_description)
   "status_title_titan_shifter_effect": "巨人化",
   "status_description_titan_shifter_effect": "会摧毁一切的巨人化!",
@@ -39,6 +40,8 @@
   "status_description_time_stop_ultimate_effect": "只是停止了周围敌人的时间而已",
   "status_title_custom_electrocuted_effect": "电刑",
   "status_description_custom_electrocuted_effect": "嗷嚎嗷，被电疼得不能动了!",
+  "status_title_custom_muted_effect": "Muted",
+  "status_description_custom_muted_effect": "Hmmm... hmmm! Me can't talk!",
 
   //DarkieTraits(group.name)
   "trait_group_darkie": "Darkie的自制特质",

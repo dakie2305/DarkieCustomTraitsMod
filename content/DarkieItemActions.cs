@@ -156,6 +156,23 @@ namespace DarkieCustomTraits.Content
             return true;
         }
 
+        public static bool speechlessSwordAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
+        {
+            if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+            if (Randy.randomChance(0.1f))
+            {
+                if (!pTarget.a.hasStatus("bleeding_effect"))
+                {
+                    pTarget.a.addStatusEffect("bleeding_effect");
+                }
+                if (!pTarget.a.hasStatus("custom_muted_effect"))
+                {
+                    pTarget.a.addStatusEffect("custom_muted_effect");
+                }
+            }
+            return true;
+        }
+
         #endregion
     }
 }

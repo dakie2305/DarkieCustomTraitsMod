@@ -12,6 +12,8 @@
   "ice_sword_description": "A blade forged from eternal frost. Freezes all it touches.",
   "Glass Sword": "Glass Sword",
   "glass_sword_description": "A deadly blade that can slow and inflict bleeding on every slash.",
+  "Speechless Sword": "Speechless Sword",
+  "speechless_sword_description": "A god forsaken blade that can shut the enemies mouth while inflict bleeding on every slash.",
   //DarkieStatusEffects(.locale_id .locale_description)
   "status_title_titan_shifter_effect": "Titan Shifter",
   "status_description_titan_shifter_effect": "One of the most dangerous titan shifter that will wreck everything!",
@@ -33,6 +35,8 @@
   "status_description_time_stop_ultimate_effect": "This person just time-stopped all enemies around them!",
   "status_title_custom_electrocuted_effect": "Electrocuted",
   "status_description_custom_electrocuted_effect": "Ow ow this hurts so much I can not move!",
+  "status_title_custom_muted_effect": "Muted",
+  "status_description_custom_muted_effect": "Hmmm... hmmm! Me can't talk!",
   //DarkieTraits(group.name)
   "trait_group_darkie": "Darkie Traits",
   "darkie_birth_rate_config": "Change Trait's Appearance Percent",

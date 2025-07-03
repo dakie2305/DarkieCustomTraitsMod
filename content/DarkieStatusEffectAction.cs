@@ -58,5 +58,11 @@ namespace DarkieCustomTraits.Content
             return true;
         }
 
+        internal static bool mutedStatusSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+        {
+            if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+            pTarget.a.addStatusEffect("spell_silence", 15f);
+            return true;
+        }
     }
 }

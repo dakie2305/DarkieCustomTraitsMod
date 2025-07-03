@@ -177,6 +177,39 @@ namespace DarkieCustomTraits.Content
             addToLocale(glassSword.id, glassSword.translation_key, "A deadly blade that can slow and inflict bleeding on every slash.");
             #endregion
 
+            #region speechless sword
+            ItemAsset speechlessSword = AssetManager.items.clone("speechless_sword", "$weapon");
+            speechlessSword.id = "speechless_sword";
+            speechlessSword.material = "adamantine";
+            speechlessSword.translation_key = "Speechless Sword";
+            speechlessSword.equipment_subtype = "speechless_sword";
+            speechlessSword.group_id = "sword";
+            speechlessSword.animated = false;
+            speechlessSword.unlock(true);
+
+            speechlessSword.name_templates = AssetLibrary<EquipmentAsset>.l<string>("flame_sword_name");
+
+            speechlessSword.base_stats = new();
+            speechlessSword.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.25f);
+            speechlessSword.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, 0.35f);
+
+            speechlessSword.equipment_value = 5000;
+            speechlessSword.special_effect_interval = 0.1f;
+            speechlessSword.quality = Rarity.R3_Legendary;
+            speechlessSword.equipment_type = EquipmentType.Weapon;
+            speechlessSword.name_class = "item_class_weapon";
+
+            speechlessSword.path_slash_animation = "effects/slashes/glassSwordEffect";
+            speechlessSword.path_icon = $"{PathIcon}/icon_speechless_sword";
+            speechlessSword.path_gameplay_sprite = $"weapons/{speechlessSword.id}";
+            speechlessSword.gameplay_sprites = getWeaponSprites(speechlessSword.id);
+
+            speechlessSword.action_attack_target = new AttackAction(DarkieItemActions.speechlessSwordAttack);
+
+            AssetManager.items.list.AddItem(speechlessSword);
+            addToLocale(speechlessSword.id, speechlessSword.translation_key, "A god forsaken blade that can shut the enemies mouth while inflict bleeding on every slash.");
+            #endregion
+
             addWeaponsToWorld();
 
         }

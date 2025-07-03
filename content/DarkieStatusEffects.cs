@@ -411,6 +411,43 @@ namespace DarkieCustomTraits.Content
             AssetManager.status.add(electrocutedEffect);
             addToLocale(electrocutedEffect.id, "Electrocuted", "Ow ow this hurts so much I can not move!");
             #endregion
+
+            #region muted effect
+            var mutedEffect = new StatusAsset()
+            {
+                id = "custom_muted_effect",
+                render_priority = 5,
+                duration = 15f,
+                animated = true,
+                is_animated_in_pause = true,
+                can_be_flipped = true,
+                use_parent_rotation = false,
+                removed_on_damage = false,
+                cancel_actor_job = false,
+                need_visual_render = true,
+                scale = 1.0f,
+            };
+
+            mutedEffect.locale_id = $"status_title_{mutedEffect.id}";
+            mutedEffect.locale_description = $"status_description_{mutedEffect.id}";
+            mutedEffect.tier = StatusTier.Advanced;
+
+            mutedEffect.texture = "fx_coolest_purple"; // Make sure this folder exists in effects/
+            mutedEffect.path_icon = "ui/Icons/iconMuted";
+
+            mutedEffect.material_id = "mat_world_object_lit";
+            mutedEffect.material = material;
+
+            mutedEffect.base_stats = new();
+            mutedEffect.base_stats.set(CustomBaseStatsConstant.Mana, -99999f);
+            mutedEffect.base_stats.set(CustomBaseStatsConstant.Happiness, -999f);
+
+            mutedEffect.sprite_list = SpriteTextureLoader.getSpriteList($"effects/{mutedEffect.texture}", false);
+            //Same as time stop
+            mutedEffect.action_on_receive = (WorldAction)Delegate.Combine(mutedEffect.action_on_receive, new WorldAction(DarkieStatusEffectAction.mutedStatusSpecialEffect));
+            AssetManager.status.add(mutedEffect);
+            addToLocale(mutedEffect.id, "Muted", "Hmmm... hmmm! Me can't talk!");
+            #endregion
         }
 
         private static void addToLocale(string id, string name, string description)
