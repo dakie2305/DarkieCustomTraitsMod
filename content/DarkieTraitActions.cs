@@ -513,10 +513,19 @@ internal static class DarkieTraitActions
         {
             //If no weapon, give teleport dagger
             var dagger = AssetManager.items.get("teleport_dagger");
-            var pData = World.world.items.generateItem(pItemAsset: dagger);
-            var pSlot = pSelf.a.equipment.getSlot(EquipmentType.Weapon);
-            pSlot.setItem(pData, pSelf.a);
-            pSelf.setStatsDirty();
+            if (dagger != null)
+            {
+                var pData = World.world.items.generateItem(pItemAsset: dagger);
+                if (pData != null)
+                {
+                    var pSlot = pSelf.a.equipment.getSlot(EquipmentType.Weapon);
+                    if (pSlot != null)
+                    {
+                        pSlot.setItem(pData, pSelf.a);
+                        pSelf.setStatsDirty();
+                    }
+                }
+            }
         }
         if (Randy.randomChance(0.1f))
         {
