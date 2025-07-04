@@ -17,8 +17,9 @@
   "ice_sword_description": "永霜鑄成的刃，凍結所有接觸的生物",
   "Glass Sword": "玻璃利刃",
   "glass_sword_description": "脆弱且致命，每一次劃傷可導致遲緩和流血",
-  "Speechless Sword": "Speechless Sword",
-  "speechless_sword_description": "A god forsaken blade that can shut the enemies mouth while inflict bleeding on every slash.",
+  "Speechless Sword": "失語劍",
+  "speechless_sword_description": "神遺棄之劍，可以沉默敵人，同時每一次劃傷造成流血",
+  
   //DarkieStatusEffects(.locale_id .locale_description)
   "status_title_titan_shifter_effect": "巨人化",
   "status_description_titan_shifter_effect": "會摧毀一切的巨人化!",
@@ -40,8 +41,8 @@
   "status_description_time_stop_ultimate_effect": "只是停止了周圍敵人的時間而已",
   "status_title_custom_electrocuted_effect": "電刑",
   "status_description_custom_electrocuted_effect": "嗷嚎嗷，被電疼得不能動了!",
-  "status_title_custom_muted_effect": "Muted",
-  "status_description_custom_muted_effect": "Hmmm... hmmm! Me can't talk!",
+  "status_title_custom_muted_effect": "失語",
+  "status_description_custom_muted_effect": "嗚……唔!説不出話來",
 
   //DarkieTraits(group.name)
   "trait_group_darkie": "Darkie的自制特質",
@@ -80,7 +81,7 @@
   "trait_almighty_info_2": "",
   "trait_thor_odinson": "雷神托爾",
   "trait_thor_odinson_info": "擁有召喚閃電的能力，接下這招吧!",
-  "trait_thor_odinson_info_2": "",
+  "trait_thor_odinson_info_2": "血量過低時召喚雷神之錘",
   "trait_nightcrawler": "夜行者",
   "trait_nightcrawler_info": "潛伏於黑夜中，可以傳送到各處也可將別人傳送走",
   "trait_nightcrawler_info_2": "月黑風高，殺人夜!",
@@ -177,9 +178,9 @@
   "trait_the_electro": "電瞬",
   "trait_the_electro_info": "對敵人處以電刑!還可以進行快速傳送",
   "trait_the_electro_info_2": "",
-  "trait_the_silencer": "Silencer",
-  "trait_the_silencer_info": "You have speak your last word. Prepare to shut up!!",
-  "trait_the_silencer_info_2": "Can summon Speechless Sword when low on health!",
+  "trait_the_silencer": "失語者",
+  "trait_the_silencer_info": "説完你的遺言，然後閉嘴吧!!",
+  "trait_the_silencer_info_2": "血量過低時召喚失語劍",
 
   "NML_AUTHENTICATION": "NML AUTHENTICATION"
 }
