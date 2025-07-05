@@ -1302,11 +1302,23 @@ internal static class DarkieTraitActions
         //Add glass sword if no weapon
         if (!pTarget.a.hasWeapon() && !pTarget.a.asset.id.Equals("vampire_bat"))
         {
-            var weapon = AssetManager.items.get("glass_sword");
-            var pData = World.world.items.generateItem(pItemAsset: weapon);
-            var pSlot = pTarget.a.equipment.getSlot(EquipmentType.Weapon);
-            pSlot.setItem(pData, pTarget.a);
-            pTarget.setStatsDirty();
+            //If no weapon, give weapon
+            var dagger = AssetManager.items.get("glass_sword");
+            if (dagger != null)
+            {
+                var pData = World.world.items.generateItem(pItemAsset: dagger);
+                if (pData != null)
+                {
+                    if (pTarget.a.equipment != null)
+                    {
+                        var pSlot = pTarget.a.equipment.getSlot(EquipmentType.Weapon);
+                        if (pSlot != null)
+                        {
+                            pSlot.setItem(pData, pTarget.a);
+                        }
+                    }
+                }
+            }
         }
         return true;
     }
