@@ -26,9 +26,12 @@ internal static class DarkieTraitActions
         {
             pTarget.addStatusEffect("stunned");
         }
-        //Shockwave
-        World.world.applyForceOnTile(pTile, 3, 1.0f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
-        EffectsLibrary.spawnExplosionWave(pTile.posV3, 1f, 0.5f);
+        if (Randy.randomChance(0.1f))
+        {
+            //Shockwave
+            World.world.applyForceOnTile(pTile, 3, 1.0f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
+            EffectsLibrary.spawnExplosionWave(pTile.posV3, 1f, 0.5f);
+        }
         return true;
     }
 
@@ -41,9 +44,12 @@ internal static class DarkieTraitActions
             BaseEffect baseEffect = EffectsLibrary.spawnAtTile("fx_DarkieExplosionBlueOval_effect", pTarget.current_tile, 0.1f);
             pSelf.a.addStatusEffect("titan_shifter_effect");
         }
-        //Shockwave
-        World.world.applyForceOnTile(pTile, 3, 0.5f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
-        EffectsLibrary.spawnExplosionWave(pTile.posV3, 3f, 0.5f);
+        if (Randy.randomChance(0.1f)) //Percent
+        {
+            //Shockwave
+            World.world.applyForceOnTile(pTile, 3, 0.5f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
+            EffectsLibrary.spawnExplosionWave(pTile.posV3, 3f, 0.5f);
+        }
         return true;
     }
 
@@ -65,7 +71,7 @@ internal static class DarkieTraitActions
         {
             EffectsLibrary.spawnAtTile("fx_DarkieExplosionTwoColor_effect", pTarget.current_tile, 0.25f);
         }
-        else if (Randy.randomChance(0.1f))
+        else if (Randy.randomChance(0.01f))
         {
             EffectsLibrary.spawnAtTile("fx_explosion_crab_bomb", pTarget.current_tile, 0.25f);
         }
@@ -73,11 +79,11 @@ internal static class DarkieTraitActions
         {
             EffectsLibrary.spawnAtTile("fx_explosion_meteorite", pTarget.current_tile, 0.25f);
         }
-        else if (Randy.randomChance(0.1f))
+        else if (Randy.randomChance(0.05f))
         {
             EffectsLibrary.spawnAtTile("fx_DarkieExplosionCircle_effect", pTarget.current_tile, 0.25f);
         }
-        else if (Randy.randomChance(0.1f))
+        else if (Randy.randomChance(0.05f))
         {
             //Shockwave
             World.world.applyForceOnTile(pTile, 3, 0.5f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
@@ -1293,7 +1299,10 @@ internal static class DarkieTraitActions
         }
         pTarget.a.removeTrait("mirror_man");
         // The Mirrored will take gradual damage over time until death
-        pTarget.getHit(15, true, AttackType.Weapon, null, true, false);
+        float healthLoss = pTarget.a.getMaxHealth() / 10;
+        if (healthLoss < 1000f)
+            healthLoss = 1000f;
+        pTarget.getHit(healthLoss, true, AttackType.Weapon, null, true, false);
         return true;
     }
 
