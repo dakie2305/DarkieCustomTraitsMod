@@ -99,7 +99,7 @@ internal static class DarkieTraitActions
         {
             //Only spawn lightning effect without the actual damage
             EffectsLibrary.spawnAtTile("fx_lightning_medium", pTarget.current_tile, 0.4f);
-            if (Randy.randomChance(0.3f))
+            if (Randy.randomChance(0.05f))
                 World.world.applyForceOnTile(pTarget.current_tile, 3, 0.5f, pForceOut: true, 0, null, pByWho: pSelf); //Ignore force for self
             //Small chance of electrocute everyone around
             if (Randy.randomChance(0.01f)) //Percent
