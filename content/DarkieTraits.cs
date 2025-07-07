@@ -931,7 +931,7 @@ internal static class DarkieTraits
         duplikateTrait.base_stats.set(CustomBaseStatsConstant.Armor, 80f);
         duplikateTrait.base_stats.set(CustomBaseStatsConstant.Accuracy, 80f);
         duplikateTrait.base_stats.set(CustomBaseStatsConstant.Scale, 0.03f);
-
+        duplikateTrait.addOpposites(new List<string> { "phoenix" });
         duplikateTrait.type = TraitType.Positive;
         duplikateTrait.unlock(true);
 
@@ -958,7 +958,7 @@ internal static class DarkieTraits
 
         cloneTrait.base_stats = new BaseStats();
         cloneTrait.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, -0.2f);
-
+        cloneTrait.addOpposites(new List<string> { "phoenix" });
         cloneTrait.type = TraitType.Other;
         cloneTrait.unlock(true);
 
@@ -978,7 +978,7 @@ internal static class DarkieTraits
             rarity = Rarity.R2_Epic,
             can_be_given = true,
         };
-
+        pheonix.addOpposites(new List<string> { "duplikate", "duplikate_clone" });
         pheonix.base_stats = new BaseStats();
         pheonix.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 0.5f);
         pheonix.base_stats.set(CustomBaseStatsConstant.AttackSpeed, 50f);
