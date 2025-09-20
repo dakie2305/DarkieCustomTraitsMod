@@ -1,6 +1,6 @@
 # Darkie Custom Traits Mod
 
-An extensive custom trait and weapon overhaul for **Super Worldbox**, now updated to work with game version **0.50.5**.
+An extensive custom trait and weapon overhaul for **Super Worldbox**, now updated to work with game version **0.51.2**.
 
 ---
 

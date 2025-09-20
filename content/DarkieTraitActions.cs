@@ -181,7 +181,7 @@ internal static class DarkieTraitActions
             //Set master id so that it can be re-populate later
             act.data.set("master_id", pSelf.a.data.id);
             //This will help marks the ownership
-            act.data.setName($"Wolf of {pSelf.a.getName()}");
+            act.data.name = $"Wolf of {pSelf.a.getName()}";
             act.goTo(pSelf.current_tile);
             if (!listOfTamedBeasts.ContainsKey(act))
                 listOfTamedBeasts.Add(act, pSelf.a);     //add the beast and actor who spawned them into custom list
@@ -211,7 +211,7 @@ internal static class DarkieTraitActions
             //Set master id so that it can be re-populate later
             act.data.set("master_id", pSelf.a.data.id);
             //This will help marks the ownership
-            act.data.setName($"Bear of {pSelf.a.getName()}");
+            act.data.name = $"Bear of {pSelf.a.getName()}";
             act.goTo(pSelf.current_tile);
             if (!listOfTamedBeasts.ContainsKey(act))
                 listOfTamedBeasts.Add(act, pSelf.a);     //add the beast and actor who spawned them into custom list
@@ -250,7 +250,7 @@ internal static class DarkieTraitActions
             act.data.set("master_id", pSelf.a.data.id);
             act.stats.set(CustomBaseStatsConstant.Scale, 0.1f);
             //This will help marks the ownership
-            act.data.setName($"Dragon of {pSelf.a.getName()}");
+            act.data.name = $"Dragon of {pSelf.a.getName()}";
             act.goTo(pSelf.current_tile);
             if (!listOfTamedBeasts.ContainsKey(act))
                 listOfTamedBeasts.Add(act, pSelf.a);     //add the beast and actor who spawned them into custom list
@@ -280,7 +280,7 @@ internal static class DarkieTraitActions
             //Set master id so that it can be re-populate later
             act.data.set("master_id", pSelf.a.data.id);
             //This will help marks the ownership
-            act.data.setName($"Bandit Friend of {pSelf.a.getName()}");
+            act.data.name = $"Bandit Friend of {pSelf.a.getName()}";
             act.goTo(pSelf.current_tile);
 
             if (!listOfTamedBeasts.ContainsKey(act))
@@ -1031,7 +1031,7 @@ internal static class DarkieTraitActions
                 if (pTarget.kingdom.isAlive())
                     act.kingdom = pTarget.kingdom;
                 act.addTrait("duplikate_clone");
-                act.data.setName(pTarget.a.getName());
+                act.data.name = pTarget.a.getName();
                 act.data.health += 1300;
                 act.removeTrait("duplikate");
                 count++;
@@ -1076,7 +1076,7 @@ internal static class DarkieTraitActions
         ActorTool.copyUnitToOtherUnit(pTarget.a, act);
         if (pTarget.kingdom.isAlive())
             act.kingdom = pTarget.kingdom;
-        act.data.setName(pTarget.a.getName());
+        act.data.name = pTarget.a.getName();
         act.data.favorite = pTarget.a.data.favorite;
         act.data.health += 1000;
         EffectsLibrary.spawnAtTile("fx_lightning_medium", pTile, 0.25f);

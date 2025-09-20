@@ -33,6 +33,7 @@ namespace DarkieCustomTraits.Content
             vampireBat.can_flip = false; //no flipping texture
             vampireBat.unit_other = true;
             vampireBat.has_baby_form = false; //no baby form of course
+            vampireBat.shadow = false; //no shadow
 
             vampireBat.can_talk_with = false;
             vampireBat.control_can_talk = false;
@@ -70,7 +71,7 @@ namespace DarkieCustomTraits.Content
 
             vampireBat.max_random_amount = 6;
             //vampireBat.action_death = (WorldAction)Delegate.Combine(vampireBat.action_death, new WorldAction(ActionLibrary.tryToCreatePlants));
-            AssetManager.actor_library.loadShadow(vampireBat);
+            //AssetManager.actor_library.loadShadows();
             AssetManager.actor_library.loadTexturesAndSprites(vampireBat);
             //Already have Locales folder, so this is no need anymore
             //LM.AddToCurrentLocale($"bat", "One of the rare lurker of the night. It looks sinister...");
