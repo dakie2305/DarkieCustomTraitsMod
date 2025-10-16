@@ -19,8 +19,8 @@
   //DarkieStatusEffects(.locale_id .locale_description)
   "status_title_titan_shifter_effect": "Перевёртыш-титан",
   "status_description_titan_shifter_effect": "Один из самых опасных титанов, уничтожающих всё вокруг!",
-  "status_title_ant_man_effect": "Эффект Человека-Мурашки",
-  "status_description_ant_man_effect": "Он становится всё меньше",
+  "status_title_ant_man_effect": "Эффект Человека-Муравья",
+  "status_description_ant_man_effect": "Он становится всё меньше и меньше",
   "status_title_wolf_attack_effect": "Волчья форма",
   "status_description_wolf_attack_effect": "Не зли его",
   "status_title_phoenix_rise_effect": "Восход феникса",
@@ -33,7 +33,7 @@
   "status_description_ice_storm_effect": "Отпусти и... Заморозь их всех!",
   "status_title_time_stop_effect": "Остановка времени",
   "status_description_time_stop_effect": "Этот человек застрял во времени!",
-  "status_title_time_stop_ultimate_effect": "Остановка времени - Ульта",
+  "status_title_time_stop_ultimate_effect": "Ульта - Остановка времени",
   "status_description_time_stop_ultimate_effect": "Он остановил время для всех врагов вокруг!",
   "status_title_custom_electrocuted_effect": "Поражён током",
   "status_description_custom_electrocuted_effect": "Ай-ай-ай! Больно! Не могу двигаться!",
@@ -223,3 +223,4 @@
 
   "NML_AUTHENTICATION": "NML AUTHENTICATION"
 }
+
