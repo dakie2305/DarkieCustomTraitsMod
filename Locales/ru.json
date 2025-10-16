@@ -1,0 +1,226 @@
+{
+  //DarkieUnits(.name_locale id_description)
+  "Bat": "Летучая мышь",
+  "bat": "Летучая мышь",
+  "Bat_description": "Редкий ночной обитатель. Выглядит зловеще...",
+
+  //DarkieItems(.translation_key id_description)
+  "teleport_dagger": "Кинжал телепортации",
+  "teleport_dagger_description": "Самый быстрый кинжал с атакой телепортации!",
+  "mjölnir": "Mjölnir (Мьёльнир)",
+  "mjolnir_description": "Могущественное оружие, достойное лишь избранных. Призывает молнию для поражения врагов!",
+  "ice_sword": "Ледяной меч",
+  "ice_sword_description": "Клинок, выкованный из вечного льда. Замораживает всё, к чему прикасается.",
+  "glass_sword": "Стеклянный меч",
+  "glass_sword_description": "Смертоносный клинок, замедляющий врагов и вызывающий кровотечение с каждым ударом.",
+  "speechless_sword": "Меч безмолвия",
+  "speechless_sword_description": "Проклятый клинок, заставляющий врагов замолкнуть и истекать кровью при каждом ударе.",
+
+  //DarkieStatusEffects(.locale_id .locale_description)
+  "status_title_titan_shifter_effect": "Перевёртыш-титан",
+  "status_description_titan_shifter_effect": "Один из самых опасных титанов, уничтожающих всё вокруг!",
+  "status_title_ant_man_effect": "Эффект Человека-Муравья",
+  "status_description_ant_man_effect": "Он становится всё меньше и меньше",
+  "status_title_wolf_attack_effect": "Волчья форма",
+  "status_description_wolf_attack_effect": "Не зли его",
+  "status_title_phoenix_rise_effect": "Восход феникса",
+  "status_description_phoenix_rise_effect": "Я восстал из пепла!",
+  "status_title_sparkling_effect": "Искрящийся",
+  "status_description_sparkling_effect": "Сверкает от силы",
+  "status_title_bleeding_effect": "Кровотечение",
+  "status_description_bleeding_effect": "Истекает кровью",
+  "status_title_ice_storm_effect": "Ледяная буря",
+  "status_description_ice_storm_effect": "Отпусти и... Заморозь их всех!",
+  "status_title_time_stop_effect": "Остановка времени",
+  "status_description_time_stop_effect": "Этот человек застрял во времени!",
+  "status_title_time_stop_ultimate_effect": "Ульта - Остановка времени",
+  "status_description_time_stop_ultimate_effect": "Он остановил время для всех врагов вокруг!",
+  "status_title_custom_electrocuted_effect": "Поражён током",
+  "status_description_custom_electrocuted_effect": "Ай-ай-ай! Больно! Не могу двигаться!",
+  "status_title_custom_muted_effect": "Безмолвие",
+  "status_description_custom_muted_effect": "Ммм... ммм! Я не могу говорить!",
+
+  //DarkieTraits(group.name)
+  "trait_group_darkie": "Темные черты",
+  "darkie_birth_rate_config": "Изменить шанс появления черт",
+
+  //DarkieTraits(trait_id trait_id_info trait_id_info_2)
+  "trait_turtleguy": "Черепаховый парень",
+  "trait_turtleguy_info": "Черепаха. Крайне медлителен, но живёт дольше, крепче и оставляет больше потомства.",
+  "trait_turtleguy_info_2": "",
+
+  "trait_flash": "Флэш",
+  "trait_flash_info": "Истинный Флэш. Обладает невероятной скоростью и скоростью атаки, но жертвует здоровьем.",
+  "trait_flash_info_2": "",
+
+  "trait_berserker": "Берсерк",
+  "trait_berserker_info": "Воин, не знающий покоя! Обладает высокой выносливостью и силой атаки, но двигается медленнее обычного.",
+  "trait_berserker_info_2": "",
+
+  "trait_hawkeye": "Соколиный глаз",
+  "trait_hawkeye_info": "Я не промахиваюсь.",
+  "trait_hawkeye_info_2": "",
+
+  "trait_titan": "Титан",
+  "trait_titan_info": "Быстро! Кто-нибудь, позовите Леви!",
+  "trait_titan_info_2": "",
+
+  "trait_titan_shifter": "Перевёртыш-титан",
+  "trait_titan_shifter_info": "Shinzō wo Sasageyo! Превращается в титана, когда получает удар.",
+  "trait_titan_shifter_info_2": "",
+
+  "trait_wise_old_one": "Мудрый старец",
+  "trait_wise_old_one_info": "Старый и мудрый. Высокий интеллект и дипломатия, но мало здоровья.",
+  "trait_wise_old_one_info_2": "",
+
+  "trait_idiot_savant": "Идиот-савант",
+  "trait_idiot_savant_info": "Гений в одном, идиот во всём остальном. Очень низкий интеллект и дипломатия.",
+  "trait_idiot_savant_info_2": "",
+
+  "trait_mountain": "Гора",
+  "trait_mountain_info": "Неподвижная гора. Обладает колоссальной стойкостью.",
+  "trait_mountain_info_2": "",
+
+  "trait_almighty": "Всемогущий",
+  "trait_almighty_info": "Абсолютное существо! Непреодолимая сила с разрушительной атакой. Супер ОП!",
+  "trait_almighty_info_2": "",
+
+  "trait_thor_odinson": "Тор, сын Одина",
+  "trait_thor_odinson_info": "Бог молота, повелевающий молниями. Время для молота!",
+  "trait_thor_odinson_info_2": "",
+
+  "trait_nightcrawler": "Ночной краулер",
+  "trait_nightcrawler_info": "Теневой странник ночи! Может телепортироваться по карте и перемещать врагов.",
+  "trait_nightcrawler_info_2": "",
+
+  "trait_shield_guy": "Щитоносец",
+  "trait_shield_guy_info": "Танк команды, способен накладывать щит на себя и иногда на союзников.",
+  "trait_shield_guy_info_2": "",
+
+  "trait_dej_wolf_tamer": "Укротитель волков",
+  "trait_dej_wolf_tamer_info": "Мастер стаи! Призывает трёх волков-союзников в бою.",
+  "trait_dej_wolf_tamer_info_2": "",
+
+  "trait_tamed_beasts": "Прирученные звери",
+  "trait_tamed_beasts_info": "Этот зверь был призван своим хозяином.",
+  "trait_tamed_beasts_info_2": "",
+
+  "trait_dej_bear_tamer": "Укротитель медведей",
+  "trait_dej_bear_tamer_info": "Повелитель медведей! Призывает двух медведей для боя.",
+  "trait_dej_bear_tamer_info_2": "",
+
+  "trait_dej_dragon_trainer": "Дрессировщик драконов",
+  "trait_dej_dragon_trainer_info": "Величайший тренер всех времён! Призывает огромного дракона для сражения.",
+  "trait_dej_dragon_trainer_info_2": "",
+
+  "trait_medic_healer": "Медик-целитель",
+  "trait_medic_healer_info": "Медик команды! Может лечить себя и союзников.",
+  "trait_medic_healer_info_2": "",
+
+  "trait_gangster": "Гангстер",
+  "trait_gangster_info": "Чего смотришь, а!? Не заставляй меня звать братьев-бандитов!",
+  "trait_gangster_info_2": "",
+
+  "trait_master_magister": "Великий магистр",
+  "trait_master_magister_info": "Магистр хаоса! Высвобождает разрушительную магию.",
+  "trait_master_magister_info_2": "",
+
+  "trait_wololo": "Вололо",
+  "trait_wololo_info": "Вололо? Теперь ты на моей стороне!",
+  "trait_wololo_info_2": "",
+
+  "trait_chained": "Окованный",
+  "trait_chained_info": "Кто-то оковал меня :(",
+  "trait_chained_info_2": "",
+
+  "trait_ant_man": "Человек-муравей",
+  "trait_ant_man_info": "Приведите ко мне Канга!",
+  "trait_ant_man_info_2": "",
+
+  "trait_esteemed_commander": "Уважаемый командир",
+  "trait_esteemed_commander_info": "Стране нужен ТЫ! Призывает рядом стоящих юнитов вступить в армию и служить нации!",
+  "trait_esteemed_commander_info_2": "",
+
+  "trait_the_tortured": "Мученик",
+  "trait_the_tortured_info": "Ты не должен был существовать. Сам факт твоего бытия - кощунство и оскорбление всему живому.",
+  "trait_the_tortured_info_2": "",
+
+  "trait_blood_of_wolf": "Кровь волка",
+  "trait_blood_of_wolf_info": "Может превращаться в ужасное существо во время полнолуния!",
+  "trait_blood_of_wolf_info_2": "",
+
+  "trait_the_werewolf": "Оборотень",
+  "trait_the_werewolf_info": "Ужасное существо, возникающее в тёмные времена полнолуния. Только те, кто имеет Кровь Волка, могут стать этим ночным кошмаром.",
+  "trait_the_werewolf_info_2": "",
+
+  "trait_stuffed": "Сытый",
+  "trait_stuffed_info": "Дорогуша, ты больше никогда не проголодаешься!",
+  "trait_stuffed_info_2": "",
+
+  "trait_insatiable_hunger": "Ненасытный голод",
+  "trait_insatiable_hunger_info": "",
+  "trait_insatiable_hunger_info_2": "Слишком голоден. Я могу съесть весь мир.",
+
+  "trait_duplikate": "Дупликейт",
+  "trait_duplikate_info": "Ты никогда не убьёшь меня окончательно.",
+  "trait_duplikate_info_2": "",
+
+  "trait_duplikate_clone": "Клон Дупликейта",
+  "trait_duplikate_clone_info": "Просто неоригинальный клон.",
+  "trait_duplikate_clone_info_2": "",
+
+  "trait_pheonix": "Феникс",
+  "trait_pheonix_info": "Из пепла я возрожусь вновь.",
+  "trait_pheonix_info_2": "",
+
+  "trait_the_revived": "Возрождённый",
+  "trait_the_revived_info": "Этот человек вновь возвращён в мир живых.",
+  "trait_the_revived_info_2": "",
+
+  "trait_power_mimicry": "Мимикрия силы",
+  "trait_power_mimicry_info": "Может копировать все черты и снаряжение врагов, осмелившихся напасть.",
+  "trait_power_mimicry_info_2": "",
+
+  "trait_nullify": "Обнуление",
+  "trait_nullify_info": "Ошибка 404: черты не найдены. Постепенно удаляет черты врагов - чрезвычайно опасен!",
+  "trait_nullify_info_2": "",
+
+  "trait_the_mysterious_trait": "?",
+  "trait_the_mysterious_trait_info": "???",
+  "trait_the_mysterious_trait_info_2": "",
+
+  "trait_reviver_of_dead": "Воскрешающий мёртвых",
+  "trait_reviver_of_dead_info": "Он возвращает зомби к жизни - полная противоположность носителю смерти!",
+  "trait_reviver_of_dead_info_2": "",
+
+  "trait_the_dark_necromancer": "Тёмный некромант",
+  "trait_the_dark_necromancer_info": "Мастер тёмной магии. Может призывать и контролировать диких скелетов.",
+  "trait_the_dark_necromancer_info_2": "",
+
+  "trait_the_vampire": "Вампир-лорд",
+  "trait_the_vampire_info": "Древний ужас, ставший легендой. Вампир-лорд может подчинять разум врагов или сводить их с ума, но боится солнечного света!",
+  "trait_the_vampire_info_2": "",
+
+  "trait_the_mirroed": "Зеркальный",
+  "trait_the_mirroed_info": "Что за... Это я?! О, боже, я - клон Зеркального человека!",
+  "trait_the_mirroed_info_2": "",
+
+  "trait_mirror_man": "Зеркальный человек",
+  "trait_mirror_man_info": "Может отражать урон и создавать копии врагов.",
+  "trait_mirror_man_info_2": "",
+
+  "trait_time_stopper": "Останавливающий время",
+  "trait_time_stopper_info": "Опасная сущность, способная замораживать врагов во времени, размораживать союзников или ускорять старение противников!",
+  "trait_time_stopper_info_2": "",
+
+  "trait_the_electro": "Электро",
+  "trait_the_electro_info": "Живое воплощение электричества! Может поражать врагов током и молниеносно телепортироваться.",
+  "trait_the_electro_info_2": "",
+
+  "trait_the_silencer": "Умиротворитель",
+  "trait_the_silencer_info": "Ты сказал своё последнее слово. Приготовься замолчать навсегда!",
+  "trait_the_silencer_info_2": "Может призвать Меч Безмолвия при низком уровне здоровья!",
+
+  "NML_AUTHENTICATION": "NML AUTHENTICATION"
+}
+
